@@ -46,8 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Produtos\ProdutoAppService.cs" />
+    <Compile Include="Data\Provider\ConnectionProvider.cs" />
+    <Compile Include="Data\Repositories\ProdutoRepository.cs" />
+    <Compile Include="Domain\Core\Result.cs" />
     <Compile Include="Domain\pedido.cs" />
-    <Compile Include="Domain\Produtos\Produtos.cs" />
+    <Compile Include="Domain\Produtos\Produto.cs" />
     <Compile Include="fPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,9 +81,6 @@
     <Compile Include="Views\Produtos\fProduto.Designer.cs">
       <DependentUpon>fProduto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Produtos\produtodb.cs" />
-    <Compile Include="Views\Produtos\produtoent.cs" />
-    <Compile Include="Views\Produtos\produtomodel.cs" />
     <Compile Include="Views\Relatorios\relatorioCliente\relatorioCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,8 +151,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
