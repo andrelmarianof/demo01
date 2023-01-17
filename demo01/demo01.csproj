@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.SqlBuilder, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.SqlBuilder.2.0.78\lib\net461\Dapper.SqlBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,11 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Clientes\ClienteAppService.cs" />
     <Compile Include="Application\Produtos\ProdutoAppService.cs" />
     <Compile Include="Data\Provider\ConnectionProvider.cs" />
-    <Compile Include="Data\Repositories\ProdutoRepository.cs" />
+    <Compile Include="Data\RepositoriesCliente\ClienteRepositories.cs" />
+    <Compile Include="Data\RepositoriesProduto\ProdutoRepository.cs" />
+    <Compile Include="Domain\Cliente\Clientes.cs" />
     <Compile Include="Domain\Core\Result.cs" />
-    <Compile Include="Domain\pedido.cs" />
     <Compile Include="Domain\Produtos\Produto.cs" />
     <Compile Include="fPrincipal.cs">
       <SubType>Form</SubType>
@@ -66,15 +74,12 @@
     <Compile Include="Views\Cliente\Cliente.Designer.cs">
       <DependentUpon>Cliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cliente\clientedb.cs" />
-    <Compile Include="Views\Cliente\clientent.cs" />
     <Compile Include="Views\Pedido\Pedido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Pedido\Pedido.Designer.cs">
       <DependentUpon>Pedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pedido\pedidodb.cs" />
     <Compile Include="Views\Produtos\fProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +131,7 @@
     <EmbeddedResource Include="Views\Relatorios\relatorioProduto\relatorioProdutos.resx">
       <DependentUpon>relatorioProdutos.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\demo01.Domain.pedido.datasource" />
     <None Include="Properties\DataSources\demo01.Domain.Produto.Produto.datasource" />
     <None Include="Properties\DataSources\demo01.Properties.Resources.datasource" />

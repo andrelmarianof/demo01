@@ -26,41 +26,42 @@ namespace demo01.App.Produtos
             {
                 return new Result(false, "O Produto não pode ser cadastrado pois o código já está em uso");
             }
-            new ProdutoRepository().Inserir(produto);
+            new ProdutoRepository().InsertProduto(produto);
 
             return new Result(true, string.Empty);
 
 
         }
 
-        public void Atualizar()
+        public Result Atualizar(Produto produto)
         {
+            var result = produto.IsValid();
+            if (!result.Success)
+            {
+                return result;
+            }
 
+            new ProdutoRepository().UpdateProduto(produto);
+            return new Result(true, string.Empty);
         }
 
-        public void Excluir(Produto produto)
-        {
+        //public Result ExcluirComValidacao(Produto produto)
+        //{
 
-            new ProdutoRepository().Excluir(produto);
+        //    if (ExistePedidoComEsteProduto(produto))
+        //        return new Result(false, new List<string>() { "Você não pode excluir o produto, pois ele está em uso em pedidos!" });
 
-        }
-        public Result ExcluirComValidacao(Produto produto)
-        {
+        //    if (new ProdutoRepository().Excluir(produto) > 0)
+        //        return new Result(true, "");
 
-            if (ExistePedidoComEsteProduto(produto))
-                return new Result(false, new List<string>() { "Você não pode excluir o produto, pois ele está em uso em pedidos!" });
+        //    return new Result(false, new List<string>() { "Houve um erro ao tentar excluir o produto!" });
 
-            if (new ProdutoRepository().Excluir(produto) > 0)
-                return new Result(true, "");
+        //}
 
-            return new Result(false, new List<string>() { "Houve um erro ao tentar excluir o produto!" });
-
-        }
-
-        private bool ExistePedidoComEsteProduto(Produto produto)
-        {
-            //bool PedidoRepository().ExistePedidoComEsteProduto(produto.Codigo)
-            return true;
-        }
+        //private bool ExistePedidoComEsteProduto(Produto produto)
+        //{
+        //    //bool PedidoRepository().ExistePedidoComEsteProduto(produto.Codigo)
+        //    return true;
+        //}
     }
 }

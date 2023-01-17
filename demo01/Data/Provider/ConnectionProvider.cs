@@ -16,19 +16,4 @@ namespace demo01.Data.Provider
             return con;
         }
     }
-
-
-    //public class Teste
-    //{
-
-    //    public Teste()
-    //    {
-    //        //var connectionProvider = new ConnectionProvider();
-    //        //connectionProvider.Metodo();
-
-    //        ConnectionProvider.Metodo();
-    //    }
-    //}
-
-
 }
