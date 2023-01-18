@@ -36,10 +36,13 @@ namespace demo01.Views.Cliente
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listacliente = new System.Windows.Forms.DataGridView();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
+            this.txtCpf = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
@@ -50,7 +53,7 @@ namespace demo01.Views.Cliente
             this.txtNomeCliente.Location = new System.Drawing.Point(161, 88);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
-            this.txtNomeCliente.TabIndex = 0;
+            this.txtNomeCliente.TabIndex = 5;
             this.txtNomeCliente.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCliente_KeyPress);
             // 
@@ -59,7 +62,7 @@ namespace demo01.Views.Cliente
             this.txtCodigoCliente.Location = new System.Drawing.Point(40, 88);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(63, 20);
-            this.txtCodigoCliente.TabIndex = 1;
+            this.txtCodigoCliente.TabIndex = 4;
             this.txtCodigoCliente.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
             this.txtCodigoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
@@ -85,11 +88,11 @@ namespace demo01.Views.Cliente
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(218, 60);
+            this.label2.Location = new System.Drawing.Point(242, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "&Nome do cliente";
+            this.label2.Text = "&Nome";
             // 
             // listacliente
             // 
@@ -98,13 +101,51 @@ namespace demo01.Views.Cliente
             this.listacliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listacliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.código,
-            this.descrição});
+            this.descrição,
+            this.Cpf});
             this.listacliente.Location = new System.Drawing.Point(12, 127);
             this.listacliente.Name = "listacliente";
             this.listacliente.ReadOnly = true;
             this.listacliente.Size = new System.Drawing.Size(637, 311);
-            this.listacliente.TabIndex = 10;
+            this.listacliente.TabIndex = 6;
             this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
+            // 
+            // btnNovoCliente
+            // 
+            this.btnNovoCliente.Location = new System.Drawing.Point(28, 12);
+            this.btnNovoCliente.Name = "btnNovoCliente";
+            this.btnNovoCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnNovoCliente.TabIndex = 1;
+            this.btnNovoCliente.Text = "&Novo";
+            this.btnNovoCliente.UseVisualStyleBackColor = true;
+            this.btnNovoCliente.Click += new System.EventHandler(this.btnNovoCliente_Click);
+            // 
+            // btnExcluirCliente
+            // 
+            this.btnExcluirCliente.Location = new System.Drawing.Point(222, 12);
+            this.btnExcluirCliente.Name = "btnExcluirCliente";
+            this.btnExcluirCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluirCliente.TabIndex = 3;
+            this.btnExcluirCliente.Text = "&Excluir";
+            this.btnExcluirCliente.UseVisualStyleBackColor = true;
+            this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
+            // 
+            // txtCpf
+            // 
+            this.txtCpf.Location = new System.Drawing.Point(399, 88);
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(171, 20);
+            this.txtCpf.TabIndex = 7;
+            this.txtCpf.TextChanged += new System.EventHandler(this.txtCpf_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(461, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "&C P F";
             // 
             // código
             // 
@@ -120,24 +161,12 @@ namespace demo01.Views.Cliente
             this.descrição.Name = "descrição";
             this.descrição.ReadOnly = true;
             // 
-            // btnNovoCliente
+            // Cpf
             // 
-            this.btnNovoCliente.Location = new System.Drawing.Point(28, 12);
-            this.btnNovoCliente.Name = "btnNovoCliente";
-            this.btnNovoCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnNovoCliente.TabIndex = 11;
-            this.btnNovoCliente.Text = "&Novo";
-            this.btnNovoCliente.UseVisualStyleBackColor = true;
-            this.btnNovoCliente.Click += new System.EventHandler(this.btnNovoCliente_Click);
-            // 
-            // btnExcluirCliente
-            // 
-            this.btnExcluirCliente.Location = new System.Drawing.Point(222, 12);
-            this.btnExcluirCliente.Name = "btnExcluirCliente";
-            this.btnExcluirCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluirCliente.TabIndex = 12;
-            this.btnExcluirCliente.Text = "&Excluir";
-            this.btnExcluirCliente.UseVisualStyleBackColor = true;
+            this.Cpf.DataPropertyName = "Cpf";
+            this.Cpf.HeaderText = "Cpf";
+            this.Cpf.Name = "Cpf";
+            this.Cpf.ReadOnly = true;
             // 
             // clienteBindingSource
             // 
@@ -148,6 +177,8 @@ namespace demo01.Views.Cliente
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.btnExcluirCliente);
             this.Controls.Add(this.btnNovoCliente);
             this.Controls.Add(this.listacliente);
@@ -175,9 +206,12 @@ namespace demo01.Views.Cliente
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView listacliente;
         private System.Windows.Forms.Button btnNovoCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn código;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.Button btnExcluirCliente;
         private System.Windows.Forms.BindingSource clienteBindingSource;
+        private System.Windows.Forms.TextBox txtCpf;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn código;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cpf;
     }
 }

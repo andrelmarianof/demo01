@@ -63,13 +63,15 @@ namespace demo01.Views.Cliente
         }
         private void InserirCliente()
         {
-            if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != ""))
+            if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != "") & (txtCpf.Text.Length == 11 )) 
             {
+              
                 try
                 {
                     var cliente = new Clientes();
                     cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
                     cliente.NomeCliente = txtNomeCliente.Text.Trim();
+                    cliente.Cpf = txtCpf.Text.Trim();
                     var result = new ClienteAppService().Inserir(cliente);
                     if (result.Success)
                     {
@@ -92,7 +94,7 @@ namespace demo01.Views.Cliente
             }
             else
             {
-                MessageBox.Show("insira todos os campos para cadastrar um produto!");
+                MessageBox.Show("insira todos os campos corretamente para cadastrar um cliente!");
 
             }
         }
@@ -101,6 +103,7 @@ namespace demo01.Views.Cliente
         {
             txtCodigoCliente.Text = "";
             txtNomeCliente.Text = "";
+            txtCpf.Text = "";
           
         }
 
@@ -115,6 +118,7 @@ namespace demo01.Views.Cliente
         {
             txtCodigoCliente.Enabled = false;
             txtNomeCliente.Enabled = false;
+            txtCpf.Enabled = false;
          
         }
 
@@ -122,20 +126,60 @@ namespace demo01.Views.Cliente
         {
             ListarGrid();
         }
+        private void LerCliente()
+        {
+
+            var currentCliente = GetCurrentCliente();
+            if (currentCliente != null)
+            {
+                txtCodigoCliente.Text = currentCliente.CdCliente;
+                txtNomeCliente.Text = currentCliente.NomeCliente;
+                txtCpf.Text = currentCliente.Cpf;
+              
+            }
+        }
+        private Clientes GetCurrentCliente()
+        {
+
+            if (_bsListaCliente == null || _bsListaCliente.Current == null)
+                return null;
+
+            if (_bsListaCliente.Current is Clientes currentCliente)
+                return currentCliente;
+
+            return null;
+        }
         private void ListarGrid()
         {
 
             try
             {
 
-        
-                List<Clientes> lista1 = new ClienteRepository().ListarClientes();
-                lista1 = lista1;
 
-                _bsListaCliente = new BindingSource(lista1, "");
-                listacliente.AutoGenerateColumns = false;
-                listacliente.DataSource = _bsListaCliente;
+                //List<Clientes> lista1 = new ClienteRepository().ListarClientes();
+                //lista1 = lista1;
 
+                //_bsListaCliente = new BindingSource(lista1, "");
+                //listacliente.AutoGenerateColumns = false;
+                //listacliente.DataSource = _bsListaCliente;
+
+                //return;
+                try
+                {
+
+                    List<Clientes> lista = new List<Clientes>();
+                    lista = new ClienteRepository().ListarClientes();
+
+                    _bsListaCliente = new BindingSource(lista, "");
+                    listacliente.AutoGenerateColumns = false;
+                    listacliente.DataSource = _bsListaCliente;
+
+                    return;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao Listar dados!");
+                }
                 return;
             }
             catch (Exception)
@@ -161,6 +205,29 @@ namespace demo01.Views.Cliente
         private void txtNomeCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+
+        }
+
+        private void txtCpf_TextChanged(object sender, EventArgs e)
+       {
+            
+
+
+        }
+        //public string FormatCPF(string sender)
+        //{
+        //    string response = sender.Trim();
+        //    if (response.Length == 11)
+        //    {
+        //        response = response.Insert(9, "-");
+        //        response = response.Insert(6, ".");
+        //        response = response.Insert(3, ".");
+        //    }
+        //    return response;
+        //}
+
+        private void btnExcluirCliente_Click(object sender, EventArgs e)
+        {
 
         }
     }

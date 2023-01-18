@@ -25,16 +25,19 @@ namespace demo01.Data.RepositoriesCliente
                 var sql = @"
  INSERT INTO cliente
     (CdCliente,
-    NomeCliente)
+    NomeCliente,
+    Cpf)
  OUTPUT INSERTED.CdCliente
  VALUES
     (@cdcliente,
-     @nomecliente)";
+     @nomecliente,
+     @cpf)";
 
                 var resp = con.ExecuteScalar(sql, new
                 {
                     cdcliente = clientes.CdCliente,
-                    nomecliente = clientes.NomeCliente
+                    nomecliente = clientes.NomeCliente,
+                    cpf = clientes.Cpf
 
                 }) ;
 

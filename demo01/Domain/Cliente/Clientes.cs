@@ -13,6 +13,8 @@ namespace demo01.Domain.Cliente
         public string CdCliente { get; set; }
         public string NomeCliente { get; set; }
 
+        public string Cpf { get; set; }
+
         #endregion
 
 
@@ -32,7 +34,11 @@ namespace demo01.Domain.Cliente
             {
                 messages.Add("O nome do cliente está em branco, verifique!");
             }
-
+            if (string.IsNullOrWhiteSpace(Cpf))
+            {
+                messages.Add("O Cpf do cliente está em branco, verifique!");
+            }
+          
             return new ResultCliente(messages.Count == 0, messages);
             
 
