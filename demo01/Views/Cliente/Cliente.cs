@@ -21,6 +21,7 @@ namespace demo01.Views.Cliente
         public Cliente()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,7 +31,14 @@ namespace demo01.Views.Cliente
 
         private void Cliente_Load(object sender, EventArgs e)
         {
+
+            ListarGrid();
+            _bsListaCliente.CurrentChanged += OnCurrentItemChangeHandler;
             
+        }
+        private void OnCurrentItemChangeHandler(object sender, EventArgs e)
+        {
+            ListarGrid();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,16 +71,32 @@ namespace demo01.Views.Cliente
                     cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
                     cliente.NomeCliente = txtNomeCliente.Text.Trim();
                     var result = new ClienteAppService().Inserir(cliente);
+                    if (result.Success)
+                    {
+                        MessageBox.Show(string.Format("Cliente {0} inserido com sucesso!", txtNomeCliente.Text));
+                        limparCampos();
+                        ListarGrid();
+                        DesabilitarCampo();
+                    }
+                    else
+                    {
+                        MessageBox.Show("insira todos os campos para cadastrar um produto!");
 
-
+                    }
                 }
-                catch
-                {
+                     catch (Exception ex)
+                     {
+                    MessageBox.Show("Ocorreu um erro ao salvar! Verifique os dados!" + ex.Message);
 
-                }
+                     }
+            }
+            else
+            {
+                MessageBox.Show("insira todos os campos para cadastrar um produto!");
+
             }
         }
-       
+     
         private void limparCampos()
         {
             txtCodigoCliente.Text = "";
@@ -104,8 +128,10 @@ namespace demo01.Views.Cliente
             try
             {
 
-                List<Cliente> lista1 = new List<Cliente>();
-              //  lista1 = new ClienteRepository().ListarClientes();
+        
+                List<Clientes> lista1 = new ClienteRepository().ListarClientes();
+                lista1 = lista1;
+
                 _bsListaCliente = new BindingSource(lista1, "");
                 listacliente.AutoGenerateColumns = false;
                 listacliente.DataSource = _bsListaCliente;
@@ -117,6 +143,25 @@ namespace demo01.Views.Cliente
                 MessageBox.Show("Erro ao Listar dados!");
             }
             return;
+        }
+
+        private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNomeCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+
         }
     }
 }

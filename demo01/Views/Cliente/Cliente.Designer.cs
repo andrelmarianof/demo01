@@ -52,6 +52,7 @@ namespace demo01.Views.Cliente
             this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
             this.txtNomeCliente.TabIndex = 0;
             this.txtNomeCliente.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCliente_KeyPress);
             // 
             // txtCodigoCliente
             // 
@@ -60,6 +61,7 @@ namespace demo01.Views.Cliente
             this.txtCodigoCliente.Size = new System.Drawing.Size(63, 20);
             this.txtCodigoCliente.TabIndex = 1;
             this.txtCodigoCliente.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
+            this.txtCodigoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
             // btnCadastrarCliente
             // 
