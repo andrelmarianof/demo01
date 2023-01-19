@@ -51,6 +51,53 @@ namespace demo01.Data.RepositoriesCliente
             }
 
         }
+        public bool DeleteCliente(Clientes clientes)
+        {
+            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            {
+
+                var sql = @"
+ DELETE FROM cliente
+ WHERE CdCliente = @cdcliente";
+
+                var resp = con.ExecuteScalar(sql, new
+                {
+                    cdcliente = clientes.CdCliente,
+                });
+                if (resp == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+        public bool EditarCliente(Clientes clientes)
+        {
+            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            {
+
+                var sql = @"
+ UPDATE cliente
+SET 
+    NomeCliente = @nomecliente,
+    Cpf = @cpf
+OUTPUT inserted.CdCliente
+WHERE 
+    CdCliente = @cdcliente";
+
+                var resp = con.ExecuteScalar(sql, new
+                {
+                    nomecliente = clientes.NomeCliente,
+                    cpf = clientes.Cpf,
+                    cdcliente = clientes.CdCliente
+                });
+                if (resp == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         public List<Clientes> ListarClientes()
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())

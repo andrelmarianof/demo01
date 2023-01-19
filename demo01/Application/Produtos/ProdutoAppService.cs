@@ -30,7 +30,6 @@ namespace demo01.App.Produtos
 
             return new Result(true, string.Empty);
 
-
         }
 
         public Result Atualizar(Produto produto)
@@ -44,24 +43,5 @@ namespace demo01.App.Produtos
             new ProdutoRepository().UpdateProduto(produto);
             return new Result(true, string.Empty);
         }
-
-        //public Result ExcluirComValidacao(Produto produto)
-        //{
-
-        //    if (ExistePedidoComEsteProduto(produto))
-        //        return new Result(false, new List<string>() { "Você não pode excluir o produto, pois ele está em uso em pedidos!" });
-
-        //    if (new ProdutoRepository().Excluir(produto) > 0)
-        //        return new Result(true, "");
-
-        //    return new Result(false, new List<string>() { "Houve um erro ao tentar excluir o produto!" });
-
-        //}
-
-        //private bool ExistePedidoComEsteProduto(Produto produto)
-        //{
-        //    //bool PedidoRepository().ExistePedidoComEsteProduto(produto.Codigo)
-        //    return true;
-        //}
     }
 }

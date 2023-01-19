@@ -32,17 +32,17 @@ namespace demo01.Views.Cliente
             this.components = new System.ComponentModel.Container();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.txtCodigoCliente = new System.Windows.Forms.TextBox();
-            this.btnCadastrarCliente = new System.Windows.Forms.Button();
+            this.BtnSalvar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listacliente = new System.Windows.Forms.DataGridView();
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.txtCpf = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
@@ -66,15 +66,15 @@ namespace demo01.Views.Cliente
             this.txtCodigoCliente.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
             this.txtCodigoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
-            // btnCadastrarCliente
+            // BtnSalvar
             // 
-            this.btnCadastrarCliente.Location = new System.Drawing.Point(129, 12);
-            this.btnCadastrarCliente.Name = "btnCadastrarCliente";
-            this.btnCadastrarCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnCadastrarCliente.TabIndex = 2;
-            this.btnCadastrarCliente.Text = "&Salvar";
-            this.btnCadastrarCliente.UseVisualStyleBackColor = true;
-            this.btnCadastrarCliente.Click += new System.EventHandler(this.button1_Click);
+            this.BtnSalvar.Location = new System.Drawing.Point(129, 12);
+            this.BtnSalvar.Name = "BtnSalvar";
+            this.BtnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.BtnSalvar.TabIndex = 2;
+            this.BtnSalvar.Text = "&Salvar";
+            this.BtnSalvar.UseVisualStyleBackColor = true;
+            this.BtnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // label1
             // 
@@ -108,7 +108,30 @@ namespace demo01.Views.Cliente
             this.listacliente.ReadOnly = true;
             this.listacliente.Size = new System.Drawing.Size(637, 311);
             this.listacliente.TabIndex = 6;
+            this.listacliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellClick);
             this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
+            this.listacliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellDoubleClick);
+            // 
+            // código
+            // 
+            this.código.DataPropertyName = "CdCliente";
+            this.código.HeaderText = "Código";
+            this.código.Name = "código";
+            this.código.ReadOnly = true;
+            // 
+            // descrição
+            // 
+            this.descrição.DataPropertyName = "NomeCliente";
+            this.descrição.HeaderText = "Nome";
+            this.descrição.Name = "descrição";
+            this.descrição.ReadOnly = true;
+            // 
+            // Cpf
+            // 
+            this.Cpf.DataPropertyName = "Cpf";
+            this.Cpf.HeaderText = "Cpf";
+            this.Cpf.Name = "Cpf";
+            this.Cpf.ReadOnly = true;
             // 
             // btnNovoCliente
             // 
@@ -147,27 +170,6 @@ namespace demo01.Views.Cliente
             this.label3.TabIndex = 8;
             this.label3.Text = "&C P F";
             // 
-            // código
-            // 
-            this.código.DataPropertyName = "CdCliente";
-            this.código.HeaderText = "Código";
-            this.código.Name = "código";
-            this.código.ReadOnly = true;
-            // 
-            // descrição
-            // 
-            this.descrição.DataPropertyName = "NomeCliente";
-            this.descrição.HeaderText = "Nome";
-            this.descrição.Name = "descrição";
-            this.descrição.ReadOnly = true;
-            // 
-            // Cpf
-            // 
-            this.Cpf.DataPropertyName = "Cpf";
-            this.Cpf.HeaderText = "Cpf";
-            this.Cpf.Name = "Cpf";
-            this.Cpf.ReadOnly = true;
-            // 
             // clienteBindingSource
             // 
             this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.Cliente);
@@ -184,7 +186,7 @@ namespace demo01.Views.Cliente
             this.Controls.Add(this.listacliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnCadastrarCliente);
+            this.Controls.Add(this.BtnSalvar);
             this.Controls.Add(this.txtCodigoCliente);
             this.Controls.Add(this.txtNomeCliente);
             this.Name = "Cliente";
@@ -201,7 +203,7 @@ namespace demo01.Views.Cliente
 
         private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.TextBox txtCodigoCliente;
-        private System.Windows.Forms.Button btnCadastrarCliente;
+        private System.Windows.Forms.Button BtnSalvar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView listacliente;

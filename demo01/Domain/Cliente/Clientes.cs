@@ -38,7 +38,14 @@ namespace demo01.Domain.Cliente
             {
                 messages.Add("O Cpf do cliente está em branco, verifique!");
             }
-          
+            if (CdCliente.Length > 10000)
+            {
+                messages.Add("O código do cliente está irregular, verifique!");
+            }
+            if (NomeCliente.Length > 50)
+            {
+                messages.Add("O nome do cliente está irregular, verifique!");
+            }
             return new ResultCliente(messages.Count == 0, messages);
             
 
