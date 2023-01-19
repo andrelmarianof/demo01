@@ -14,18 +14,19 @@ namespace demo01.Views.Cliente
 
 {
 
-    public partial class Cliente : Form
+    public partial class ClienteView : Form
     {
         #region Declaração
         private BindingSource _bsListaCliente;
         #endregion
 
         #region Construtores
-        public Cliente()
+        public ClienteView()
         {
             InitializeComponent();
             DesabilitarCampo();
             BtnSalvar.Enabled = false;
+
         }
         #endregion
 
@@ -38,7 +39,7 @@ namespace demo01.Views.Cliente
                 {
                     try
                     {
-                        var cliente = new Clientes();
+                        var cliente = new Domain.Cliente.Cliente();
                         cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
                         cliente.Cpf = txtCpf.Text.Trim();
@@ -76,40 +77,39 @@ namespace demo01.Views.Cliente
             }
         }
 
-        private void ListarGrid()
+        private void ListarGrid(string sortColumn = "CdCliente")
         {
 
             try
             {
 
 
-                List<Clientes> lista1 = new List<Clientes>();
-                lista1 = new ClienteRepository().ListarClientes();
+                List<Domain.Cliente.Cliente> lista1 = new List<Domain.Cliente.Cliente>();
+                lista1 = new ClienteRepository().ListarClientes(sortColumn);
 
 
                 _bsListaCliente = new BindingSource(lista1, "");
                 listacliente.AutoGenerateColumns = false;
                 listacliente.DataSource = _bsListaCliente;
+                //return;
 
-                return;
+                //try
+                //{
 
-                try
-                {
+                //    List<Domain.Cliente.Cliente> lista = new List<Domain.Cliente.Cliente>();
+                //    lista = new ClienteRepository().ListarClientes("CdCliente");
 
-                    List<Clientes> lista = new List<Clientes>();
-                    lista = new ClienteRepository().ListarClientes();
+                //    _bsListaCliente = new BindingSource(lista, "");
+                //    listacliente.AutoGenerateColumns = false;
+                //    listacliente.DataSource = _bsListaCliente;
 
-                    _bsListaCliente = new BindingSource(lista, "");
-                    listacliente.AutoGenerateColumns = false;
-                    listacliente.DataSource = _bsListaCliente;
-
-                    return;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Erro ao Listar dados!");
-                }
-                return;
+                //    return;
+                //}
+                //catch (Exception)
+                //{
+                //    MessageBox.Show("Erro ao Listar dados!");
+                //}
+                //return;
             }
             catch (Exception)
             {
@@ -124,10 +124,11 @@ namespace demo01.Views.Cliente
                 if (txtCpf.Text.Length != 11)
                 {
                     {
-                        var cliente = new Clientes();
+                        var cliente = new Domain.Cliente.Cliente();
                         cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
-                        cliente.Cpf = txtCpf.Text.Trim();
+                        //cliente.Cpf = txtCpf.Text.Trim();
+                        cliente.Cpf = mskCPF.Text.Trim();
                         var result = new ClienteRepository().EditarCliente(cliente);
                         if (result != false)
                         {
@@ -148,13 +149,13 @@ namespace demo01.Views.Cliente
                 MessageBox.Show("Selecione um cliente para editar!");
 
         }
-        private Clientes GetCurrentCliente()
+        private Domain.Cliente.Cliente GetCurrentCliente()
         {
 
             if (_bsListaCliente == null || _bsListaCliente.Current == null)
                 return null;
 
-            if (_bsListaCliente.Current is Clientes currentCliente)
+            if (_bsListaCliente.Current is Domain.Cliente.Cliente currentCliente)
                 return currentCliente;
 
             return null;
@@ -166,8 +167,11 @@ namespace demo01.Views.Cliente
             if (currentCliente != null)
             {
                 txtCodigoCliente.Text = currentCliente.CdCliente;
+                //txtCodigoCliente.DataBindings.Add("Text", currentCliente, "CdCliente");
                 txtNomeCliente.Text = currentCliente.NomeCliente;
                 txtCpf.Text = currentCliente.Cpf;
+                mskCPF.Text = currentCliente.Cpf;
+
 
             }
         }
@@ -248,6 +252,18 @@ namespace demo01.Views.Cliente
                 e.Handled = true;
             }
         }
+        private void txtCpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
         private void btnNovoCliente_Click(object sender, EventArgs e)
         {
             limparCampos();
@@ -271,7 +287,7 @@ namespace demo01.Views.Cliente
             else
                 InserirCliente();
         }
-       
+
         private void Cliente_Load(object sender, EventArgs e)
         {
 
@@ -307,7 +323,7 @@ namespace demo01.Views.Cliente
 
         }
 
-        
+
         private void txtNomeCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -317,9 +333,27 @@ namespace demo01.Views.Cliente
         {
 
         }
-       
+
+
         #endregion
 
+        private void listacliente_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                decimal cpf;
+                if (!decimal.TryParse(e.Value?.ToString().Trim(), out cpf))
+                    return;
 
+                e.Value = Math.Round(cpf, 0).ToString(@"000\.000\.000\-00");
+            }
+        }
+
+        private void listacliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+            //ListarGrid("Cpf");<- Evitar
+            ListarGrid(nameof(Domain.Cliente.Cliente.Cpf));
+        }
     }
 }

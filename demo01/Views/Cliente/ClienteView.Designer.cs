@@ -1,7 +1,7 @@
 ﻿
 namespace demo01.Views.Cliente
 {
-    partial class Cliente
+    partial class ClienteView
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,7 @@ namespace demo01.Views.Cliente
             this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.txtCpf = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.mskCPF = new System.Windows.Forms.MaskedTextBox();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
@@ -111,6 +112,8 @@ namespace demo01.Views.Cliente
             this.listacliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellClick);
             this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
             this.listacliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellDoubleClick);
+            this.listacliente.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listacliente_CellFormatting);
+            this.listacliente.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.listacliente_ColumnHeaderMouseClick);
             // 
             // código
             // 
@@ -160,6 +163,7 @@ namespace demo01.Views.Cliente
             this.txtCpf.Size = new System.Drawing.Size(171, 20);
             this.txtCpf.TabIndex = 7;
             this.txtCpf.TextChanged += new System.EventHandler(this.txtCpf_TextChanged);
+            this.txtCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCpf_KeyPress);
             // 
             // label3
             // 
@@ -170,15 +174,25 @@ namespace demo01.Views.Cliente
             this.label3.TabIndex = 8;
             this.label3.Text = "&C P F";
             // 
+            // mskCPF
+            // 
+            this.mskCPF.Location = new System.Drawing.Point(616, 64);
+            this.mskCPF.Mask = "000.000.000-00";
+            this.mskCPF.Name = "mskCPF";
+            this.mskCPF.Size = new System.Drawing.Size(100, 20);
+            this.mskCPF.TabIndex = 9;
+            this.mskCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
             // clienteBindingSource
             // 
-            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.Cliente);
+            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
             // 
-            // Cliente
+            // ClienteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.mskCPF);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.btnExcluirCliente);
@@ -189,7 +203,7 @@ namespace demo01.Views.Cliente
             this.Controls.Add(this.BtnSalvar);
             this.Controls.Add(this.txtCodigoCliente);
             this.Controls.Add(this.txtNomeCliente);
-            this.Name = "Cliente";
+            this.Name = "ClienteView";
             this.Text = "Cliente";
             this.Load += new System.EventHandler(this.Cliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).EndInit();
@@ -215,5 +229,6 @@ namespace demo01.Views.Cliente
         private System.Windows.Forms.DataGridViewTextBoxColumn código;
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cpf;
+        private System.Windows.Forms.MaskedTextBox mskCPF;
     }
 }

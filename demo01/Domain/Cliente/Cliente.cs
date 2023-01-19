@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace demo01.Domain.Cliente
 {
-    public class Clientes
+
+    public class Cliente
     {
         #region Construtores
         public string CdCliente { get; set; }

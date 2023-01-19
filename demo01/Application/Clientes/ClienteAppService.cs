@@ -11,14 +11,12 @@ namespace demo01.Views.Pedido
 {
     public class ClienteAppService
     {
-        public ResultCliente Inserir(Clientes cliente)
+        public ResultCliente Inserir(Domain.Cliente.Cliente cliente)
         {
             var resultCliente = cliente.IsValid();
             if (!resultCliente.Success)
             {
                 return resultCliente;
-                //Gravar no repositrio
-                // new ProdutoRepository().Inserir(produto);
             }
             new ClienteRepository().InsertCliente(cliente);
 

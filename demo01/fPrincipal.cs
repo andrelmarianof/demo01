@@ -81,7 +81,7 @@ namespace demo01
             {
                 this.Text = "";
 
-                var formfCliente = new Cliente();
+                var formfCliente = new ClienteView();
                 formfCliente.MdiParent = this;
 
                 formfCliente.Show();// Apenas chama

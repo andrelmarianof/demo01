@@ -46,7 +46,7 @@ namespace demo01.Views.Pedido
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(658, 415);
+            this.button1.Location = new System.Drawing.Point(472, 25);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 23);
             this.button1.TabIndex = 0;
@@ -142,7 +142,7 @@ namespace demo01.Views.Pedido
             // 
             // inserirProduto
             // 
-            this.inserirProduto.Location = new System.Drawing.Point(473, 100);
+            this.inserirProduto.Location = new System.Drawing.Point(472, 100);
             this.inserirProduto.Name = "inserirProduto";
             this.inserirProduto.Size = new System.Drawing.Size(113, 23);
             this.inserirProduto.TabIndex = 18;

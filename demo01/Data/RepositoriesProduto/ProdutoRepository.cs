@@ -195,32 +195,6 @@ WHERE cdproduto = @cdproduto
                 queryBuilder.Where("cdproduto = @cdproduto", new { cdProduto });
                 
                 return con.QueryFirst<Produto>(template.RawSql, template.Parameters);
-                //return con.QueryFirst<Produto>("SELECT * FROM produtos WHERE cdproduto = @cdproduto", new { cdProduto = cdProduto });
-
-                //SqlCommand cn = new SqlCommand();
-                //cn.CommandType = CommandType.Text;
-                //con.Open();
-                //cn.CommandText = "SELECT * FROM produtos WHERE cdproduto = @cdproduto";
-                //cn.Parameters.Add("cdproduto", SqlDbType.VarChar).Value = cdProduto;
-                //cn.Connection = con;
-
-
-                //SqlDataReader dr;
-
-                //dr = cn.ExecuteReader();
-
-                //if (!dr.HasRows)
-                //    return null;
-
-                //Produto dado = new Produto();
-                //if (dr.Read())
-                //{
-                //    dado.CdProduto = dr["cdproduto"].ToString();
-                //    dado.Descricao = dr["Descricao"].ToString();
-                //    dado.Estoque = Convert.ToDecimal(dr["estoque"]);
-                //    dado.Valor = Convert.ToDecimal(dr["valor"]);
-                //}
-                //return dado;
             }
         }
         #endregion

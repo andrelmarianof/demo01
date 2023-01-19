@@ -17,7 +17,7 @@ namespace demo01.Data.RepositoriesCliente
     {
 
         #region RepositoryDapper
-        public bool InsertCliente(Clientes clientes)
+        public bool InsertCliente(Cliente clientes)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
@@ -39,7 +39,7 @@ namespace demo01.Data.RepositoriesCliente
                     nomecliente = clientes.NomeCliente,
                     cpf = clientes.Cpf
 
-                }) ;
+                });
 
                 if (resp == null)
                 {
@@ -51,7 +51,7 @@ namespace demo01.Data.RepositoriesCliente
             }
 
         }
-        public bool DeleteCliente(Clientes clientes)
+        public bool DeleteCliente(Cliente clientes)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
@@ -71,7 +71,7 @@ namespace demo01.Data.RepositoriesCliente
                 return true;
             }
         }
-        public bool EditarCliente(Clientes clientes)
+        public bool EditarCliente(Cliente clientes)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
@@ -98,14 +98,24 @@ WHERE
                 return true;
             }
         }
-        public List<Clientes> ListarClientes()
+        public List<Cliente> ListarClientes(string columnSort)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
 
-                return con.Query<Clientes>("SELECT * FROM cliente ORDER BY CdCliente DESC").ToList();
+                //return con.Query<Cliente>($"SELECT * FROM cliente ORDER BY {columnSort} DESC").ToList();
 
+                var query = new StringBuilder();
+                query.AppendLine("SELECT * FROM cliente");
+                query.AppendLine("/**orderby**/");
+
+                var queryBuilder = new SqlBuilder();
+                var template = queryBuilder.AddTemplate(query.ToString());
+                queryBuilder.OrderBy(columnSort);
+
+                return con.Query<Cliente>(template.RawSql, template.Parameters).ToList();
             }
+
         }
 
     }

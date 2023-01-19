@@ -17,8 +17,6 @@ namespace demo01.App.Produtos
             if (!result.Success)
             {
                 return result;
-                //Gravar no repositrio
-                // new ProdutoRepository().Inserir(produto);
             }
             var produtoExistente = new ProdutoRepository().ObterPorCodigo(produto.CdProduto);
 
