@@ -171,13 +171,19 @@ WHERE cdproduto = @cdproduto
         #endregion
 
         #region RepositoryConsulta
-        public List<Produto> ObterTodos()
+        public List<Produto> ObterTodos(string columnSort)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
+                var query = new StringBuilder();
+                query.AppendLine("SELECT * FROM produtos");
+                query.AppendLine("/**orderby**/");
 
-                return con.Query<Produto>("SELECT * FROM produtos ORDER BY cdproduto DESC").ToList();
+                var queryBuilder = new SqlBuilder();
+                var template = queryBuilder.AddTemplate(query.ToString());
+                queryBuilder.OrderBy(columnSort);
 
+                return con.Query<Produto>(template.RawSql, template.Parameters).ToList();
             }
         }
         

@@ -41,7 +41,6 @@ namespace demo01.Views.Cliente
             this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
-            this.txtCpf = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.mskCPF = new System.Windows.Forms.MaskedTextBox();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -113,7 +112,7 @@ namespace demo01.Views.Cliente
             this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
             this.listacliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellDoubleClick);
             this.listacliente.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listacliente_CellFormatting);
-            this.listacliente.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.listacliente_ColumnHeaderMouseClick);
+            this.listacliente.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Listacliente_ColumnHeaderMouseClick);
             // 
             // código
             // 
@@ -156,15 +155,6 @@ namespace demo01.Views.Cliente
             this.btnExcluirCliente.UseVisualStyleBackColor = true;
             this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
             // 
-            // txtCpf
-            // 
-            this.txtCpf.Location = new System.Drawing.Point(399, 88);
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(171, 20);
-            this.txtCpf.TabIndex = 7;
-            this.txtCpf.TextChanged += new System.EventHandler(this.txtCpf_TextChanged);
-            this.txtCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCpf_KeyPress);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -176,7 +166,7 @@ namespace demo01.Views.Cliente
             // 
             // mskCPF
             // 
-            this.mskCPF.Location = new System.Drawing.Point(616, 64);
+            this.mskCPF.Location = new System.Drawing.Point(420, 88);
             this.mskCPF.Mask = "000.000.000-00";
             this.mskCPF.Name = "mskCPF";
             this.mskCPF.Size = new System.Drawing.Size(100, 20);
@@ -194,7 +184,6 @@ namespace demo01.Views.Cliente
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.mskCPF);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.btnExcluirCliente);
             this.Controls.Add(this.btnNovoCliente);
             this.Controls.Add(this.listacliente);
@@ -224,7 +213,6 @@ namespace demo01.Views.Cliente
         private System.Windows.Forms.Button btnNovoCliente;
         private System.Windows.Forms.Button btnExcluirCliente;
         private System.Windows.Forms.BindingSource clienteBindingSource;
-        private System.Windows.Forms.TextBox txtCpf;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn código;
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;

@@ -35,14 +35,14 @@ namespace demo01.Views.Cliente
         {
             if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != ""))
             {
-                if (txtCpf.Text.Length == 11)
+                if (mskCPF.Text.Length == 11)
                 {
                     try
                     {
                         var cliente = new Domain.Cliente.Cliente();
                         cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
-                        cliente.Cpf = txtCpf.Text.Trim();
+                        cliente.Cpf = mskCPF.Text.Trim();
                         var result = new ClienteAppService().Inserir(cliente);
                         if (result.Success)
                         {
@@ -91,25 +91,7 @@ namespace demo01.Views.Cliente
                 _bsListaCliente = new BindingSource(lista1, "");
                 listacliente.AutoGenerateColumns = false;
                 listacliente.DataSource = _bsListaCliente;
-                //return;
-
-                //try
-                //{
-
-                //    List<Domain.Cliente.Cliente> lista = new List<Domain.Cliente.Cliente>();
-                //    lista = new ClienteRepository().ListarClientes("CdCliente");
-
-                //    _bsListaCliente = new BindingSource(lista, "");
-                //    listacliente.AutoGenerateColumns = false;
-                //    listacliente.DataSource = _bsListaCliente;
-
-                //    return;
-                //}
-                //catch (Exception)
-                //{
-                //    MessageBox.Show("Erro ao Listar dados!");
-                //}
-                //return;
+                
             }
             catch (Exception)
             {
@@ -119,9 +101,9 @@ namespace demo01.Views.Cliente
         }
         private void EditarCliente()
         {
-            if ((txtNomeCliente.Text != "") & (txtCpf.Text != ""))
+            if ((txtNomeCliente.Text != "") & (mskCPF.Text != ""))
             {
-                if (txtCpf.Text.Length != 11)
+                if (mskCPF.Text.Length != 14)
                 {
                     {
                         var cliente = new Domain.Cliente.Cliente();
@@ -169,7 +151,6 @@ namespace demo01.Views.Cliente
                 txtCodigoCliente.Text = currentCliente.CdCliente;
                 //txtCodigoCliente.DataBindings.Add("Text", currentCliente, "CdCliente");
                 txtNomeCliente.Text = currentCliente.NomeCliente;
-                txtCpf.Text = currentCliente.Cpf;
                 mskCPF.Text = currentCliente.Cpf;
 
 
@@ -179,7 +160,7 @@ namespace demo01.Views.Cliente
         {
             txtCodigoCliente.Text = "";
             txtNomeCliente.Text = "";
-            txtCpf.Text = "";
+            mskCPF.Text = "";
 
         }
 
@@ -187,7 +168,7 @@ namespace demo01.Views.Cliente
         {
             txtCodigoCliente.Enabled = true;
             txtNomeCliente.Enabled = true;
-            txtCpf.Enabled = true;
+            mskCPF.Enabled = true;
 
         }
 
@@ -195,7 +176,7 @@ namespace demo01.Views.Cliente
         {
             txtCodigoCliente.Enabled = false;
             txtNomeCliente.Enabled = false;
-            txtCpf.Enabled = false;
+            mskCPF.Enabled = false;
 
         }
         private void Editar()
@@ -221,7 +202,7 @@ namespace demo01.Views.Cliente
             resposta = MessageBox.Show("Deseje realmente excluir este Cliente?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resposta != DialogResult.No)
             {
-                if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != "") & (txtCpf.Text != ""))
+                if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != "") & (mskCPF.Text != ""))
                 {
                     //objTabela.CdProduto = txtCdProduto.Text.Trim();
                     var result = new ClienteRepository().DeleteCliente(currentProduto);
@@ -349,10 +330,18 @@ namespace demo01.Views.Cliente
             }
         }
 
-        private void listacliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void Listacliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
-            //ListarGrid("Cpf");<- Evitar
+            if (e.ColumnIndex == 0)
+            {
+                ListarGrid(nameof(Domain.Cliente.Cliente.CdCliente));
+            }
+            else
+                if(e.ColumnIndex == 1)
+            {
+                ListarGrid(nameof(Domain.Cliente.Cliente.NomeCliente));
+            }
+            else
             ListarGrid(nameof(Domain.Cliente.Cliente.Cpf));
         }
     }

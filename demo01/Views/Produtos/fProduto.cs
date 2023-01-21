@@ -189,14 +189,14 @@ namespace demo01.Views.Produtos
         }
 
 
-        private void ListarGrid()
+        private void ListarGrid(string sortColumn = "CdProduto")
         {
 
             try
             {
 
                 List<Produto> lista = new List<Produto>();
-                lista = new ProdutoRepository().ObterTodos();
+                lista = new ProdutoRepository().ObterTodos(sortColumn);
 
                 _bsListaProduto = new BindingSource(lista, "");
                 listaprodutos.AutoGenerateColumns = false;
@@ -350,5 +350,24 @@ namespace demo01.Views.Produtos
             }
         }
         #endregion
+
+        private void listaprodutos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ListarGrid(nameof(Domain.Produtos.Produto.CdProduto));
+            }
+            else
+                if(e.ColumnIndex == 1)
+                //ListarGrid("Cpf");<- Evitar
+                ListarGrid(nameof(Domain.Produtos.Produto.Descricao));
+            else
+                if(e.ColumnIndex == 2)
+            {
+                ListarGrid(nameof(Domain.Produtos.Produto.Valor));
+            }
+            else
+                ListarGrid(nameof(Domain.Produtos.Produto.Estoque));
+        }
     }
 }
