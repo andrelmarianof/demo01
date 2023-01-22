@@ -187,20 +187,25 @@ WHERE cdproduto = @cdproduto
             }
         }
         
-        public Produto ObterPorCodigo(string cdProduto)
+        public bool ObterPorCodigo(string cdProduto)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
 
                 var query = new StringBuilder();
-                query.AppendLine("SELECT * FROM produtos");
+                query.AppendLine("SELECT COUNT(*) FROM produtos");
                 query.AppendLine("/**where**/");
 
                 var queryBuilder = new SqlBuilder();
                 var template = queryBuilder.AddTemplate(query.ToString());
-                queryBuilder.Where("cdproduto = @cdproduto", new { cdProduto });
-                
-                return con.QueryFirst<Produto>(template.RawSql, template.Parameters);
+                queryBuilder.Where("CdProduto = @cdProduto", new { cdProduto });
+
+                var resp = con.QueryFirst<int>(template.RawSql, template.Parameters);
+
+                if (resp == 0) 
+                    return true;
+                return false;
+
             }
         }
         #endregion

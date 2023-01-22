@@ -18,6 +18,19 @@ namespace demo01.Views.Pedido
             {
                 return resultCliente;
             }
+
+            var clienteExiste = new ClienteRepository().clienteExiste(cliente.CdCliente);
+            if (!clienteExiste)
+            {
+                return new ResultCliente(false, "O Cliente não pode ser cadastrado pois o código já está em uso");
+            }
+
+            var cpfExiste = new ClienteRepository().ObterPorCpf(cliente.Cpf);
+            if (!cpfExiste)
+            {
+                return new ResultCliente(false, "O Cliente não pode ser cadastrado pois o Cpf já está em uso");
+            }
+
             new ClienteRepository().InsertCliente(cliente);
 
 

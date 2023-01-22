@@ -18,12 +18,13 @@ namespace demo01.App.Produtos
             {
                 return result;
             }
-            var produtoExistente = new ProdutoRepository().ObterPorCodigo(produto.CdProduto);
 
-            if (produtoExistente != null)
+            var produtoExistente = new ProdutoRepository().ObterPorCodigo(produto.CdProduto);
+            if (!produtoExistente)
             {
                 return new Result(false, "O Produto não pode ser cadastrado pois o código já está em uso");
             }
+
             new ProdutoRepository().InsertProduto(produto);
 
             return new Result(true, string.Empty);

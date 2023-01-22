@@ -53,11 +53,12 @@ namespace demo01.Views.Cliente
                             BtnSalvar.Enabled = false;
                             btnExcluirCliente.Enabled = true;
                         }
-                        else
+                           else
                         {
-                            MessageBox.Show("insira todos os campos para cadastrar um produto!");
+                            MessageBox.Show($"Ocorreu um erro no cadastro:\n\r{string.Join("\n\r", result.Messages)}");
 
                         }
+                        
                     }
                     catch (Exception ex)
                     {
