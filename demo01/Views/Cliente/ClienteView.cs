@@ -26,6 +26,7 @@ namespace demo01.Views.Cliente
             InitializeComponent();
             DesabilitarCampo();
             BtnSalvar.Enabled = false;
+            btnExcluirCliente.Enabled = true;
 
         }
         #endregion
@@ -222,6 +223,32 @@ namespace demo01.Views.Cliente
             else
                 MessageBox.Show(string.Format("Processo cancelado! "));
         }
+        private void listacliente_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                decimal cpf;
+                if (!decimal.TryParse(e.Value?.ToString().Trim(), out cpf))
+                    return;
+
+                e.Value = Math.Round(cpf, 0).ToString(@"000\.000\.000\-00");
+            }
+        }
+
+        private void Listacliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ListarGrid(nameof(Domain.Cliente.Cliente.CdCliente));
+            }
+            else
+                if (e.ColumnIndex == 1)
+            {
+                ListarGrid(nameof(Domain.Cliente.Cliente.NomeCliente));
+            }
+            else
+                ListarGrid(nameof(Domain.Cliente.Cliente.Cpf));
+        }
         private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
@@ -270,6 +297,7 @@ namespace demo01.Views.Cliente
                 InserirCliente();
         }
 
+
         private void Cliente_Load(object sender, EventArgs e)
         {
 
@@ -280,6 +308,7 @@ namespace demo01.Views.Cliente
         private void listacliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             LerCliente();
+            btnExcluirCliente.Enabled = true;
         }
         private void listacliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -319,31 +348,6 @@ namespace demo01.Views.Cliente
 
         #endregion
 
-        private void listacliente_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.ColumnIndex == 2)
-            {
-                decimal cpf;
-                if (!decimal.TryParse(e.Value?.ToString().Trim(), out cpf))
-                    return;
-
-                e.Value = Math.Round(cpf, 0).ToString(@"000\.000\.000\-00");
-            }
-        }
-
-        private void Listacliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                ListarGrid(nameof(Domain.Cliente.Cliente.CdCliente));
-            }
-            else
-                if(e.ColumnIndex == 1)
-            {
-                ListarGrid(nameof(Domain.Cliente.Cliente.NomeCliente));
-            }
-            else
-            ListarGrid(nameof(Domain.Cliente.Cliente.Cpf));
-        }
+        
     }
 }

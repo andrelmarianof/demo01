@@ -90,7 +90,7 @@ namespace demo01.Data.Repositories
             {
 
                 var sql = @"
- INSERT INTO produtos
+ INSERT INTO produto
     (CdProduto,
     Descricao,
     Estoque,
@@ -127,7 +127,7 @@ namespace demo01.Data.Repositories
             {
 
                 var sql = @"
- DELETE FROM produtos
+ DELETE FROM produto
  WHERE cdproduto = @cdproduto";
 
                 var resp = con.ExecuteScalar(sql, new
@@ -146,7 +146,7 @@ namespace demo01.Data.Repositories
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
                 var sql = @"
-UPDATE produtos
+UPDATE produto
 SET descricao = @descricao,
     estoque   = @estoque,
     valor     = @valor
@@ -176,7 +176,7 @@ WHERE cdproduto = @cdproduto
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
                 var query = new StringBuilder();
-                query.AppendLine("SELECT * FROM produtos");
+                query.AppendLine("SELECT * FROM produto");
                 query.AppendLine("/**orderby**/");
 
                 var queryBuilder = new SqlBuilder();
@@ -193,7 +193,7 @@ WHERE cdproduto = @cdproduto
             {
 
                 var query = new StringBuilder();
-                query.AppendLine("SELECT COUNT(*) FROM produtos");
+                query.AppendLine("SELECT COUNT(*) FROM produto");
                 query.AppendLine("/**where**/");
 
                 var queryBuilder = new SqlBuilder();
