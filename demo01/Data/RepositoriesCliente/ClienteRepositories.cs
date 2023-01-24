@@ -26,18 +26,21 @@ namespace demo01.Data.RepositoriesCliente
  INSERT INTO cliente
     (CdCliente,
     NomeCliente,
-    Cpf)
+    Cpf,
+    Email)
  OUTPUT INSERTED.CdCliente
  VALUES
     (@cdcliente,
      @nomecliente,
-     @cpf)";
+     @cpf,
+     @email)";
 
                 var resp = con.ExecuteScalar(sql, new
                 {
                     cdcliente = clientes.CdCliente,
                     nomecliente = clientes.NomeCliente,
-                    cpf = clientes.Cpf
+                    cpf = clientes.Cpf,
+                    email = clientes.Email
 
                 });
 
@@ -80,7 +83,8 @@ namespace demo01.Data.RepositoriesCliente
  UPDATE cliente
 SET 
     NomeCliente = @nomecliente,
-    Cpf = @cpf
+    Cpf = @cpf,
+    Email = @email
 OUTPUT inserted.CdCliente
 WHERE 
     CdCliente = @cdcliente";
@@ -89,7 +93,8 @@ WHERE
                 {
                     nomecliente = clientes.NomeCliente,
                     cpf = clientes.Cpf,
-                    cdcliente = clientes.CdCliente
+                    cdcliente = clientes.CdCliente,
+                    email = clientes.Email
                 });
                 if (resp == null)
                 {
@@ -102,9 +107,6 @@ WHERE
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
-
-                //return con.Query<Cliente>($"SELECT * FROM cliente ORDER BY {columnSort} DESC").ToList();
-
                 var query = new StringBuilder();
                 query.AppendLine("SELECT * FROM cliente");
                 query.AppendLine("/**orderby**/");

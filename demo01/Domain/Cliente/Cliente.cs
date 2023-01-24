@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace demo01.Domain.Cliente
@@ -16,6 +17,8 @@ namespace demo01.Domain.Cliente
 
         public string Cpf { get; set; }
 
+        public string Email { get; set; }
+
         #endregion
 
 
@@ -25,6 +28,8 @@ namespace demo01.Domain.Cliente
         {
 
             var messages = new List<string>();
+            var regexEmail = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+            var EmailValido = regexEmail.IsMatch(Email);
 
             if (string.IsNullOrWhiteSpace(CdCliente))
             {
@@ -47,7 +52,16 @@ namespace demo01.Domain.Cliente
             {
                 messages.Add("O nome do cliente está irregular, verifique!");
             }
-            return new ResultCliente(messages.Count == 0, messages);
+            if (Cpf.Length != 11)
+            {
+                messages.Add("O Cpf do cliente está irregular, verifique!");
+            }
+           if (EmailValido == false)
+            {
+                messages.Add("O e-mail inserido não é valido, verifique!");
+            }
+         
+                return new ResultCliente(messages.Count == 0, messages);
             
 
         }

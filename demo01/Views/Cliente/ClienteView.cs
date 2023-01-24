@@ -30,7 +30,7 @@ namespace demo01.Views.Cliente
 
         }
         #endregion
-
+        
         #region MetodosInternos
         private void InserirCliente()
         {
@@ -44,6 +44,7 @@ namespace demo01.Views.Cliente
                         cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
                         cliente.Cpf = mskCPF.Text.Trim();
+                        cliente.Email = txtEmail.Text.Trim();
                         var result = new ClienteAppService().Inserir(cliente);
                         if (result.Success)
                         {
@@ -105,8 +106,8 @@ namespace demo01.Views.Cliente
         {
             if ((txtNomeCliente.Text != "") & (mskCPF.Text != ""))
             {
-                if (mskCPF.Text.Length != 14)
-                {
+               
+             
                     {
                         var cliente = new Domain.Cliente.Cliente();
                         cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
@@ -125,9 +126,6 @@ namespace demo01.Views.Cliente
                         else
                             MessageBox.Show("Erro ao editar o cliente");
                     }
-                }
-                else
-                    MessageBox.Show("O CPf informado está invalido!");
             }
             else
                 MessageBox.Show("Selecione um cliente para editar!");
@@ -151,10 +149,9 @@ namespace demo01.Views.Cliente
             if (currentCliente != null)
             {
                 txtCodigoCliente.Text = currentCliente.CdCliente;
-                //txtCodigoCliente.DataBindings.Add("Text", currentCliente, "CdCliente");
                 txtNomeCliente.Text = currentCliente.NomeCliente;
                 mskCPF.Text = currentCliente.Cpf;
-
+                txtEmail.Text = currentCliente.Email;
 
             }
         }
@@ -163,6 +160,7 @@ namespace demo01.Views.Cliente
             txtCodigoCliente.Text = "";
             txtNomeCliente.Text = "";
             mskCPF.Text = "";
+            txtEmail.Text = ""; 
 
         }
 
@@ -171,6 +169,7 @@ namespace demo01.Views.Cliente
             txtCodigoCliente.Enabled = true;
             txtNomeCliente.Enabled = true;
             mskCPF.Enabled = true;
+            txtEmail.Enabled = true;
 
         }
 
@@ -179,6 +178,7 @@ namespace demo01.Views.Cliente
             txtCodigoCliente.Enabled = false;
             txtNomeCliente.Enabled = false;
             mskCPF.Enabled = false;
+            txtEmail.Enabled = false;
 
         }
         private void Editar()
@@ -188,6 +188,7 @@ namespace demo01.Views.Cliente
             btnNovoCliente.Enabled = false;
             BtnSalvar.Enabled = true;
             txtCodigoCliente.Enabled = false;
+            txtEmail.Enabled = true; 
         }
 
         #endregion
@@ -247,7 +248,12 @@ namespace demo01.Views.Cliente
                 ListarGrid(nameof(Domain.Cliente.Cliente.NomeCliente));
             }
             else
+                if (e.ColumnIndex == 2)
+            {
                 ListarGrid(nameof(Domain.Cliente.Cliente.Cpf));
+            }
+            else
+                ListarGrid(nameof(Domain.Cliente.Cliente.Email));
         }
         private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -345,9 +351,13 @@ namespace demo01.Views.Cliente
 
         }
 
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         #endregion
 
-        
+
     }
 }

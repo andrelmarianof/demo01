@@ -20,7 +20,7 @@ namespace demo01.App.Produtos
             }
 
             var produtoExistente = new ProdutoRepository().ObterPorCodigo(produto.CdProduto);
-            if (!produtoExistente)
+            if (produtoExistente != null )
             {
                 return new Result(false, "O Produto não pode ser cadastrado pois o código já está em uso");
             }

@@ -36,14 +36,17 @@ namespace demo01.Views.Cliente
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listacliente = new System.Windows.Forms.DataGridView();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.mskCPF = new System.Windows.Forms.MaskedTextBox();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -102,7 +105,8 @@ namespace demo01.Views.Cliente
             this.listacliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.código,
             this.descrição,
-            this.Cpf});
+            this.Cpf,
+            this.Email});
             this.listacliente.Location = new System.Drawing.Point(12, 127);
             this.listacliente.Name = "listacliente";
             this.listacliente.ReadOnly = true;
@@ -113,27 +117,6 @@ namespace demo01.Views.Cliente
             this.listacliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellDoubleClick);
             this.listacliente.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listacliente_CellFormatting);
             this.listacliente.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Listacliente_ColumnHeaderMouseClick);
-            // 
-            // código
-            // 
-            this.código.DataPropertyName = "CdCliente";
-            this.código.HeaderText = "Código";
-            this.código.Name = "código";
-            this.código.ReadOnly = true;
-            // 
-            // descrição
-            // 
-            this.descrição.DataPropertyName = "NomeCliente";
-            this.descrição.HeaderText = "Nome";
-            this.descrição.Name = "descrição";
-            this.descrição.ReadOnly = true;
-            // 
-            // Cpf
-            // 
-            this.Cpf.DataPropertyName = "Cpf";
-            this.Cpf.HeaderText = "Cpf";
-            this.Cpf.Name = "Cpf";
-            this.Cpf.ReadOnly = true;
             // 
             // btnNovoCliente
             // 
@@ -177,11 +160,58 @@ namespace demo01.Views.Cliente
             // 
             this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(641, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "&E-mail";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(553, 88);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(211, 20);
+            this.txtEmail.TabIndex = 11;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
+            // 
+            // código
+            // 
+            this.código.DataPropertyName = "CdCliente";
+            this.código.HeaderText = "Código";
+            this.código.Name = "código";
+            this.código.ReadOnly = true;
+            // 
+            // descrição
+            // 
+            this.descrição.DataPropertyName = "NomeCliente";
+            this.descrição.HeaderText = "Nome";
+            this.descrição.Name = "descrição";
+            this.descrição.ReadOnly = true;
+            // 
+            // Cpf
+            // 
+            this.Cpf.DataPropertyName = "Cpf";
+            this.Cpf.HeaderText = "Cpf";
+            this.Cpf.Name = "Cpf";
+            this.Cpf.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
             // ClienteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.mskCPF);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnExcluirCliente);
@@ -214,9 +244,12 @@ namespace demo01.Views.Cliente
         private System.Windows.Forms.Button btnExcluirCliente;
         private System.Windows.Forms.BindingSource clienteBindingSource;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.MaskedTextBox mskCPF;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn código;
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cpf;
-        private System.Windows.Forms.MaskedTextBox mskCPF;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
     }
 }
