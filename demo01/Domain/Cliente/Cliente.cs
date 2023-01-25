@@ -29,7 +29,10 @@ namespace demo01.Domain.Cliente
 
             var messages = new List<string>();
             var regexEmail = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
-            var EmailValido = regexEmail.IsMatch(Email);
+            var emailValido = regexEmail.IsMatch(Email);
+
+            var regexCpf = new Regex(@"([0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})", RegexOptions.IgnorePatternWhitespace);
+            var cpfVaido = regexCpf.IsMatch(Cpf);
 
             if (string.IsNullOrWhiteSpace(CdCliente))
             {
@@ -56,11 +59,15 @@ namespace demo01.Domain.Cliente
             {
                 messages.Add("O Cpf do cliente está irregular, verifique!");
             }
-           if (EmailValido == false)
+           if (emailValido == false)
             {
                 messages.Add("O e-mail inserido não é valido, verifique!");
             }
-         
+            if (cpfVaido == false)
+            {
+                messages.Add("O Cpf inserido não é valido, verifique!");
+            }
+
                 return new ResultCliente(messages.Count == 0, messages);
             
 

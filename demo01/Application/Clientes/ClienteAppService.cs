@@ -36,8 +36,23 @@ namespace demo01.Views.Pedido
 
             return new ResultCliente(true, string.Empty);
 
-
         }
+        public ResultCliente Editar(Domain.Cliente.Cliente cliente)
+        {
+            var resultCliente = cliente.IsValid();
+                if (!resultCliente.Success)
+            {
+                return resultCliente;
+            }
+            var cpfExiste = new ClienteRepository().ObterPorCpf(cliente.Cpf);
+            if (!cpfExiste)
+            {
+                return new ResultCliente(false, "O Cliente não pode ser cadastrado pois o Cpf já está em uso");
+            }
+            new ClienteRepository().EditarCliente(cliente);
+            return new ResultCliente(true, string.Empty);
+        }
+
     }
 
 

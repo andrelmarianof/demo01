@@ -34,7 +34,7 @@ namespace demo01.Views.Cliente
         #region MetodosInternos
         private void InserirCliente()
         {
-            if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != ""))
+            if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != "") & (mskCPF.Text != " ") & (txtEmail.Text != ""))
             {
                 if (mskCPF.Text.Length == 11)
                 {
@@ -114,8 +114,9 @@ namespace demo01.Views.Cliente
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
                         //cliente.Cpf = txtCpf.Text.Trim();
                         cliente.Cpf = mskCPF.Text.Trim();
-                        var result = new ClienteRepository().EditarCliente(cliente);
-                        if (result != false)
+                        cliente.Email = txtEmail.Text.Trim();
+                        var result = new ClienteAppService().Editar(cliente);
+                        if (result.Success)
                         {
                             MessageBox.Show(string.Format("O cadastro do cliente {0} foi alterado com sucesso!", txtNomeCliente.Text));
                             ListarGrid();
@@ -124,8 +125,8 @@ namespace demo01.Views.Cliente
                             DesabilitarCampo();
                         }
                         else
-                            MessageBox.Show("Erro ao editar o cliente");
-                    }
+                        MessageBox.Show($"Ocorreu um erro no cadastro:\n\r{string.Join("\n\r", result.Messages)}");
+                }
             }
             else
                 MessageBox.Show("Selecione um cliente para editar!");
