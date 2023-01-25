@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace demo01.Views.Produtos
 {
-    public partial class fProduto : Form
+    public partial class fProduto : MetroFramework.Forms.MetroForm
     {
 
         #region "Declarações"

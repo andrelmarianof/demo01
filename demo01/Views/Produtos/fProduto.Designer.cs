@@ -63,7 +63,7 @@ namespace demo01.Views.Produtos
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 78);
+            this.label1.Location = new System.Drawing.Point(120, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 9;
@@ -72,7 +72,7 @@ namespace demo01.Views.Produtos
             // txtCdProduto
             // 
             this.txtCdProduto.Enabled = false;
-            this.txtCdProduto.Location = new System.Drawing.Point(77, 98);
+            this.txtCdProduto.Location = new System.Drawing.Point(133, 156);
             this.txtCdProduto.Name = "txtCdProduto";
             this.txtCdProduto.Size = new System.Drawing.Size(63, 20);
             this.txtCdProduto.TabIndex = 5;
@@ -81,7 +81,7 @@ namespace demo01.Views.Produtos
             // txtDescricaoProduto
             // 
             this.txtDescricaoProduto.Enabled = false;
-            this.txtDescricaoProduto.Location = new System.Drawing.Point(176, 98);
+            this.txtDescricaoProduto.Location = new System.Drawing.Point(234, 156);
             this.txtDescricaoProduto.Name = "txtDescricaoProduto";
             this.txtDescricaoProduto.Size = new System.Drawing.Size(211, 20);
             this.txtDescricaoProduto.TabIndex = 6;
@@ -89,7 +89,7 @@ namespace demo01.Views.Produtos
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(242, 78);
+            this.label3.Location = new System.Drawing.Point(288, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 11;
@@ -98,7 +98,7 @@ namespace demo01.Views.Produtos
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(498, 78);
+            this.label4.Location = new System.Drawing.Point(606, 129);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 13);
             this.label4.TabIndex = 13;
@@ -107,7 +107,7 @@ namespace demo01.Views.Produtos
             // txtQtd
             // 
             this.txtQtd.Enabled = false;
-            this.txtQtd.Location = new System.Drawing.Point(527, 101);
+            this.txtQtd.Location = new System.Drawing.Point(641, 156);
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.Size = new System.Drawing.Size(63, 20);
             this.txtQtd.TabIndex = 8;
@@ -116,7 +116,7 @@ namespace demo01.Views.Produtos
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(407, 78);
+            this.label5.Location = new System.Drawing.Point(493, 129);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 13);
             this.label5.TabIndex = 15;
@@ -125,7 +125,7 @@ namespace demo01.Views.Produtos
             // txtValor
             // 
             this.txtValor.Enabled = false;
-            this.txtValor.Location = new System.Drawing.Point(412, 98);
+            this.txtValor.Location = new System.Drawing.Point(505, 156);
             this.txtValor.MaxLength = 1000000;
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(63, 20);
@@ -142,10 +142,10 @@ namespace demo01.Views.Produtos
             this.descrição,
             this.preçoUn,
             this.estoque});
-            this.listaprodutos.Location = new System.Drawing.Point(52, 136);
+            this.listaprodutos.Location = new System.Drawing.Point(173, 195);
             this.listaprodutos.Name = "listaprodutos";
             this.listaprodutos.ReadOnly = true;
-            this.listaprodutos.Size = new System.Drawing.Size(553, 311);
+            this.listaprodutos.Size = new System.Drawing.Size(456, 251);
             this.listaprodutos.TabIndex = 9;
             this.listaprodutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProdutos_CellClick);
             this.listaprodutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaprodutos_CellContentClick);
@@ -187,7 +187,7 @@ namespace demo01.Views.Produtos
             // btnSalvar
             // 
             this.btnSalvar.Enabled = false;
-            this.btnSalvar.Location = new System.Drawing.Point(260, 27);
+            this.btnSalvar.Location = new System.Drawing.Point(503, 77);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 3;
@@ -197,7 +197,7 @@ namespace demo01.Views.Produtos
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(52, 27);
+            this.btnNovo.Location = new System.Drawing.Point(123, 77);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 1;
@@ -208,7 +208,7 @@ namespace demo01.Views.Produtos
             // btnCancelar
             // 
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(367, 27);
+            this.btnCancelar.Location = new System.Drawing.Point(651, 77);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 4;
@@ -218,7 +218,7 @@ namespace demo01.Views.Produtos
             // 
             // btnExcluirProduto
             // 
-            this.btnExcluirProduto.Location = new System.Drawing.Point(155, 27);
+            this.btnExcluirProduto.Location = new System.Drawing.Point(291, 77);
             this.btnExcluirProduto.Name = "btnExcluirProduto";
             this.btnExcluirProduto.Size = new System.Drawing.Size(75, 23);
             this.btnExcluirProduto.TabIndex = 2;
@@ -247,7 +247,7 @@ namespace demo01.Views.Produtos
             this.Controls.Add(this.txtDescricaoProduto);
             this.Name = "fProduto";
             this.Tag = "";
-            this.Text = "Cadastro de produto";
+            this.Text = "&Cadastro de produto";
             this.Load += new System.EventHandler(this.fProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listaprodutos)).EndInit();
             this.ResumeLayout(false);

@@ -31,7 +31,7 @@ namespace demo01.Views.Cliente
         {
             this.components = new System.ComponentModel.Container();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
-            this.txtCodigoCliente = new System.Windows.Forms.TextBox();
+            this.txtCodigoClientezz = new System.Windows.Forms.TextBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,34 +44,36 @@ namespace demo01.Views.Cliente
             this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.mskCPF = new System.Windows.Forms.MaskedTextBox();
-            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
+            this.c1DataSet1 = new C1.Data.C1DataSet();
+            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(161, 88);
+            this.txtNomeCliente.Location = new System.Drawing.Point(204, 162);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
             this.txtNomeCliente.TabIndex = 5;
             this.txtNomeCliente.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCliente_KeyPress);
             // 
-            // txtCodigoCliente
+            // txtCodigoClientezz
             // 
-            this.txtCodigoCliente.Location = new System.Drawing.Point(40, 88);
-            this.txtCodigoCliente.Name = "txtCodigoCliente";
-            this.txtCodigoCliente.Size = new System.Drawing.Size(63, 20);
-            this.txtCodigoCliente.TabIndex = 4;
-            this.txtCodigoCliente.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
-            this.txtCodigoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
+            this.txtCodigoClientezz.Location = new System.Drawing.Point(135, 162);
+            this.txtCodigoClientezz.Name = "txtCodigoClientezz";
+            this.txtCodigoClientezz.Size = new System.Drawing.Size(63, 20);
+            this.txtCodigoClientezz.TabIndex = 4;
+            this.txtCodigoClientezz.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
+            this.txtCodigoClientezz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
             // BtnSalvar
             // 
-            this.BtnSalvar.Location = new System.Drawing.Point(129, 12);
+            this.BtnSalvar.Location = new System.Drawing.Point(375, 87);
             this.BtnSalvar.Name = "BtnSalvar";
             this.BtnSalvar.Size = new System.Drawing.Size(75, 23);
             this.BtnSalvar.TabIndex = 2;
@@ -82,7 +84,7 @@ namespace demo01.Views.Cliente
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 60);
+            this.label1.Location = new System.Drawing.Point(132, 130);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 4;
@@ -91,7 +93,7 @@ namespace demo01.Views.Cliente
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 60);
+            this.label2.Location = new System.Drawing.Point(297, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
@@ -107,10 +109,10 @@ namespace demo01.Views.Cliente
             this.descrição,
             this.Cpf,
             this.Email});
-            this.listacliente.Location = new System.Drawing.Point(12, 127);
+            this.listacliente.Location = new System.Drawing.Point(160, 218);
             this.listacliente.Name = "listacliente";
             this.listacliente.ReadOnly = true;
-            this.listacliente.Size = new System.Drawing.Size(637, 311);
+            this.listacliente.Size = new System.Drawing.Size(471, 223);
             this.listacliente.TabIndex = 6;
             this.listacliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellClick);
             this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
@@ -148,7 +150,7 @@ namespace demo01.Views.Cliente
             // 
             // btnNovoCliente
             // 
-            this.btnNovoCliente.Location = new System.Drawing.Point(28, 12);
+            this.btnNovoCliente.Location = new System.Drawing.Point(135, 87);
             this.btnNovoCliente.Name = "btnNovoCliente";
             this.btnNovoCliente.Size = new System.Drawing.Size(75, 23);
             this.btnNovoCliente.TabIndex = 1;
@@ -158,7 +160,7 @@ namespace demo01.Views.Cliente
             // 
             // btnExcluirCliente
             // 
-            this.btnExcluirCliente.Location = new System.Drawing.Point(236, 12);
+            this.btnExcluirCliente.Location = new System.Drawing.Point(605, 87);
             this.btnExcluirCliente.Name = "btnExcluirCliente";
             this.btnExcluirCliente.Size = new System.Drawing.Size(75, 23);
             this.btnExcluirCliente.TabIndex = 3;
@@ -169,7 +171,7 @@ namespace demo01.Views.Cliente
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(461, 60);
+            this.label3.Location = new System.Drawing.Point(456, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 8;
@@ -177,21 +179,17 @@ namespace demo01.Views.Cliente
             // 
             // mskCPF
             // 
-            this.mskCPF.Location = new System.Drawing.Point(420, 88);
+            this.mskCPF.Location = new System.Drawing.Point(421, 162);
             this.mskCPF.Mask = "000.000.000-00";
             this.mskCPF.Name = "mskCPF";
             this.mskCPF.Size = new System.Drawing.Size(100, 20);
             this.mskCPF.TabIndex = 9;
             this.mskCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
-            // clienteBindingSource
-            // 
-            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(641, 60);
+            this.label4.Location = new System.Drawing.Point(645, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 10;
@@ -199,11 +197,26 @@ namespace demo01.Views.Cliente
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(553, 88);
+            this.txtEmail.Location = new System.Drawing.Point(527, 162);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(211, 20);
             this.txtEmail.TabIndex = 11;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
+            // 
+            // c1DataSet1
+            // 
+            this.c1DataSet1.BindingContextCtrl = this;
+            this.c1DataSet1.DataLibrary = "";
+            this.c1DataSet1.DataLibraryUrl = "";
+            this.c1DataSet1.DataSetDef = "";
+            this.c1DataSet1.Locale = new System.Globalization.CultureInfo("pt-BR");
+            this.c1DataSet1.Name = "c1DataSet1";
+            this.c1DataSet1.SchemaClassName = "";
+            this.c1DataSet1.SchemaDef = null;
+            // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
             // 
             // ClienteView
             // 
@@ -220,12 +233,13 @@ namespace demo01.Views.Cliente
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnSalvar);
-            this.Controls.Add(this.txtCodigoCliente);
+            this.Controls.Add(this.txtCodigoClientezz);
             this.Controls.Add(this.txtNomeCliente);
             this.Name = "ClienteView";
-            this.Text = "Cliente";
+            this.Text = "&Cadastro De Cliente";
             this.Load += new System.EventHandler(this.Cliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -235,7 +249,7 @@ namespace demo01.Views.Cliente
         #endregion
 
         private System.Windows.Forms.TextBox txtNomeCliente;
-        private System.Windows.Forms.TextBox txtCodigoCliente;
+        private System.Windows.Forms.TextBox txtCodigoClientezz;
         private System.Windows.Forms.Button BtnSalvar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -251,5 +265,6 @@ namespace demo01.Views.Cliente
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cpf;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private C1.Data.C1DataSet c1DataSet1;
     }
 }

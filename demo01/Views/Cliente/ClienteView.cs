@@ -14,7 +14,7 @@ namespace demo01.Views.Cliente
 
 {
 
-    public partial class ClienteView : Form
+    public partial class ClienteView : MetroFramework.Forms.MetroForm
     {
         #region Declaração
         private BindingSource _bsListaCliente;
@@ -34,14 +34,14 @@ namespace demo01.Views.Cliente
         #region MetodosInternos
         private void InserirCliente()
         {
-            if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != "") & (mskCPF.Text != " ") & (txtEmail.Text != ""))
+            if ((txtCodigoClientezz.Text != "") & (txtNomeCliente.Text != "") & (mskCPF.Text != " ") & (txtEmail.Text != ""))
             {
                 if (mskCPF.Text.Length == 11)
                 {
                     try
                     {
                         var cliente = new Domain.Cliente.Cliente();
-                        cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
+                        cliente.CdCliente = txtCodigoClientezz.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
                         cliente.Cpf = mskCPF.Text.Trim();
                         cliente.Email = txtEmail.Text.Trim();
@@ -110,7 +110,7 @@ namespace demo01.Views.Cliente
              
                     {
                         var cliente = new Domain.Cliente.Cliente();
-                        cliente.CdCliente = txtCodigoCliente.Text.Trim().ToLower();
+                        cliente.CdCliente = txtCodigoClientezz.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
                         //cliente.Cpf = txtCpf.Text.Trim();
                         cliente.Cpf = mskCPF.Text.Trim();
@@ -149,7 +149,7 @@ namespace demo01.Views.Cliente
             var currentCliente = GetCurrentCliente();
             if (currentCliente != null)
             {
-                txtCodigoCliente.Text = currentCliente.CdCliente;
+                txtCodigoClientezz.Text = currentCliente.CdCliente;
                 txtNomeCliente.Text = currentCliente.NomeCliente;
                 mskCPF.Text = currentCliente.Cpf;
                 txtEmail.Text = currentCliente.Email;
@@ -158,7 +158,7 @@ namespace demo01.Views.Cliente
         }
         private void limparCampos()
         {
-            txtCodigoCliente.Text = "";
+            txtCodigoClientezz.Text = "";
             txtNomeCliente.Text = "";
             mskCPF.Text = "";
             txtEmail.Text = ""; 
@@ -167,7 +167,7 @@ namespace demo01.Views.Cliente
 
         private void HabilitarCampo()
         {
-            txtCodigoCliente.Enabled = true;
+            txtCodigoClientezz.Enabled = true;
             txtNomeCliente.Enabled = true;
             mskCPF.Enabled = true;
             txtEmail.Enabled = true;
@@ -176,7 +176,7 @@ namespace demo01.Views.Cliente
 
         private void DesabilitarCampo()
         {
-            txtCodigoCliente.Enabled = false;
+            txtCodigoClientezz.Enabled = false;
             txtNomeCliente.Enabled = false;
             mskCPF.Enabled = false;
             txtEmail.Enabled = false;
@@ -188,7 +188,7 @@ namespace demo01.Views.Cliente
             btnExcluirCliente.Enabled = false;
             btnNovoCliente.Enabled = false;
             BtnSalvar.Enabled = true;
-            txtCodigoCliente.Enabled = false;
+            txtCodigoClientezz.Enabled = false;
             txtEmail.Enabled = true; 
         }
 
@@ -206,7 +206,7 @@ namespace demo01.Views.Cliente
             resposta = MessageBox.Show("Deseje realmente excluir este Cliente?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resposta != DialogResult.No)
             {
-                if ((txtCodigoCliente.Text != "") & (txtNomeCliente.Text != "") & (mskCPF.Text != ""))
+                if ((txtCodigoClientezz.Text != "") & (txtNomeCliente.Text != "") & (mskCPF.Text != ""))
                 {
                     //objTabela.CdProduto = txtCdProduto.Text.Trim();
                     var result = new ClienteRepository().DeleteCliente(currentProduto);
@@ -296,7 +296,7 @@ namespace demo01.Views.Cliente
         }
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
-            if (txtCodigoCliente.Enabled != true)
+            if (txtCodigoClientezz.Enabled != true)
             {
                 EditarCliente();
             }
