@@ -19,16 +19,16 @@ namespace demo01.Views.Pedido
                 return resultCliente;
             }
 
-            var clienteExiste = new ClienteRepository().clienteExiste(cliente.CdCliente);
-            if (!clienteExiste)
+            var clienteExiste = new ClienteRepository().ObterPorCodigo(cliente.CdCliente);
+            if (clienteExiste != null)
             {
                 return new ResultCliente(false, "O Cliente não pode ser cadastrado pois o código já está em uso");
             }
 
-            var cpfExiste = new ClienteRepository().ObterPorCpf(cliente.Cpf);
-            if (!cpfExiste)
+            var clienteBaseCPF = new ClienteRepository().ObterPorCpf(cliente.Cpf);
+            if (clienteBaseCPF != null)
             {
-                return new ResultCliente(false, "O Cliente não pode ser cadastrado pois o Cpf já está em uso");
+                return new ResultCliente(false, $"O Cliente não pode ser cadastrado pois o Cpf já está em uso por {clienteBaseCPF.CdCliente.Trim()} - {clienteBaseCPF.NomeCliente.Trim()}");
             }
 
             new ClienteRepository().InsertCliente(cliente);
@@ -44,11 +44,14 @@ namespace demo01.Views.Pedido
             {
                 return resultCliente;
             }
-            var cpfExiste = new ClienteRepository().ObterPorCpf(cliente.Cpf);
-            if (!cpfExiste)
+
+            var clienteBaseCPF = new ClienteRepository().ObterPorCpf(cliente.Cpf);
+            if (clienteBaseCPF != null && (clienteBaseCPF.CdCliente ?? "").Trim()
+                                            .Equals((cliente.CdCliente ?? "").Trim(), StringComparison.InvariantCultureIgnoreCase))
             {
-                return new ResultCliente(false, "O Cliente não pode ser cadastrado pois o Cpf já está em uso");
+                return new ResultCliente(false, $"O Cliente não pode ser cadastrado pois o Cpf já está em uso por {clienteBaseCPF.CdCliente.Trim()} - {clienteBaseCPF.NomeCliente.Trim()}");
             }
+
             new ClienteRepository().EditarCliente(cliente);
             return new ResultCliente(true, string.Empty);
         }

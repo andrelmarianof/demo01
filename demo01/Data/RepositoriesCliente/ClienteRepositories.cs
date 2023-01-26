@@ -119,48 +119,56 @@ WHERE
             }
 
         }
-        public bool clienteExiste(string cdClinte)
+        //public bool ExisteClienteComEsteCpf(string cpf)
+        //{
+        //    using (SqlConnection con = ConnectionProvider.ObterConexao())
+        //    {
+
+        //        var query = new StringBuilder();
+        //        query.AppendLine("SELECT COUNT(*) FROM cliente");
+        //        query.AppendLine("/**where**/");
+
+        //        var queryBuilder = new SqlBuilder();
+        //        var template = queryBuilder.AddTemplate(query.ToString());
+        //        queryBuilder.Where("cpf = @cpf", new { cpf });
+
+        //        var resp = con.QueryFirst<int>(template.RawSql, template.Parameters);
+
+        //        if (resp == 0)
+        //            return true;
+        //        return false;
+        //    }
+        //}
+        public Cliente ObterPorCodigo(string cdCliente)
+        {
+            return ObterCliente(cdCliente: cdCliente);
+        }
+
+        public Cliente ObterPorCpf(string cpf)
+        {
+            return ObterCliente(cpf: cpf);             
+        }
+
+        private Cliente ObterCliente(string cdCliente = "", string cpf = "")
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
 
                 var query = new StringBuilder();
-                query.AppendLine("SELECT COUNT(*) FROM cliente");
+                query.AppendLine("SELECT * FROM cliente");
                 query.AppendLine("/**where**/");
 
                 var queryBuilder = new SqlBuilder();
                 var template = queryBuilder.AddTemplate(query.ToString());
-                queryBuilder.Where("cdcliente = @cdClinte", new { cdClinte });
+                if (!string.IsNullOrWhiteSpace(cdCliente))
+                    queryBuilder.Where("CdCliente = @cdCliente", new { cdCliente });
 
+                if (!string.IsNullOrWhiteSpace(cpf))
+                    queryBuilder.Where("Cpf = @cpf", new { cpf });
 
-                var resp = con.QueryFirst<int>(template.RawSql, template.Parameters);
-
-                if (resp == 0)
-                    return true;
-                return false;
+                return con.QueryFirstOrDefault<Cliente>(template.RawSql, template.Parameters);
             }
         }
-        public bool ObterPorCpf(string cpf)
-        {
-            using (SqlConnection con = ConnectionProvider.ObterConexao())
-            {
-
-                var query = new StringBuilder();
-                query.AppendLine("SELECT COUNT(*) FROM cliente");
-                query.AppendLine("/**where**/");
-
-                var queryBuilder = new SqlBuilder();
-                var template = queryBuilder.AddTemplate(query.ToString());
-                queryBuilder.Where("cpf = @cpf", new { cpf });
-
-                var resp = con.QueryFirst<int>(template.RawSql, template.Parameters);
-
-                if (resp == 0)
-                    return true;
-                return false;
-            }
-        }
-
     }
     #endregion
 }

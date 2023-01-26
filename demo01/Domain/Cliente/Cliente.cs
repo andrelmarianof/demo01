@@ -16,6 +16,7 @@ namespace demo01.Domain.Cliente
         public string NomeCliente { get; set; }
 
         public string Cpf { get; set; }
+        //public CPF Cpf { get; set; }
 
         public string Email { get; set; }
 
@@ -59,7 +60,7 @@ namespace demo01.Domain.Cliente
             {
                 messages.Add("O Cpf do cliente está irregular, verifique!");
             }
-           if (emailValido == false)
+            if (emailValido == false)
             {
                 messages.Add("O e-mail inserido não é valido, verifique!");
             }
@@ -67,11 +68,57 @@ namespace demo01.Domain.Cliente
             {
                 messages.Add("O Cpf inserido não é valido, verifique!");
             }
+                        
+            if (!Cpf.IsCpf())
+            {
+                messages.Add("O Cpf está inválido!");
+            }
 
-                return new ResultCliente(messages.Count == 0, messages);
-            
+            return new ResultCliente(messages.Count == 0, messages);
+
 
         }
+    }
+
+    public static class CPF
+    { 
+        //Método de extensão (Extension Method)
+        public static bool IsCpf(this string cpf)
+        {
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            string tempCpf;
+            string digito;
+            int soma;
+            int resto;
+            cpf = cpf.Trim();
+            cpf = cpf.Replace(".", "").Replace("-", "");
+            if (cpf.Length != 11)
+                return false;
+            tempCpf = cpf.Substring(0, 9);
+            soma = 0;
+
+            for (int i = 0; i < 9; i++)
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+            digito = resto.ToString();
+            tempCpf = tempCpf + digito;
+            soma = 0;
+            for (int i = 0; i < 10; i++)
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+            digito = digito + resto.ToString();
+            return cpf.EndsWith(digito);
+        }
+
     }
     #endregion
 }

@@ -147,5 +147,10 @@ namespace demo01
         {
 
         }
+
+        private void mnuPrincipal_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

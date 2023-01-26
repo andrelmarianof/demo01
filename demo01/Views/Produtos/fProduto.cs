@@ -201,6 +201,7 @@ namespace demo01.Views.Produtos
                 _bsListaProduto = new BindingSource(lista, "");
                 listaprodutos.AutoGenerateColumns = false;
                 listaprodutos.DataSource = _bsListaProduto;
+                c1TrueDBGrid1.SetDataBinding(_bsListaProduto, "", false);
 
                 return;
             }

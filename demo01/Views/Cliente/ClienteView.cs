@@ -286,6 +286,9 @@ namespace demo01.Views.Cliente
             HabilitarCampo();
             BtnSalvar.Enabled = true;
             btnExcluirCliente.Enabled = false;
+
+            if (txtCodigoClientezz.Enabled)
+                txtCodigoClientezz.Focus();
         }
         private void listacliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -312,7 +315,7 @@ namespace demo01.Views.Cliente
             _bsListaCliente.CurrentChanged += OnCurrentItemChangeHandler;
 
         }
-        private void listacliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void listacliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             LerCliente();
             btnExcluirCliente.Enabled = true;
