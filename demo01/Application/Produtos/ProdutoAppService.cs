@@ -13,13 +13,10 @@ namespace demo01.App.Produtos
     {
         public Result Inserir(Produto produto)
         {
-            var result = produto.IsValid();
-            if (!result.Success)
-            {
-                return result;
-            }
+            if (!IsValid(produto, out var result)) return result;
 
             var produtoExistente = new ProdutoRepository().ObterPorCodigo(produto.CdProduto);
+
             if (produtoExistente != null )
             {
                 return new Result(false, "O Produto não pode ser cadastrado pois o código já está em uso");
@@ -28,19 +25,19 @@ namespace demo01.App.Produtos
             new ProdutoRepository().InsertProduto(produto);
 
             return new Result(true, string.Empty);
-
         }
 
-        public Result Atualizar(Produto produto)
+        public Result Editar(Produto produto)
         {
-            var result = produto.IsValid();
-            if (!result.Success)
-            {
-                return result;
-            }
+            if (!IsValid(produto, out var result)) return result;
 
             new ProdutoRepository().UpdateProduto(produto);
             return new Result(true, string.Empty);
+        }
+        private bool IsValid(Domain.Produtos.Produto produto, out Result result)
+        {
+            result = produto.IsValid();
+            return result.Success;
         }
     }
 }

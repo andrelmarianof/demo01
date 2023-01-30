@@ -100,7 +100,7 @@ namespace demo01.Views.Produtos
             produto.Estoque = Decimal.Parse(txtQtd.Text);
             produto.Valor = Decimal.Parse(txtValor.Text);
 
-            var result = new ProdutoAppService().Atualizar(produto);
+            var result = new ProdutoAppService().Editar(produto);
             if (result.Success)
             {
                 MessageBox.Show(string.Format("Produto {0} alterado com sucesso!", txtDescricaoProduto.Text));
