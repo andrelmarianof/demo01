@@ -46,6 +46,24 @@ namespace demo01.Domain.Core
             Messages = new List<string>() { message };
         }
     }
+    public class ResultPedido
+    {
+
+        public bool Success { get; }
+        public List<string> Messages { get; }
+
+        public ResultPedido(bool success, List<string> messages)
+        {
+            Success = success;
+            Messages = messages;
+        }
+
+        public ResultPedido(bool success, string message)
+        {
+            Success = success;
+            Messages = new List<string>() { message };
+        }
+    }
     #endregion
 
 }

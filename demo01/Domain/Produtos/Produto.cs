@@ -58,8 +58,6 @@ namespace demo01.Domain.Produtos
                 messages.Add("O códig do produto pode conter somente 7 digitos, verifique!");
             }
             return new Result(messages.Count == 0, messages);
-           
-
         }
         #endregion
 

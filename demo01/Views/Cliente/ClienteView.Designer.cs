@@ -36,10 +36,6 @@ namespace demo01.Views.Cliente
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listacliente = new System.Windows.Forms.DataGridView();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,6 +44,10 @@ namespace demo01.Views.Cliente
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.c1DataSet1 = new C1.Data.C1DataSet();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
@@ -58,7 +58,7 @@ namespace demo01.Views.Cliente
             this.txtNomeCliente.Location = new System.Drawing.Point(135, 162);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
-            this.txtNomeCliente.TabIndex = 2;
+            this.txtNomeCliente.TabIndex = 4;
             this.txtNomeCliente.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCliente_KeyPress);
             // 
@@ -67,7 +67,7 @@ namespace demo01.Views.Cliente
             this.txtCodigoClientezz.Location = new System.Drawing.Point(14, 162);
             this.txtCodigoClientezz.Name = "txtCodigoClientezz";
             this.txtCodigoClientezz.Size = new System.Drawing.Size(114, 20);
-            this.txtCodigoClientezz.TabIndex = 1;
+            this.txtCodigoClientezz.TabIndex = 3;
             this.txtCodigoClientezz.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
             this.txtCodigoClientezz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
@@ -76,7 +76,7 @@ namespace demo01.Views.Cliente
             this.BtnSalvar.Location = new System.Drawing.Point(92, 90);
             this.BtnSalvar.Name = "BtnSalvar";
             this.BtnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.BtnSalvar.TabIndex = 5;
+            this.BtnSalvar.TabIndex = 1;
             this.BtnSalvar.Text = "&Salvar";
             this.BtnSalvar.UseVisualStyleBackColor = true;
             this.BtnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
@@ -112,41 +112,13 @@ namespace demo01.Views.Cliente
             this.listacliente.Location = new System.Drawing.Point(11, 188);
             this.listacliente.Name = "listacliente";
             this.listacliente.ReadOnly = true;
-            this.listacliente.Size = new System.Drawing.Size(658, 223);
-            this.listacliente.TabIndex = 6;
+            this.listacliente.Size = new System.Drawing.Size(644, 223);
+            this.listacliente.TabIndex = 7;
             this.listacliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellClick);
             this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
             this.listacliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellDoubleClick);
             this.listacliente.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listacliente_CellFormatting);
             this.listacliente.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Listacliente_ColumnHeaderMouseClick);
-            // 
-            // código
-            // 
-            this.código.DataPropertyName = "CdCliente";
-            this.código.HeaderText = "Código";
-            this.código.Name = "código";
-            this.código.ReadOnly = true;
-            // 
-            // descrição
-            // 
-            this.descrição.DataPropertyName = "NomeCliente";
-            this.descrição.HeaderText = "Nome";
-            this.descrição.Name = "descrição";
-            this.descrição.ReadOnly = true;
-            // 
-            // Cpf
-            // 
-            this.Cpf.DataPropertyName = "Cpf";
-            this.Cpf.HeaderText = "Cpf";
-            this.Cpf.Name = "Cpf";
-            this.Cpf.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
             // 
             // btnNovoCliente
             // 
@@ -163,7 +135,7 @@ namespace demo01.Views.Cliente
             this.btnExcluirCliente.Location = new System.Drawing.Point(173, 90);
             this.btnExcluirCliente.Name = "btnExcluirCliente";
             this.btnExcluirCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluirCliente.TabIndex = 6;
+            this.btnExcluirCliente.TabIndex = 2;
             this.btnExcluirCliente.Text = "&Excluir";
             this.btnExcluirCliente.UseVisualStyleBackColor = true;
             this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
@@ -183,7 +155,7 @@ namespace demo01.Views.Cliente
             this.mskCPF.Mask = "000.000.000-00";
             this.mskCPF.Name = "mskCPF";
             this.mskCPF.Size = new System.Drawing.Size(100, 20);
-            this.mskCPF.TabIndex = 3;
+            this.mskCPF.TabIndex = 5;
             this.mskCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // label4
@@ -200,7 +172,7 @@ namespace demo01.Views.Cliente
             this.txtEmail.Location = new System.Drawing.Point(458, 162);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(211, 20);
-            this.txtEmail.TabIndex = 4;
+            this.txtEmail.TabIndex = 6;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // c1DataSet1
@@ -217,6 +189,36 @@ namespace demo01.Views.Cliente
             // clienteBindingSource
             // 
             this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
+            // 
+            // código
+            // 
+            this.código.DataPropertyName = "CdCliente";
+            this.código.HeaderText = "Código";
+            this.código.Name = "código";
+            this.código.ReadOnly = true;
+            // 
+            // descrição
+            // 
+            this.descrição.DataPropertyName = "NomeCliente";
+            this.descrição.HeaderText = "Nome";
+            this.descrição.Name = "descrição";
+            this.descrição.ReadOnly = true;
+            this.descrição.Width = 200;
+            // 
+            // Cpf
+            // 
+            this.Cpf.DataPropertyName = "Cpf";
+            this.Cpf.HeaderText = "Cpf";
+            this.Cpf.Name = "Cpf";
+            this.Cpf.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            this.Email.Width = 200;
             // 
             // ClienteView
             // 

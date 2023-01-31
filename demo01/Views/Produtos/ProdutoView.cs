@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace demo01.Views.Produtos
 {
-    public partial class fProduto : MetroFramework.Forms.MetroForm
+    public partial class ProdutoView : MetroFramework.Forms.MetroForm
     {
 
         #region "Declarações"
@@ -22,7 +22,7 @@ namespace demo01.Views.Produtos
         #endregion
 
         #region "Construtores"
-        public fProduto()
+        public ProdutoView()
         {
             InitializeComponent();
         }
@@ -60,7 +60,6 @@ namespace demo01.Views.Produtos
                     produto.Valor = valorProduto;
 
                     var result = new ProdutoAppService().Inserir(produto);
-                    //int x = new ProdutoRepository().Inserir(objTabela);
 
                     if (result.Success)
                     {
@@ -74,9 +73,6 @@ namespace demo01.Views.Produtos
                         MessageBox.Show($"Ocorreu um erro no cadastro:\n\r{string.Join("\n\r", result.Messages)}");
 
                     }
-
-
-
                 }
                 catch (Exception ex)
                 {
@@ -89,7 +85,6 @@ namespace demo01.Views.Produtos
                 MessageBox.Show("insira todos os campos para cadastrar um produto!");
 
             }
-
         }
 
         private void AtualizarProduto()
@@ -152,6 +147,23 @@ namespace demo01.Views.Produtos
                 MessageBox.Show(string.Format("Processo cancelado! "));
 
         }
+        private void listaprodutos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ListarGrid(nameof(Domain.Produtos.Produto.CdProduto));
+            }
+            else
+                if (e.ColumnIndex == 1)
+                ListarGrid(nameof(Domain.Produtos.Produto.Descricao));
+            else
+                if (e.ColumnIndex == 2)
+            {
+                ListarGrid(nameof(Domain.Produtos.Produto.Valor));
+            }
+            else
+                ListarGrid(nameof(Domain.Produtos.Produto.Estoque));
+        }
         private void Editar()
         {
             HabilitarCampo();
@@ -201,7 +213,7 @@ namespace demo01.Views.Produtos
                 _bsListaProduto = new BindingSource(lista, "");
                 listaprodutos.AutoGenerateColumns = false;
                 listaprodutos.DataSource = _bsListaProduto;
-                c1TrueDBGrid1.SetDataBinding(_bsListaProduto, "", false);
+
 
                 return;
             }
@@ -350,25 +362,66 @@ namespace demo01.Views.Produtos
                 e.Handled = true;
             }
         }
+
         #endregion
 
-        private void listaprodutos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            HabilitarCampo();
+            limparCampos();
+            btnSalvar.Enabled = true;
+            btnExcluirProduto.Enabled = false;
+            btnCancelar.Enabled = true;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            limparCampos();
+            btnNovo.Enabled = true;
+            btnExcluirProduto.Enabled = true;
+            btnSalvar.Enabled = false;
+            DesabilitarCampo();
+            btnCancelar.Enabled = false;
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            if (txtCdProduto.Enabled == false)
             {
-                ListarGrid(nameof(Domain.Produtos.Produto.CdProduto));
+                AtualizarProduto();
+                btnNovo.Enabled = true;
             }
             else
-                if(e.ColumnIndex == 1)
-                //ListarGrid("Cpf");<- Evitar
-                ListarGrid(nameof(Domain.Produtos.Produto.Descricao));
-            else
-                if(e.ColumnIndex == 2)
             {
-                ListarGrid(nameof(Domain.Produtos.Produto.Valor));
+                InserirProduto();
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            var resposta = DialogResult;
+            var currentProduto = GetCurrentProduto();
+            if (currentProduto == null)
+                return;
+
+            resposta = MessageBox.Show("Deseje realmente excluir este produto?", "Excluir produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resposta != DialogResult.No)
+            {
+                if ((txtCdProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != "") & (txtDescricaoProduto.Text != ""))
+                {
+                    //objTabela.CdProduto = txtCdProduto.Text.Trim();
+                    var result = new ProdutoRepository().DeleteProduto(currentProduto);
+                    MessageBox.Show(string.Format("Produto {0} Excluido com sucesso!", txtDescricaoProduto.Text));
+                    limparCampos();
+                    ListarGrid();
+                    DesabilitarCampo();
+                }
+                else
+
+                    MessageBox.Show(string.Format("Selecione um produto para que possa realizar a exclusão!"));
             }
             else
-                ListarGrid(nameof(Domain.Produtos.Produto.Estoque));
+                MessageBox.Show(string.Format("Processo cancelado! "));
         }
     }
 }

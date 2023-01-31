@@ -13,7 +13,10 @@ namespace demo01.Views.Pedido
     {
         public ResultCliente Inserir(Domain.Cliente.Cliente cliente)
         {
-            if (!IsValid(cliente, out var resultCliente)) return resultCliente;
+
+            //cliente.IsEmpresa();
+            var validation = cliente.IsValid();
+            if (!validation.Success) return validation;
 
             var clienteExiste = new ClienteRepository().ObterPorCodigo(cliente.CdCliente);
             if (clienteExiste != null)
@@ -35,7 +38,8 @@ namespace demo01.Views.Pedido
         }
         public ResultCliente Editar(Domain.Cliente.Cliente cliente)
         {
-            if (!IsValid(cliente, out var resultCliente)) return resultCliente;
+            var validation = cliente.IsValid();
+            if (!validation.Success) return validation;
 
             var clienteBaseCPF = new ClienteRepository().ObterPorCpf(cliente.Cpf);
             if (clienteBaseCPF != null && (clienteBaseCPF.CdCliente ?? "").Trim()
@@ -46,11 +50,6 @@ namespace demo01.Views.Pedido
 
             new ClienteRepository().EditarCliente(cliente);
             return new ResultCliente(true, string.Empty);
-        }
-        private bool IsValid(Domain.Cliente.Cliente cliente, out ResultCliente resultCliente)
-        {
-            resultCliente = cliente.IsValid();
-            return resultCliente.Success;
         }
     }
 }

@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace demo01.Views.Relatorios.relatorioProduto
+namespace demo01.Views.Relatorios.relatoriopedido
 {
-    public partial class relatorioProdutos : Form
+    public partial class RelatorioPedidoView : Form
     {
-        public relatorioProdutos()
+        public RelatorioPedidoView()
         {
             InitializeComponent();
-        }
-
-        private void relatorioProdutos_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

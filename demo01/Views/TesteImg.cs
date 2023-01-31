@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace demo01.Views.Relatorios.relatoriopedido
+namespace demo01.Views
 {
-    public partial class relatorioPedido : Form
+    public partial class TesteImg : Form
     {
-        public relatorioPedido()
+        public TesteImg()
         {
             InitializeComponent();
         }

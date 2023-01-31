@@ -30,7 +30,7 @@ namespace demo01
             {
                 this.Text = "";
 
-                var formfProduto = new fProduto();
+                var formfProduto = new ProdutoView();
                 formfProduto.MdiParent = this;
 
                 formfProduto.Show();// Apenas chama
@@ -47,7 +47,7 @@ namespace demo01
             {
                 this.Text = "";
 
-                var formPedido = new Pedido();
+                var formPedido = new PedidoView();
                 formPedido.MdiParent = this;
 
                 formPedido.Show();// Apenas chama
@@ -64,7 +64,7 @@ namespace demo01
             {
                 this.Text = "";
 
-                var formPedido = new relatorioPedido();
+                var formPedido = new RelatorioPedidoView();
                 formPedido.MdiParent = this;
 
                 formPedido.Show();// Apenas chama
@@ -98,7 +98,7 @@ namespace demo01
             {
                 this.Text = "";
 
-                var formfCliente = new relatorioCliente();
+                var formfCliente = new RelatorioClienteView();
                 formfCliente.MdiParent = this;
 
                 formfCliente.Show();// Apenas chama
@@ -115,7 +115,7 @@ namespace demo01
             {
                 this.Text = "";
 
-                var formfCliente = new relatorioProdutos();
+                var formfCliente = new RelatorioProdutosView();
                 formfCliente.MdiParent = this;
 
                 formfCliente.Show();// Apenas chama

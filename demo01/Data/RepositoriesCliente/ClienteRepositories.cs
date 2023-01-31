@@ -119,31 +119,10 @@ WHERE
             }
 
         }
-        //public bool ExisteClienteComEsteCpf(string cpf)
-        //{
-        //    using (SqlConnection con = ConnectionProvider.ObterConexao())
-        //    {
-
-        //        var query = new StringBuilder();
-        //        query.AppendLine("SELECT COUNT(*) FROM cliente");
-        //        query.AppendLine("/**where**/");
-
-        //        var queryBuilder = new SqlBuilder();
-        //        var template = queryBuilder.AddTemplate(query.ToString());
-        //        queryBuilder.Where("cpf = @cpf", new { cpf });
-
-        //        var resp = con.QueryFirst<int>(template.RawSql, template.Parameters);
-
-        //        if (resp == 0)
-        //            return true;
-        //        return false;
-        //    }
-        //}
         public Cliente ObterPorCodigo(string cdCliente)
         {
             return ObterCliente(cdCliente: cdCliente);
         }
-
         public Cliente ObterPorCpf(string cpf)
         {
             return ObterCliente(cpf: cpf);             

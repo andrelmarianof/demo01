@@ -1,7 +1,7 @@
 ﻿
-namespace demo01.Views.Relatorios.relatorioCliente
+namespace demo01.Views
 {
-    partial class relatorioCliente
+    partial class TesteImg
     {
         /// <summary>
         /// Required designer variable.
@@ -29,20 +29,35 @@ namespace demo01.Views.Relatorios.relatorioCliente
         /// </summary>
         private void InitializeComponent()
         {
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // relatorioCliente
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::demo01.Properties.Resources._2795;
+            this.pictureBox1.Location = new System.Drawing.Point(150, 124);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(15, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // TesteImg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "relatorioCliente";
-            this.Text = "relatorioCliente";
-            this.Load += new System.EventHandler(this.relatorioCliente_Load);
+            this.Controls.Add(this.pictureBox1);
+            this.Name = "TesteImg";
+            this.Text = "TesteImg";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

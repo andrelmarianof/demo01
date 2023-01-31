@@ -1,7 +1,7 @@
 ﻿
-namespace demo01.Views.Relatorios.relatorioProduto
+namespace demo01.Views.Relatorios.relatorioCliente
 {
-    partial class relatorioProdutos
+    partial class RelatorioClienteView
     {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@ namespace demo01.Views.Relatorios.relatorioProduto
         {
             this.SuspendLayout();
             // 
-            // relatorioProdutos
+            // relatorioCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "relatorioProdutos";
-            this.Text = "relatorioProdutos";
-            this.Load += new System.EventHandler(this.relatorioProdutos_Load);
+            this.Name = "relatorioCliente";
+            this.Text = "relatorioCliente";
+            this.Load += new System.EventHandler(this.relatorioCliente_Load);
             this.ResumeLayout(false);
 
         }

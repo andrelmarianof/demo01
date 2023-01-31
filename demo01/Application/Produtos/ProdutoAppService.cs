@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using demo01.Domain.Pedido;
 
 namespace demo01.App.Produtos
 {
@@ -13,7 +14,8 @@ namespace demo01.App.Produtos
     {
         public Result Inserir(Produto produto)
         {
-            if (!IsValid(produto, out var result)) return result;
+            var validation = produto.IsValid();
+            if (!validation.Success) return validation;
 
             var produtoExistente = new ProdutoRepository().ObterPorCodigo(produto.CdProduto);
 
@@ -29,15 +31,16 @@ namespace demo01.App.Produtos
 
         public Result Editar(Produto produto)
         {
-            if (!IsValid(produto, out var result)) return result;
+            var validation = produto.IsValid();
+            if (!validation.Success) return validation;
 
             new ProdutoRepository().UpdateProduto(produto);
             return new Result(true, string.Empty);
         }
-        private bool IsValid(Domain.Produtos.Produto produto, out Result result)
-        {
-            result = produto.IsValid();
-            return result.Success;
-        }
+        //private bool IsValid(Domain.Produtos.Produto produto, out Result result)
+        //{
+        //    result = produto.IsValid();
+        //    return result.Success;
+        //}
     }
 }

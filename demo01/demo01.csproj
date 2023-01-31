@@ -36,6 +36,7 @@
     <Reference Include="C1.Data.2, Version=2.0.20141.273, Culture=neutral, PublicKeyToken=900b028620cd3a1b, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.2, Version=2.0.20183.338, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.C1Command.2, Version=2.0.20183.338, Culture=neutral, PublicKeyToken=e808566f358766d8" />
+    <Reference Include="C1.Win.C1Command.4, Version=4.0.20183.338, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1FlexGrid.2, Version=2.0.20183.338, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Gauge.2, Version=2.0.20183.338, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Input.2, Version=2.0.20183.338, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
@@ -73,13 +74,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Users\andre\Desktop\atualProgram.cs" />
     <Compile Include="Application\Clientes\ClienteAppService.cs" />
+    <Compile Include="Application\Pedidos\PedidoAppService.cs" />
     <Compile Include="Application\Produtos\ProdutoAppService.cs" />
     <Compile Include="Data\Provider\ConnectionProvider.cs" />
     <Compile Include="Data\RepositoriesCliente\ClienteRepositories.cs" />
+    <Compile Include="Data\RepositoriesPedido\PedidoRepository.cs" />
     <Compile Include="Data\RepositoriesProduto\ProdutoRepository.cs" />
     <Compile Include="Domain\Cliente\Cliente.cs" />
     <Compile Include="Domain\Core\Result.cs" />
+    <Compile Include="Domain\Pedido\Pedido.cs" />
     <Compile Include="Domain\Produtos\Produto.cs" />
     <Compile Include="fPrincipal.cs">
       <SubType>Form</SubType>
@@ -87,7 +92,6 @@
     <Compile Include="fPrincipal.Designer.cs">
       <DependentUpon>fPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Cliente\ClienteView.cs">
       <SubType>Form</SubType>
@@ -96,35 +100,35 @@
       <DependentUpon>ClienteView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Pedido\GridScreen.cs" />
-    <Compile Include="Views\Pedido\Pedido.cs">
+    <Compile Include="Views\Pedido\PedidoView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Pedido\Pedido.Designer.cs">
-      <DependentUpon>Pedido.cs</DependentUpon>
+    <Compile Include="Views\Pedido\PedidoView.Designer.cs">
+      <DependentUpon>PedidoView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Produtos\fProduto.cs">
+    <Compile Include="Views\Produtos\ProdutoView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Produtos\fProduto.Designer.cs">
-      <DependentUpon>fProduto.cs</DependentUpon>
+    <Compile Include="Views\Produtos\ProdutoView.Designer.cs">
+      <DependentUpon>ProdutoView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Relatorios\relatorioCliente\relatorioCliente.cs">
+    <Compile Include="Views\Relatorios\relatorioCliente\RelatorioClienteView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Relatorios\relatorioCliente\relatorioCliente.Designer.cs">
-      <DependentUpon>relatorioCliente.cs</DependentUpon>
+    <Compile Include="Views\Relatorios\relatorioCliente\RelatorioClienteView.Designer.cs">
+      <DependentUpon>RelatorioClienteView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Relatorios\relatoriopedido\relatorioPedido.cs">
+    <Compile Include="Views\Relatorios\relatoriopedido\RelatorioPedidoView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Relatorios\relatoriopedido\relatorioPedido.Designer.cs">
-      <DependentUpon>relatorioPedido.cs</DependentUpon>
+    <Compile Include="Views\Relatorios\relatoriopedido\RelatorioPedidoView.Designer.cs">
+      <DependentUpon>RelatorioPedidoView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Relatorios\relatorioProduto\relatorioProdutos.cs">
+    <Compile Include="Views\Relatorios\relatorioProduto\RelatorioProdutosView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Relatorios\relatorioProduto\relatorioProdutos.Designer.cs">
-      <DependentUpon>relatorioProdutos.cs</DependentUpon>
+    <Compile Include="Views\Relatorios\relatorioProduto\RelatorioProdutosView.Designer.cs">
+      <DependentUpon>RelatorioProdutosView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="fPrincipal.resx">
       <DependentUpon>fPrincipal.cs</DependentUpon>
@@ -138,21 +142,25 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\Cliente\ClienteView.resx">
       <DependentUpon>ClienteView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Pedido\Pedido.resx">
-      <DependentUpon>Pedido.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Pedido\PedidoView.resx">
+      <DependentUpon>PedidoView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Produtos\fProduto.resx">
-      <DependentUpon>fProduto.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Produtos\ProdutoView.resx">
+      <DependentUpon>ProdutoView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Relatorios\relatorioCliente\relatorioCliente.resx">
-      <DependentUpon>relatorioCliente.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Relatorios\relatorioCliente\RelatorioClienteView.resx">
+      <DependentUpon>RelatorioClienteView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Relatorios\relatorioProduto\relatorioProdutos.resx">
-      <DependentUpon>relatorioProdutos.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Relatorios\relatorioProduto\RelatorioProdutosView.resx">
+      <DependentUpon>RelatorioProdutosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TesteImg.resx">
+      <DependentUpon>TesteImg.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\demo01.Domain.pedido.datasource" />
@@ -180,6 +188,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\2795.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

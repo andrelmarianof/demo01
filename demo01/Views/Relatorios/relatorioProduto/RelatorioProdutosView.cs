@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace demo01.Views.Relatorios.relatorioCliente
+namespace demo01.Views.Relatorios.relatorioProduto
 {
-    public partial class relatorioCliente : Form
+    public partial class RelatorioProdutosView : Form
     {
-        public relatorioCliente()
+        public RelatorioProdutosView()
         {
             InitializeComponent();
         }
 
-        private void relatorioCliente_Load(object sender, EventArgs e)
+        private void relatorioProdutos_Load(object sender, EventArgs e)
         {
 
         }

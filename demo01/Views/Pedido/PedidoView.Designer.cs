@@ -1,7 +1,7 @@
 ﻿
 namespace demo01.Views.Pedido
 {
-    partial class Pedido
+    partial class PedidoView
     {
         /// <summary>
         /// Required designer variable.
@@ -44,13 +44,16 @@ namespace demo01.Views.Pedido
             this.btnNovoPedido = new System.Windows.Forms.Button();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnPesquisarCliente = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvarPedido
             // 
-            this.btnSalvarPedido.Location = new System.Drawing.Point(399, 65);
+            this.btnSalvarPedido.Location = new System.Drawing.Point(109, 81);
             this.btnSalvarPedido.Name = "btnSalvarPedido";
-            this.btnSalvarPedido.Size = new System.Drawing.Size(113, 23);
+            this.btnSalvarPedido.Size = new System.Drawing.Size(98, 23);
             this.btnSalvarPedido.TabIndex = 0;
             this.btnSalvarPedido.Text = "&Confirmar Pedido ";
             this.btnSalvarPedido.UseVisualStyleBackColor = true;
@@ -58,23 +61,24 @@ namespace demo01.Views.Pedido
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(328, 106);
+            this.label2.Location = new System.Drawing.Point(109, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "&Nome do cliente";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtCdCliente
             // 
-            this.txtCdCliente.Location = new System.Drawing.Point(188, 122);
+            this.txtCdCliente.Location = new System.Drawing.Point(18, 140);
             this.txtCdCliente.Name = "txtCdCliente";
-            this.txtCdCliente.Size = new System.Drawing.Size(76, 20);
+            this.txtCdCliente.Size = new System.Drawing.Size(86, 20);
             this.txtCdCliente.TabIndex = 7;
             this.txtCdCliente.TextChanged += new System.EventHandler(this.cdCliente_TextChanged);
             // 
             // txtDescricaoCliente
             // 
-            this.txtDescricaoCliente.Location = new System.Drawing.Point(270, 122);
+            this.txtDescricaoCliente.Location = new System.Drawing.Point(109, 140);
             this.txtDescricaoCliente.Name = "txtDescricaoCliente";
             this.txtDescricaoCliente.Size = new System.Drawing.Size(211, 20);
             this.txtDescricaoCliente.TabIndex = 6;
@@ -82,7 +86,7 @@ namespace demo01.Views.Pedido
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(185, 106);
+            this.label1.Location = new System.Drawing.Point(15, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 9;
@@ -91,16 +95,17 @@ namespace demo01.Views.Pedido
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(328, 149);
+            this.label3.Location = new System.Drawing.Point(109, 167);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "&Descrição do produto";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(185, 145);
+            this.label4.Location = new System.Drawing.Point(15, 166);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 13);
             this.label4.TabIndex = 13;
@@ -108,14 +113,14 @@ namespace demo01.Views.Pedido
             // 
             // txtCdProduto
             // 
-            this.txtCdProduto.Location = new System.Drawing.Point(188, 165);
+            this.txtCdProduto.Location = new System.Drawing.Point(18, 183);
             this.txtCdProduto.Name = "txtCdProduto";
-            this.txtCdProduto.Size = new System.Drawing.Size(76, 20);
+            this.txtCdProduto.Size = new System.Drawing.Size(86, 20);
             this.txtCdProduto.TabIndex = 12;
             // 
             // txtCescricaoProduto
             // 
-            this.txtCescricaoProduto.Location = new System.Drawing.Point(270, 165);
+            this.txtCescricaoProduto.Location = new System.Drawing.Point(109, 183);
             this.txtCescricaoProduto.Name = "txtCescricaoProduto";
             this.txtCescricaoProduto.Size = new System.Drawing.Size(211, 20);
             this.txtCescricaoProduto.TabIndex = 11;
@@ -123,7 +128,7 @@ namespace demo01.Views.Pedido
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(581, 149);
+            this.label5.Location = new System.Drawing.Point(407, 166);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 17;
@@ -131,23 +136,23 @@ namespace demo01.Views.Pedido
             // 
             // txtQtd
             // 
-            this.txtQtd.Location = new System.Drawing.Point(575, 165);
+            this.txtQtd.Location = new System.Drawing.Point(406, 183);
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.Size = new System.Drawing.Size(76, 20);
             this.txtQtd.TabIndex = 16;
             // 
             // btnAddProduto
             // 
-            this.btnAddProduto.Location = new System.Drawing.Point(657, 162);
+            this.btnAddProduto.Location = new System.Drawing.Point(488, 183);
             this.btnAddProduto.Name = "btnAddProduto";
-            this.btnAddProduto.Size = new System.Drawing.Size(113, 23);
+            this.btnAddProduto.Size = new System.Drawing.Size(102, 20);
             this.btnAddProduto.TabIndex = 18;
             this.btnAddProduto.Text = "&Adicionar Produto";
             this.btnAddProduto.UseVisualStyleBackColor = true;
             // 
             // btnNovoPedido
             // 
-            this.btnNovoPedido.Location = new System.Drawing.Point(238, 63);
+            this.btnNovoPedido.Location = new System.Drawing.Point(18, 81);
             this.btnNovoPedido.Name = "btnNovoPedido";
             this.btnNovoPedido.Size = new System.Drawing.Size(86, 25);
             this.btnNovoPedido.TabIndex = 19;
@@ -156,7 +161,7 @@ namespace demo01.Views.Pedido
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(493, 165);
+            this.txtValor.Location = new System.Drawing.Point(325, 183);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(76, 20);
             this.txtValor.TabIndex = 20;
@@ -164,17 +169,37 @@ namespace demo01.Views.Pedido
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(516, 149);
+            this.label6.Location = new System.Drawing.Point(325, 167);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 21;
             this.label6.Text = "&Valor";
             // 
-            // Pedido
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(18, 220);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(464, 328);
+            this.dataGridView1.TabIndex = 22;
+            // 
+            // btnPesquisarCliente
+            // 
+            this.btnPesquisarCliente.Location = new System.Drawing.Point(325, 137);
+            this.btnPesquisarCliente.Name = "btnPesquisarCliente";
+            this.btnPesquisarCliente.Size = new System.Drawing.Size(28, 25);
+            this.btnPesquisarCliente.TabIndex = 23;
+            this.btnPesquisarCliente.Text = "...";
+            this.btnPesquisarCliente.UseVisualStyleBackColor = true;
+            this.btnPesquisarCliente.Click += new System.EventHandler(this.btnPesquisarCliente_Click);
+            // 
+            // PedidoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 554);
+            this.Controls.Add(this.btnPesquisarCliente);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtValor);
             this.Controls.Add(this.btnNovoPedido);
@@ -190,8 +215,9 @@ namespace demo01.Views.Pedido
             this.Controls.Add(this.txtCdCliente);
             this.Controls.Add(this.txtDescricaoCliente);
             this.Controls.Add(this.btnSalvarPedido);
-            this.Name = "Pedido";
+            this.Name = "PedidoView";
             this.Text = "Pedido";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +240,7 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.Button btnNovoPedido;
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnPesquisarCliente;
     }
 }

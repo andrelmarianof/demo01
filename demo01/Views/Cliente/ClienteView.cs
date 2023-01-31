@@ -80,7 +80,7 @@ namespace demo01.Views.Cliente
             }
         }
 
-        private void ListarGrid(string sortColumn = "CdCliente")
+        public void ListarGrid(string sortColumn = "CdCliente")
         {
 
             try

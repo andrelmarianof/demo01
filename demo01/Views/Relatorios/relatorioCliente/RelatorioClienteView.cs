@@ -7,22 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using demo01.Domain.Cliente;
 
-namespace demo01.Views.Pedido
+namespace demo01.Views.Relatorios.relatorioCliente
 {
-    public partial class Pedido : MetroFramework.Forms.MetroForm
+    public partial class RelatorioClienteView : Form
     {
-        public Pedido()
+        public RelatorioClienteView()
         {
             InitializeComponent();
-
-            
         }
 
-        private void cdCliente_TextChanged(object sender, EventArgs e)
+        private void relatorioCliente_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
