@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using demo01.Domain.Cliente;
 using demo01.Views.Cliente;
+using demo01.Data.RepositoriesCliente;
 
 namespace demo01.Views.Pedido
 {
     public partial class PedidoView : MetroFramework.Forms.MetroForm
     {
+        private object sortColumn;
+        private BindingSource _bsListaCliente;
+
         public PedidoView()
         {
             InitializeComponent();
@@ -38,8 +42,7 @@ namespace demo01.Views.Pedido
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-            //ClienteView clienteView = new ClienteView();
-            //clienteView.ShowDialog();
+           
         }
     }
 }

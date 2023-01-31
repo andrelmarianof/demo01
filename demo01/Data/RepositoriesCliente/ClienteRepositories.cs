@@ -54,6 +54,22 @@ namespace demo01.Data.RepositoriesCliente
             }
 
         }
+
+        internal List<Cliente> ListarClientes()
+        {
+            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            {
+                var query = new StringBuilder();
+                query.AppendLine("SELECT * FROM cliente");
+                query.AppendLine("/**orderby**/");
+
+                var queryBuilder = new SqlBuilder();
+                var template = queryBuilder.AddTemplate(query.ToString());
+
+                return con.Query<Cliente>(template.RawSql, template.Parameters).ToList();
+            }
+        }
+
         public bool DeleteCliente(Cliente clientes)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
