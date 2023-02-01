@@ -8,5 +8,6 @@ namespace demo01.Data.RepositoriesPedido
 {
     class PedidoRepository
     {
+
     }
 }

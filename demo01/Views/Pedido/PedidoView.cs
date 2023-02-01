@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using demo01.Domain.Cliente;
 using demo01.Views.Cliente;
 using demo01.Data.RepositoriesCliente;
+using demo01.Application.Pedidos;
+using demo01.Domain.Produtos;
 
 namespace demo01.Views.Pedido
 {
@@ -22,6 +24,10 @@ namespace demo01.Views.Pedido
         {
             InitializeComponent();
 
+            
+        }
+        private void InserirCliente()
+        {
             
         }
 

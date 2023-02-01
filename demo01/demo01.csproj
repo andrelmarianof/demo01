@@ -99,7 +99,12 @@
     <Compile Include="Views\Cliente\ClienteView.Designer.cs">
       <DependentUpon>ClienteView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pedido\GridScreen.cs" />
+    <Compile Include="Views\Pedido\BuscarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Pedido\BuscarCliente.Designer.cs">
+      <DependentUpon>BuscarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pedido\PedidoView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +151,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Cliente\ClienteView.resx">
       <DependentUpon>ClienteView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pedido\BuscarCliente.resx">
+      <DependentUpon>BuscarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Pedido\PedidoView.resx">
       <DependentUpon>PedidoView.cs</DependentUpon>
