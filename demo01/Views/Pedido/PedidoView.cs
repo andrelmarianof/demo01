@@ -20,6 +20,7 @@ namespace demo01.Views.Pedido
         private object sortColumn;
         private BindingSource _bsListaCliente;
 
+       
         public PedidoView()
         {
             InitializeComponent();
@@ -48,7 +49,8 @@ namespace demo01.Views.Pedido
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-           
+            
         }
+
     }
 }

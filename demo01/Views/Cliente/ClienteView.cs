@@ -17,7 +17,7 @@ namespace demo01.Views.Cliente
     public partial class ClienteView : MetroFramework.Forms.MetroForm
     {
         #region Declaração
-        private BindingSource _bsListaCliente;
+        public BindingSource _bsListaCliente;
         #endregion
 
         #region Construtores
@@ -308,7 +308,7 @@ namespace demo01.Views.Cliente
         }
 
 
-        private void Cliente_Load(object sender, EventArgs e)
+        public void Cliente_Load(object sender, EventArgs e)
         {
 
             ListarGrid();
