@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using demo01.Domain.Cliente;
-using demo01.Views.Cliente;
-using demo01.Data.RepositoriesCliente;
 using demo01.Application.Pedidos;
-using demo01.Domain.Produtos;
+using demo01.Domain.Pedidos;
 
-namespace demo01.Views.Pedido
+namespace demo01.Views.Pedidos
 {
     public partial class PedidoView : MetroFramework.Forms.MetroForm
     {
@@ -24,12 +14,33 @@ namespace demo01.Views.Pedido
         public PedidoView()
         {
             InitializeComponent();
+            NovoPedido();
 
-            
         }
-        private void InserirCliente()
+        private void Inserir()
         {
-            
+            if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != "") & (txtCdProduto.Text != "") & (txtCescricaoProduto.Text != ""))
+            {
+
+                try
+                {
+
+                    var pedido = new Pedidos();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+        private void NovoPedido()
+        {
+            txtCdCliente.Enabled = true;
+            txtDescricaoCliente.Enabled = true;
+            txtCdProduto.Enabled = false;
+            txtCescricaoProduto.Enabled = false;
+            txtValor.Enabled = false;
+            txtQtd.Enabled = false;
         }
 
         private void cdCliente_TextChanged(object sender, EventArgs e)
@@ -49,7 +60,39 @@ namespace demo01.Views.Pedido
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-            
+            BuscarCliente formcliente = new BuscarCliente();
+            formcliente.ShowDialog();
+        }
+
+        private void btnNovoPedido_Click(object sender, EventArgs e)
+        {
+         
+            if ((txtCdCliente.Text != " ")&(txtDescricaoCliente.Text != " "))
+            {
+                try
+                {
+                    var pedido = new Pedido();
+                    pedido.Numero = "2";
+                    pedido.CdCliente = txtCdCliente.Text.Trim();
+                    var result = new PedidoAppService().Inserir(pedido);
+
+                    if (result.Success)
+                    {
+                        MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
+                    
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocorreu um erro verifique");
+
+                    }
+
+                }
+                catch
+                {
+                    MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
+                }
+            }
         }
 
     }

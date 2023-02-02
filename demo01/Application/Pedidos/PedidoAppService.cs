@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using demo01.Data.Repositories;
 using demo01.Domain.Core;
 using demo01.Domain.Produtos;
-using demo01.Domain.Pedido;
+using demo01.Domain.Pedidos;
 using demo01.Data.RepositoriesPedido;
 namespace demo01.Application.Pedidos
 {
@@ -14,10 +14,19 @@ namespace demo01.Application.Pedidos
     {
         public ResultPedido Inserir (Pedido pedido)
         {
-            var validation = pedido.IsValid();
+            var validation = pedido.IsValidCriar();
             if (!validation.Success) return validation;
 
             new PedidoRepository().InsertPedido(pedido);
+
+            return new ResultPedido(true, string.Empty);
+        }
+        public ResultPedido InserirProduto(Pedido pedido)
+        {
+            var validation = pedido.IsValidCriar();
+            if (!validation.Success) return validation;
+
+            new PedidoRepository().InsertProduto(pedido);
 
             return new ResultPedido(true, string.Empty);
         }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using demo01.Domain.Pedido;
+using demo01.Domain.Pedidos;
 
 namespace demo01.App.Produtos
 {

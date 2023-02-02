@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace demo01.Views.Pedidos
+namespace demo01.Views.Pedido
 {
-    public partial class BuscarCliente : Form
+    public partial class BuscarProduto : Form
     {
-        public BuscarCliente()
+        public BuscarProduto()
         {
             InitializeComponent();
-        }
-
-        private void listacliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

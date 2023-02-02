@@ -1,5 +1,5 @@
 ﻿
-namespace demo01.Views.Pedido
+namespace demo01.Views.Pedidos
 {
     partial class BuscarCliente
     {
@@ -29,80 +29,79 @@ namespace demo01.Views.Pedido
         /// </summary>
         private void InitializeComponent()
         {
-            this.listacliente = new System.Windows.Forms.DataGridView();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
+            this.buscarClienteGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.buscarClienteGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // listacliente
+            // buscarClienteGrid
             // 
-            this.listacliente.AllowUserToAddRows = false;
-            this.listacliente.AllowUserToDeleteRows = false;
-            this.listacliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listacliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.código,
-            this.descrição,
-            this.Cpf,
-            this.Email});
-            this.listacliente.Location = new System.Drawing.Point(58, 60);
-            this.listacliente.Name = "listacliente";
-            this.listacliente.ReadOnly = true;
-            this.listacliente.Size = new System.Drawing.Size(650, 253);
-            this.listacliente.TabIndex = 8;
-            this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
+            this.buscarClienteGrid.AllowUserToAddRows = false;
+            this.buscarClienteGrid.AllowUserToDeleteRows = false;
+            this.buscarClienteGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.buscarClienteGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.buscarClienteGrid.Location = new System.Drawing.Point(78, 114);
+            this.buscarClienteGrid.Name = "buscarClienteGrid";
+            this.buscarClienteGrid.ReadOnly = true;
+            this.buscarClienteGrid.Size = new System.Drawing.Size(644, 223);
+            this.buscarClienteGrid.TabIndex = 9;
             // 
-            // código
+            // dataGridViewTextBoxColumn1
             // 
-            this.código.DataPropertyName = "CdCliente";
-            this.código.HeaderText = "Código";
-            this.código.Name = "código";
-            this.código.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "CdCliente";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // descrição
+            // dataGridViewTextBoxColumn2
             // 
-            this.descrição.DataPropertyName = "NomeCliente";
-            this.descrição.HeaderText = "Nome";
-            this.descrição.Name = "descrição";
-            this.descrição.ReadOnly = true;
-            this.descrição.Width = 200;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NomeCliente";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 200;
             // 
-            // Cpf
+            // dataGridViewTextBoxColumn3
             // 
-            this.Cpf.DataPropertyName = "Cpf";
-            this.Cpf.HeaderText = "Cpf";
-            this.Cpf.Name = "Cpf";
-            this.Cpf.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Cpf";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Cpf";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // Email
+            // dataGridViewTextBoxColumn4
             // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            this.Email.Width = 200;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Email";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Email";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
             // 
             // BuscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listacliente);
+            this.Controls.Add(this.buscarClienteGrid);
             this.Name = "BuscarCliente";
             this.Text = "BuscarCliente";
-            ((System.ComponentModel.ISupportInitialize)(this.listacliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buscarClienteGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView listacliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn código;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cpf;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridView buscarClienteGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

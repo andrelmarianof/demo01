@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using demo01.Domain.Cliente;
 using demo01.Data.RepositoriesCliente;
-using demo01.Views.Pedido;
+using demo01.Views.Pedidos;
 namespace demo01.Views.Cliente
 
 {

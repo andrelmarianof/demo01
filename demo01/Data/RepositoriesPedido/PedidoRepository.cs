@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using demo01.Domain.Pedido;
+using demo01.Domain.Pedidos;
 using demo01.Application.Pedidos; 
 using System.Data.SqlClient;
 using demo01.Data.Provider;
@@ -18,32 +18,57 @@ namespace demo01.Data.RepositoriesPedido
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
 
-                var sql = @"
- INSERT INTO produto
- //   (CdProduto,
- //   Descricao,
- //   Estoque,
- //   Valor)
- //OUTPUT INSERTED.CdProduto
- //VALUES
- //   ( @cdproduto,
- //    @descricao,
- //    @estoque,
- //    @valor)";
+                var sql1 = @"
+ INSERT INTO pedido
+    (Numero,
+    CdCliente)
+ OUTPUT INSERTED.Numero
+ VALUES
+    ( @numero,
+     @cdcliente)";
 
-                var resp = con.ExecuteScalar(sql, new
-               {
- //                   cdproduto = produto.CdProduto,
- //                   descricao = produto.Descricao,
- //                   estoque = produto.Estoque,
- //                   valor = produto.Valor,
+                var resp1 = con.ExecuteScalar(sql1, new
+                {
+                    numero = pedido.Numero,
+                    cdcliente = pedido.CdCliente
                 });
 
-                if (resp == null)
+                if (resp1 == null)
                 {
                     return false;
                 }
+                return true;
+            }
+        }
+         public bool InsertProduto(Pedido pedido)
+           {
+                    using (SqlConnection con = ConnectionProvider.ObterConexao())
+                    {
 
+                        var sql2 = @"
+ INSERT INTO pedidoItem
+    (NumeroPedido,
+    CdProduto,
+    QtdVenda,
+    VlVenda)
+ OUTPUT INSERTED.NumeroPedido
+ VALUES
+    ( @numeropedido,
+     @cdproduto,
+     @qtdvenda,
+     @vlvenda)";
+                var resp2 = con.ExecuteScalar(sql2, new
+                {
+                    numeropedido = pedido.NumeroPedido,
+                    cdproduto = pedido.CdProduto,
+                    qtdvenda = pedido.QtdVenda,
+                    vlvenda = pedido.VlVenda
+                });
+
+                if ((resp2 == null)&(resp2 == null))
+                {
+                    return false;
+                }
                 return true;
 
             }

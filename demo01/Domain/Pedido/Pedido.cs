@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using demo01.Domain.Produtos;
 
-namespace demo01.Domain.Pedido
+namespace demo01.Domain.Pedidos
 {
     class Pedido
     {
@@ -43,6 +43,17 @@ namespace demo01.Domain.Pedido
                 messages.Add("O valor do produto não pode ser negativo, verifique!");
             }
             
+            return new ResultPedido(messages.Count == 0, messages);
+        }
+        public ResultPedido IsValidCriar()
+        {
+            var messages = new List<string>();
+            if (string.IsNullOrWhiteSpace(CdCliente))
+            {
+                messages.Add("O código do Cliente está em branco, verifique!");
+            }
+
+           
             return new ResultPedido(messages.Count == 0, messages);
         }
     }

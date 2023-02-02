@@ -7,7 +7,7 @@ using demo01.Domain.Cliente;
 using demo01.Data.RepositoriesCliente;
 using demo01.Domain.Core;
 
-namespace demo01.Views.Pedido
+namespace demo01.Views.Pedidos
 {
     public class ClienteAppService
     {
