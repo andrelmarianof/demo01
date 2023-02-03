@@ -2,9 +2,11 @@
 using System.Windows.Forms;
 using demo01.Application.Pedidos;
 using demo01.Domain.Pedidos;
+using demo01.Domain.Pedidos;
 
-namespace demo01.Views.Pedidos
+namespace demo01.Views.Pedido
 {
+   
     public partial class PedidoView : MetroFramework.Forms.MetroForm
     {
         private object sortColumn;
@@ -24,8 +26,8 @@ namespace demo01.Views.Pedidos
 
                 try
                 {
+                    var pedido = new Domain.Pedidos.Pedido();
 
-                    var pedido = new Pedidos();
                 }
                 catch
                 {
@@ -71,21 +73,21 @@ namespace demo01.Views.Pedidos
             {
                 try
                 {
-                    var pedido = new Pedido();
-                    pedido.Numero = "2";
-                    pedido.CdCliente = txtCdCliente.Text.Trim();
-                    var result = new PedidoAppService().Inserir(pedido);
-
-                    if (result.Success)
-                    {
-                        MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
-                    
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ocorreu um erro verifique");
-
-                    }
+                     var pedido = new Pe();
+                   // pedido.Numero = "2";
+                   // pedido.CdCliente = txtCdCliente.Text.Trim();
+                   // var result = new PedidoAppService().Inserir(pedido);
+                   //
+                   // if (result.Success)
+                   // {
+                   //     MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
+                   // 
+                   // }
+                   // else
+                   // {
+                   //     MessageBox.Show("Ocorreu um erro verifique");
+                   //
+                   // }
 
                 }
                 catch
@@ -95,5 +97,15 @@ namespace demo01.Views.Pedidos
             }
         }
 
+        private void btnPesquisarProduto_Click(object sender, EventArgs e)
+        {
+            BuscarProduto formproduto = new BuscarProduto();
+            formproduto.ShowDialog();
+        }
+
+        private void PedidoView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace demo01.Views.Pedido
 {
-    public partial class BuscarProduto : Form
+    public partial class BuscarProduto : MetroFramework.Forms.MetroForm
     {
         public BuscarProduto()
         {

@@ -1,5 +1,5 @@
 ﻿using demo01.Views.Produtos;
-using demo01.Views.Pedidos;
+using demo01.Views.Pedido;
 using demo01.Views.Cliente;
 using System;
 using System.Windows.Forms;

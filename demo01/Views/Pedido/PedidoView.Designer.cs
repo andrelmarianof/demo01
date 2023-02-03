@@ -1,5 +1,5 @@
 ﻿
-namespace demo01.Views.Pedidos
+namespace demo01.Views.Pedido
 {
     partial class PedidoView
     {
@@ -222,6 +222,7 @@ namespace demo01.Views.Pedidos
             this.btnPesquisarProduto.TabIndex = 26;
             this.btnPesquisarProduto.Text = "...";
             this.btnPesquisarProduto.UseVisualStyleBackColor = true;
+            this.btnPesquisarProduto.Click += new System.EventHandler(this.btnPesquisarProduto_Click);
             // 
             // PedidoView
             // 
@@ -250,6 +251,7 @@ namespace demo01.Views.Pedidos
             this.Controls.Add(this.btnSalvarPedido);
             this.Name = "PedidoView";
             this.Text = "Pedido";
+            this.Load += new System.EventHandler(this.PedidoView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace demo01.Views.Pedidos
+namespace demo01.Views.Pedido
 {
-    public partial class BuscarCliente : Form
+    public partial class BuscarCliente : MetroFramework.Forms.MetroForm
     {
         public BuscarCliente()
         {

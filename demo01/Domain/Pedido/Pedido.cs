@@ -9,7 +9,7 @@ using demo01.Domain.Produtos;
 
 namespace demo01.Domain.Pedidos
 {
-    class Pedido
+     class Pedido
     {
         public string Numero { get; set; }
         public string CdCliente { get; set; }

@@ -29,29 +29,29 @@ namespace demo01.Views.Pedido
         /// </summary>
         private void InitializeComponent()
         {
-            this.buscarProdutoGrid = new System.Windows.Forms.DataGridView();
+            this.formBuscarProduto = new System.Windows.Forms.DataGridView();
             this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.buscarProdutoGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.formBuscarProduto)).BeginInit();
             this.SuspendLayout();
             // 
-            // buscarProdutoGrid
+            // formBuscarProduto
             // 
-            this.buscarProdutoGrid.AllowUserToAddRows = false;
-            this.buscarProdutoGrid.AllowUserToDeleteRows = false;
-            this.buscarProdutoGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.buscarProdutoGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.formBuscarProduto.AllowUserToAddRows = false;
+            this.formBuscarProduto.AllowUserToDeleteRows = false;
+            this.formBuscarProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.formBuscarProduto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.código,
             this.descrição,
             this.preçoUn,
             this.estoque});
-            this.buscarProdutoGrid.Location = new System.Drawing.Point(126, 116);
-            this.buscarProdutoGrid.Name = "buscarProdutoGrid";
-            this.buscarProdutoGrid.ReadOnly = true;
-            this.buscarProdutoGrid.Size = new System.Drawing.Size(549, 219);
-            this.buscarProdutoGrid.TabIndex = 14;
+            this.formBuscarProduto.Location = new System.Drawing.Point(8, 63);
+            this.formBuscarProduto.Name = "formBuscarProduto";
+            this.formBuscarProduto.ReadOnly = true;
+            this.formBuscarProduto.Size = new System.Drawing.Size(549, 219);
+            this.formBuscarProduto.TabIndex = 14;
             // 
             // código
             // 
@@ -86,18 +86,18 @@ namespace demo01.Views.Pedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.buscarProdutoGrid);
+            this.ClientSize = new System.Drawing.Size(563, 287);
+            this.Controls.Add(this.formBuscarProduto);
             this.Name = "BuscarProduto";
             this.Text = "BuscarProduto";
-            ((System.ComponentModel.ISupportInitialize)(this.buscarProdutoGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.formBuscarProduto)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView buscarProdutoGrid;
+        private System.Windows.Forms.DataGridView formBuscarProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn código;
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.DataGridViewTextBoxColumn preçoUn;

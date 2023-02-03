@@ -1,5 +1,5 @@
 ﻿
-namespace demo01.Views.Pedidos
+namespace demo01.Views.Pedido
 {
     partial class BuscarCliente
     {
@@ -47,7 +47,7 @@ namespace demo01.Views.Pedidos
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.buscarClienteGrid.Location = new System.Drawing.Point(78, 114);
+            this.buscarClienteGrid.Location = new System.Drawing.Point(13, 63);
             this.buscarClienteGrid.Name = "buscarClienteGrid";
             this.buscarClienteGrid.ReadOnly = true;
             this.buscarClienteGrid.Size = new System.Drawing.Size(644, 223);
@@ -87,7 +87,7 @@ namespace demo01.Views.Pedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(665, 294);
             this.Controls.Add(this.buscarClienteGrid);
             this.Name = "BuscarCliente";
             this.Text = "BuscarCliente";

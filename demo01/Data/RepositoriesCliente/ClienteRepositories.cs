@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Dapper;
-using demo01.Domain.Cliente;
+using demo01.Domain.Clientes;
 
 namespace demo01.Data.RepositoriesCliente
 {

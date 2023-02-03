@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace demo01.Domain.Cliente
+namespace demo01.Domain.Clientes
 {
 
     public class Cliente

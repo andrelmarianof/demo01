@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using demo01.Domain.Cliente;
+using demo01.Domain.Clientes;
 using demo01.Data.RepositoriesCliente;
 using demo01.Domain.Core;
 
-namespace demo01.Views.Pedidos
+namespace demo01.Views.Pedido
 {
     public class ClienteAppService
     {
-        public ResultCliente Inserir(Domain.Cliente.Cliente cliente)
+        public ResultCliente Inserir(Domain.Clientes.Cliente cliente)
         {
 
             //cliente.IsEmpresa();
@@ -36,7 +36,7 @@ namespace demo01.Views.Pedidos
             return new ResultCliente(true, string.Empty);
 
         }
-        public ResultCliente Editar(Domain.Cliente.Cliente cliente)
+        public ResultCliente Editar(Domain.Clientes.Cliente cliente)
         {
             var validation = cliente.IsValid();
             if (!validation.Success) return validation;

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using demo01.Domain.Cliente;
+using demo01.Domain.Clientes;
 using demo01.Data.RepositoriesCliente;
-using demo01.Views.Pedidos;
+using demo01.Views.Pedido;
 namespace demo01.Views.Cliente
 
 {
@@ -40,7 +40,7 @@ namespace demo01.Views.Cliente
                 {
                     try
                     {
-                        var cliente = new Domain.Cliente.Cliente();
+                        var cliente = new Domain.Clientes.Cliente();
                         cliente.CdCliente = txtCodigoClientezz.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
                         cliente.Cpf = mskCPF.Text.Trim();
@@ -87,7 +87,7 @@ namespace demo01.Views.Cliente
             {
 
 
-                List<Domain.Cliente.Cliente> lista1 = new List<Domain.Cliente.Cliente>();
+                List<Domain.Clientes.Cliente> lista1 = new List<Domain.Clientes.Cliente>();
                 lista1 = new ClienteRepository().ListarClientes(sortColumn);
 
 
@@ -109,7 +109,7 @@ namespace demo01.Views.Cliente
                
              
                     {
-                        var cliente = new Domain.Cliente.Cliente();
+                        var cliente = new Domain.Clientes.Cliente();
                         cliente.CdCliente = txtCodigoClientezz.Text.Trim().ToLower();
                         cliente.NomeCliente = txtNomeCliente.Text.Trim();
                         //cliente.Cpf = txtCpf.Text.Trim();
@@ -132,13 +132,13 @@ namespace demo01.Views.Cliente
                 MessageBox.Show("Selecione um cliente para editar!");
 
         }
-        private Domain.Cliente.Cliente GetCurrentCliente()
+        private Domain.Clientes.Cliente GetCurrentCliente()
         {
 
             if (_bsListaCliente == null || _bsListaCliente.Current == null)
                 return null;
 
-            if (_bsListaCliente.Current is Domain.Cliente.Cliente currentCliente)
+            if (_bsListaCliente.Current is Domain.Clientes.Cliente currentCliente)
                 return currentCliente;
 
             return null;
@@ -241,20 +241,20 @@ namespace demo01.Views.Cliente
         {
             if (e.ColumnIndex == 0)
             {
-                ListarGrid(nameof(Domain.Cliente.Cliente.CdCliente));
+                ListarGrid(nameof(Domain.Clientes.Cliente.CdCliente));
             }
             else
                 if (e.ColumnIndex == 1)
             {
-                ListarGrid(nameof(Domain.Cliente.Cliente.NomeCliente));
+                ListarGrid(nameof(Domain.Clientes.Cliente.NomeCliente));
             }
             else
                 if (e.ColumnIndex == 2)
             {
-                ListarGrid(nameof(Domain.Cliente.Cliente.Cpf));
+                ListarGrid(nameof(Domain.Clientes.Cliente.Cpf));
             }
             else
-                ListarGrid(nameof(Domain.Cliente.Cliente.Email));
+                ListarGrid(nameof(Domain.Clientes.Cliente.Email));
         }
         private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {

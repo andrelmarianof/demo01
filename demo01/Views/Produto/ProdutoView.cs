@@ -36,7 +36,7 @@ namespace demo01.Views.Produtos
 
                 try
                 {
-
+                   
                     var produto = new Produto();
                     produto.Descricao = txtDescricaoProduto.Text.Trim().ToLower();
                     produto.CdProduto = txtCdProduto.Text.Trim();
