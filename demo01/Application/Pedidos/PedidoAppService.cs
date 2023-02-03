@@ -31,11 +31,12 @@ namespace demo01.Application.Pedidos
 
             return new ResultPedido(true, string.Empty);
         }
-        //public ResultPedido BuscarNumero()
-        //{
-        //    new PedidoRepository().ConsultarUltimoPedido();
+        public string BuscarNumero()
+        {
+            var numero = new PedidoRepository().ConsultarUltimoPedido();
+            return numero;
            
-        //}
+        }
     }
 
 }

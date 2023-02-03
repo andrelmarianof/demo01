@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using demo01.Application.Pedidos;
 using demo01.Domain.Pedidos;
 using demo01.Data.RepositoriesPedido;
+using demo01.Domain.Produtos;
+
 namespace demo01.Views.Pedido
 {
    
@@ -10,8 +12,10 @@ namespace demo01.Views.Pedido
     {
         private object sortColumn;
         private BindingSource _bsListaCliente;
+        private BindingSource _bsListaProduto;
 
-       
+
+
         public PedidoView()
         {
             InitializeComponent();
@@ -44,6 +48,26 @@ namespace demo01.Views.Pedido
             txtValor.Enabled = false;
             txtQtd.Enabled = false;
         }
+        private void LimparCampos()
+        {
+            txtCdCliente.Text = " ";
+            txtDescricaoCliente.Text = " ";
+            txtCdProduto.Text = " ";
+            txtCescricaoProduto.Text = " ";
+            txtValor.Text = " ";
+            txtQtd.Text = " ";
+        }
+        private void InserirProdutos()
+        {
+            txtCdCliente.Enabled = false;
+            txtDescricaoCliente.Enabled = false;
+            txtCdProduto.Enabled = true;
+            txtCescricaoProduto.Enabled = true;
+            txtValor.Enabled = true;
+            txtQtd.Enabled = true;
+            btnNovoPedido.Enabled = false;
+            btnPesquisarCliente.Enabled = false;
+        }
 
         private void cdCliente_TextChanged(object sender, EventArgs e)
         {
@@ -73,7 +97,7 @@ namespace demo01.Views.Pedido
             {
                 try
                 {
-                    string numero = new PedidoRepository().ConsultarUltimoPedido();
+                    string numero = new PedidoAppService().BuscarNumero();
                     int txtnumero = int.Parse(numero);
                     txtnumero++;
                     TxtNumero.Text = txtnumero.ToString();
@@ -81,11 +105,11 @@ namespace demo01.Views.Pedido
                     pedido.Numero = txtnumero.ToString();
                     pedido.CdCliente = txtCdCliente.Text.Trim();
                     var result = new PedidoAppService().Inserir(pedido);
-
+                    
                     if (result.Success)
                     {
                         MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
-
+                        InserirProdutos();
                     }
                     else
                     {
@@ -104,8 +128,10 @@ namespace demo01.Views.Pedido
         private void btnPesquisarProduto_Click(object sender, EventArgs e)
         {
             BuscarProduto formproduto = new BuscarProduto();
-            formproduto.ShowDialog();
+            DialogResult dialogResult = formproduto.ShowDialog();
+            txtCdCliente.Text = formproduto.Text;
         }
+        
 
         private void PedidoView_Load(object sender, EventArgs e)
         {

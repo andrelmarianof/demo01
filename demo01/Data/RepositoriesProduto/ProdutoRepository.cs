@@ -202,9 +202,6 @@ WHERE cdproduto = @cdproduto
 
                 return con.QuerySingleOrDefault<Produto>(template.RawSql, template.Parameters);
 
-                //if (resp == 0) 
-                //    return true;
-                //return false;
 
             }
         }
