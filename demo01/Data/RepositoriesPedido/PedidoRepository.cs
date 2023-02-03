@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using demo01.Domain.Pedidos;
-using demo01.Application.Pedidos; 
+using demo01.Application.Pedidos;
 using System.Data.SqlClient;
 using demo01.Data.Provider;
 using Dapper;
+using demo01.Domain.Pedidos;
 
 namespace demo01.Data.RepositoriesPedido
 {
@@ -40,12 +40,12 @@ namespace demo01.Data.RepositoriesPedido
                 return true;
             }
         }
-         public bool InsertProduto(Pedido pedido)
-           {
-                    using (SqlConnection con = ConnectionProvider.ObterConexao())
-                    {
+        public bool InsertProduto(Pedido pedido)
+        {
+            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            {
 
-                        var sql2 = @"
+                var sql2 = @"
  INSERT INTO pedidoItem
     (NumeroPedido,
     CdProduto,
@@ -65,14 +65,21 @@ namespace demo01.Data.RepositoriesPedido
                     vlvenda = pedido.VlVenda
                 });
 
-                if ((resp2 == null)&(resp2 == null))
+                if ((resp2 == null) & (resp2 == null))
                 {
                     return false;
                 }
                 return true;
 
             }
-
+        }
+        public string ConsultarUltimoPedido()
+        {
+            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            {
+                var result = con.QueryFirstOrDefault<string>(@"SELECT top 1 Numero FROM Pedido ORDER BY Numero DESC");
+                return result;
+            }
         }
     } 
   

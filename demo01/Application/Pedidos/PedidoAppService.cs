@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using demo01.Data.Repositories;
 using demo01.Domain.Core;
 using demo01.Domain.Produtos;
-using demo01.Domain.Pedidos;
 using demo01.Data.RepositoriesPedido;
+using demo01.Domain.Pedidos;
+
 namespace demo01.Application.Pedidos
 {
     class PedidoAppService
@@ -30,6 +31,11 @@ namespace demo01.Application.Pedidos
 
             return new ResultPedido(true, string.Empty);
         }
+        //public ResultPedido BuscarNumero()
+        //{
+        //    new PedidoRepository().ConsultarUltimoPedido();
+           
+        //}
     }
 
 }

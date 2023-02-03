@@ -2,8 +2,7 @@
 using System.Windows.Forms;
 using demo01.Application.Pedidos;
 using demo01.Domain.Pedidos;
-using demo01.Domain.Pedidos;
-
+using demo01.Data.RepositoriesPedido;
 namespace demo01.Views.Pedido
 {
    
@@ -27,6 +26,7 @@ namespace demo01.Views.Pedido
                 try
                 {
                     var pedido = new Domain.Pedidos.Pedido();
+                    
 
                 }
                 catch
@@ -73,21 +73,25 @@ namespace demo01.Views.Pedido
             {
                 try
                 {
-                     var pedido = new Pe();
-                   // pedido.Numero = "2";
-                   // pedido.CdCliente = txtCdCliente.Text.Trim();
-                   // var result = new PedidoAppService().Inserir(pedido);
-                   //
-                   // if (result.Success)
-                   // {
-                   //     MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
-                   // 
-                   // }
-                   // else
-                   // {
-                   //     MessageBox.Show("Ocorreu um erro verifique");
-                   //
-                   // }
+                    string numero = new PedidoRepository().ConsultarUltimoPedido();
+                    int txtnumero = int.Parse(numero);
+                    txtnumero++;
+                    TxtNumero.Text = txtnumero.ToString();
+                    var pedido = new Domain.Pedidos.Pedido();
+                    pedido.Numero = txtnumero.ToString();
+                    pedido.CdCliente = txtCdCliente.Text.Trim();
+                    var result = new PedidoAppService().Inserir(pedido);
+
+                    if (result.Success)
+                    {
+                        MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocorreu um erro verifique");
+
+                    }
 
                 }
                 catch
