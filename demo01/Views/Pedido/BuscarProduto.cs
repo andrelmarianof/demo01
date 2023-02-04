@@ -14,6 +14,10 @@ namespace demo01.Views.Pedido
 {
     public partial class BuscarProduto : MetroFramework.Forms.MetroForm 
     {
+        public string CdProduto { get; set; }
+        public string Descricao { get; set; }
+        public decimal Valor { get; set; }
+
         public BuscarProduto()
         {
             InitializeComponent();
@@ -42,15 +46,23 @@ namespace demo01.Views.Pedido
             }
             return;
         }
+       
         private void LerProduto()
         {
-
-            var currentProduto = GetCurrentProduto();
+              
+                var currentProduto = GetCurrentProduto();
             if (currentProduto != null)
             {
-                //txtCdProduto.Text = currentProduto.CdProduto;
-                //txtQtd.Text = currentProduto.Estoque.ToString();
-                //txtValor.Text = currentProduto.Valor.ToString();
+
+
+                using (var pedidoView = new PedidoView())
+                {
+                    CdProduto = currentProduto.CdProduto;
+                    Descricao = currentProduto.Descricao;
+                    Valor = currentProduto.Valor;
+                    Close();
+                    pedidoView.ShowDialog();
+                }
             }
         }
         private Produto GetCurrentProduto()
@@ -63,6 +75,16 @@ namespace demo01.Views.Pedido
                 return currentProduto;
 
             return null;
+        }
+
+        private void formBuscarProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LerProduto();
+        }
+
+        private void formBuscarProduto_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LerProduto();
         }
     }
 }

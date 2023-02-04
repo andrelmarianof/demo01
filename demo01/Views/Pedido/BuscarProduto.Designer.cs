@@ -52,6 +52,8 @@ namespace demo01.Views.Pedido
             this.formBuscarProduto.ReadOnly = true;
             this.formBuscarProduto.Size = new System.Drawing.Size(549, 219);
             this.formBuscarProduto.TabIndex = 14;
+            this.formBuscarProduto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.formBuscarProduto_CellClick);
+            this.formBuscarProduto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.formBuscarProduto_CellContentClick);
             // 
             // código
             // 

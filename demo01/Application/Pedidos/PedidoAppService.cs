@@ -24,7 +24,7 @@ namespace demo01.Application.Pedidos
         }
         public ResultPedido InserirProduto(Pedido pedido)
         {
-            var validation = pedido.IsValidCriar();
+            var validation = pedido.IsValidInserirProduto();
             if (!validation.Success) return validation;
 
             new PedidoRepository().InsertProduto(pedido);

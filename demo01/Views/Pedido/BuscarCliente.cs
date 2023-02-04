@@ -46,5 +46,17 @@ namespace demo01.Views.Pedido
             }
             return;
         }
+
+        private void buscarClienteGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //using (var PedidoView = new PedidoView())
+            //{
+            //    PedidoView.CdProduto = txt.Text;
+            //    form1.Sobrenome = txtSobrenome.Text;
+            //    form1.ShowDialog();
+            //}
+        }
     }
+       
 }
+

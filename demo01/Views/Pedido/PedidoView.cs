@@ -4,6 +4,7 @@ using demo01.Application.Pedidos;
 using demo01.Domain.Pedidos;
 using demo01.Data.RepositoriesPedido;
 using demo01.Domain.Produtos;
+using demo01.Views.Pedido;
 
 namespace demo01.Views.Pedido
 {
@@ -13,18 +14,21 @@ namespace demo01.Views.Pedido
         private object sortColumn;
         private BindingSource _bsListaCliente;
         private BindingSource _bsListaProduto;
-
+        public string CdProduto { get; set; }
+        public string Descricao { get; set; }
+        public decimal Valor { get; set; }
 
 
         public PedidoView()
         {
             InitializeComponent();
             NovoPedido();
+            
 
         }
         private void Inserir()
         {
-            if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != "") & (txtCdProduto.Text != "") & (txtCescricaoProduto.Text != ""))
+            if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != "") & (txtCdProduto.Text != "") & (txtDescricaoProduto.Text != ""))
             {
 
                 try
@@ -44,7 +48,7 @@ namespace demo01.Views.Pedido
             txtCdCliente.Enabled = true;
             txtDescricaoCliente.Enabled = true;
             txtCdProduto.Enabled = false;
-            txtCescricaoProduto.Enabled = false;
+            txtDescricaoProduto.Enabled = false;
             txtValor.Enabled = false;
             txtQtd.Enabled = false;
         }
@@ -53,7 +57,7 @@ namespace demo01.Views.Pedido
             txtCdCliente.Text = " ";
             txtDescricaoCliente.Text = " ";
             txtCdProduto.Text = " ";
-            txtCescricaoProduto.Text = " ";
+            txtDescricaoProduto.Text = " ";
             txtValor.Text = " ";
             txtQtd.Text = " ";
         }
@@ -62,13 +66,13 @@ namespace demo01.Views.Pedido
             txtCdCliente.Enabled = false;
             txtDescricaoCliente.Enabled = false;
             txtCdProduto.Enabled = true;
-            txtCescricaoProduto.Enabled = true;
+            txtDescricaoProduto.Enabled = true;
             txtValor.Enabled = true;
             txtQtd.Enabled = true;
             btnNovoPedido.Enabled = false;
             btnPesquisarCliente.Enabled = false;
             txtCdProduto.Text = " ";
-            txtCescricaoProduto.Text = " ";
+            txtDescricaoProduto.Text = " ";
             txtValor.Text = " ";
             txtQtd.Text = " ";
         }
@@ -94,13 +98,14 @@ namespace demo01.Views.Pedido
             formcliente.ShowDialog();
         }
 
-        private void btnNovoPedido_Click(object sender, EventArgs e)
+        public void btnNovoPedido_Click(object sender, EventArgs e)
         {
          
             if ((txtCdCliente.Text != " ")&(txtDescricaoCliente.Text != " "))
             {
                 try
                 {
+
                     string numero = new PedidoAppService().BuscarNumero();
                     int txtnumero = int.Parse(numero);
                     txtnumero++;
@@ -140,14 +145,17 @@ namespace demo01.Views.Pedido
            
         }
 
-            private void PedidoView_Load(object sender, EventArgs e)
+            public void PedidoView_Load(object sender, EventArgs e)
         {
-
+            //txtCdCliente.Text = BuscarProduto.
+            //txtCdProduto.Text = CdProduto;
+            //txtCescricaoProduto.Text = Descricao;
+            //txtValor.Text = Valor.ToString();
         }
 
         private void btnAddProduto_Click(object sender, EventArgs e)
         {
-            if ((txtCdProduto.Text != " ") & (txtCescricaoProduto.Text != " ")&(txtQtd.Text != " ")&(txtValor.Text != " "))
+            if ((txtCdProduto.Text != " ") & (txtDescricaoProduto.Text != " ")&(txtQtd.Text != " ")&(txtValor.Text != " "))
             {
                 try
                 {
@@ -157,7 +165,7 @@ namespace demo01.Views.Pedido
                     decimal valorProduto;
                     if (!decimal.TryParse(txtValor.Text.Trim(), out valorProduto))
                     {
-                        MessageBox.Show(string.Format("Valor informado para valor não é válido!"));
+                        MessageBox.Show(string.Format("Valor informado não é válido!"));
                         return;
                     }
                     decimal quantidade;

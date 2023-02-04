@@ -37,7 +37,7 @@ namespace demo01.Views.Pedido
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCdProduto = new System.Windows.Forms.TextBox();
-            this.txtCescricaoProduto = new System.Windows.Forms.TextBox();
+            this.txtDescricaoProduto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtQtd = new System.Windows.Forms.TextBox();
             this.btnAddProduto = new System.Windows.Forms.Button();
@@ -121,12 +121,12 @@ namespace demo01.Views.Pedido
             this.txtCdProduto.Size = new System.Drawing.Size(86, 20);
             this.txtCdProduto.TabIndex = 12;
             // 
-            // txtCescricaoProduto
+            // txtDescricaoProduto
             // 
-            this.txtCescricaoProduto.Location = new System.Drawing.Point(109, 202);
-            this.txtCescricaoProduto.Name = "txtCescricaoProduto";
-            this.txtCescricaoProduto.Size = new System.Drawing.Size(211, 20);
-            this.txtCescricaoProduto.TabIndex = 11;
+            this.txtDescricaoProduto.Location = new System.Drawing.Point(109, 202);
+            this.txtDescricaoProduto.Name = "txtDescricaoProduto";
+            this.txtDescricaoProduto.Size = new System.Drawing.Size(211, 20);
+            this.txtDescricaoProduto.TabIndex = 11;
             // 
             // label5
             // 
@@ -244,7 +244,7 @@ namespace demo01.Views.Pedido
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtCdProduto);
-            this.Controls.Add(this.txtCescricaoProduto);
+            this.Controls.Add(this.txtDescricaoProduto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCdCliente);
@@ -269,7 +269,7 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCdProduto;
-        private System.Windows.Forms.TextBox txtCescricaoProduto;
+        private System.Windows.Forms.TextBox txtDescricaoProduto;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtQtd;
         private System.Windows.Forms.Button btnAddProduto;

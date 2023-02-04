@@ -52,6 +52,7 @@ namespace demo01.Views.Pedido
             this.buscarClienteGrid.ReadOnly = true;
             this.buscarClienteGrid.Size = new System.Drawing.Size(644, 223);
             this.buscarClienteGrid.TabIndex = 9;
+            this.buscarClienteGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.buscarClienteGrid_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
