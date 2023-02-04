@@ -152,6 +152,7 @@ namespace demo01.Views.Pedido
             this.btnAddProduto.TabIndex = 18;
             this.btnAddProduto.Text = "&Adicionar Produto";
             this.btnAddProduto.UseVisualStyleBackColor = true;
+            this.btnAddProduto.Click += new System.EventHandler(this.btnAddProduto_Click);
             // 
             // btnNovoPedido
             // 

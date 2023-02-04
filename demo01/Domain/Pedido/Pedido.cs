@@ -46,7 +46,7 @@ namespace demo01.Domain.Pedidos
             public ResultPedido IsValidCriar()
             {
                 var messages = new List<string>();
-                if (string.IsNullOrWhiteSpace(CdCliente))
+                if (string.IsNullOrWhiteSpace(CdProduto))
                 {
                     messages.Add("O código do Cliente está em branco, verifique!");
                 }
