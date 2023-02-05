@@ -60,6 +60,7 @@ namespace demo01.Views.Pedido
             this.btnSalvarPedido.TabIndex = 0;
             this.btnSalvarPedido.Text = "&Confirmar Pedido ";
             this.btnSalvarPedido.UseVisualStyleBackColor = true;
+            this.btnSalvarPedido.Click += new System.EventHandler(this.btnSalvarPedido_Click);
             // 
             // label2
             // 
@@ -187,6 +188,7 @@ namespace demo01.Views.Pedido
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(679, 320);
             this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnPesquisarCliente
             // 

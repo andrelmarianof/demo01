@@ -73,14 +73,24 @@ namespace demo01.Data.RepositoriesPedido
 
             }
         }
+        public List<Pedido> ObterTodosProdutosPorNumeroPedido(int numeroPedido)
+        {
+            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            {
+                var sql = @"SELECT * FROM Pedido WHERE Numero = @numeroPedido";
+                return con.Query<Pedido>(sql, new { numeroPedido }).ToList();
+            }
+        }
         public string ConsultarUltimoPedido()
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {
                 var result = con.QueryFirstOrDefault<string>(@"SELECT top 1 Numero FROM Pedido ORDER BY Numero DESC");
                 return result;
+                
             }
         }
+
     } 
   
 }

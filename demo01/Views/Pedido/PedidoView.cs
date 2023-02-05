@@ -5,6 +5,8 @@ using demo01.Domain.Pedidos;
 using demo01.Data.RepositoriesPedido;
 using demo01.Domain.Produtos;
 using demo01.Views.Pedido;
+using System.Collections.Generic;
+using demo01.Data.RepositoriesCliente;
 
 namespace demo01.Views.Pedido
 {
@@ -14,6 +16,8 @@ namespace demo01.Views.Pedido
         private object sortColumn;
         private BindingSource _bsListaCliente;
         private BindingSource _bsListaProduto;
+        private object listaprodutos;
+
         public string CdProduto { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
@@ -113,8 +117,7 @@ namespace demo01.Views.Pedido
                     var pedido = new Domain.Pedidos.Pedido();
                     pedido.Numero = txtnumero.ToString();
                     pedido.CdCliente = txtCdCliente.Text.Trim();
-                    var result = new PedidoAppService().Inserir(pedido);
-                    
+                    var result = new PedidoAppService().ValidarCliente(pedido);
                     if (result.Success)
                     {
                         MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
@@ -122,7 +125,7 @@ namespace demo01.Views.Pedido
                     }
                     else
                     {
-                        MessageBox.Show("Ocorreu um erro verifique");
+                        MessageBox.Show("O cliente não existe na base de dados");
 
                     }
 
@@ -174,7 +177,7 @@ namespace demo01.Views.Pedido
                         MessageBox.Show(string.Format("Valor informado para quantidade não é válido!"));
                         return;
                     }
-                    var result = new PedidoAppService().InserirProduto(pedido);
+                    var result = new PedidoAppService().ValidarProduto(pedido);
 
                     if (result.Success)
                     {
@@ -183,16 +186,46 @@ namespace demo01.Views.Pedido
                     }
                     else
                     {
-                        MessageBox.Show("Ocorreu um erro verifique");
+                        MessageBox.Show("Produto não cadastrado!");
 
                     }
 
                 }
                 catch
                 {
-                    MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
+                    MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
                 }
             }
+            else
+            {
+                MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
+            }
+        }
+        //private void ListarProdutos(string numeroPedido)
+        //{
+        //    try
+        //    {
+        //        List<Produto> lista = new PedidoRepository().ObterTodosProdutosPorNumeroPedido(numeroPedido);
+        //        _bsListaProduto = new BindingSource(lista, "");
+        //        listaprodutos.AutoGenerateColumns = false;
+        //        listaprodutos.DataSource = _bsListaProduto;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("Erro ao listar produtos!");
+        //    }
+        //}
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnSalvarPedido_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+            MessageBox.Show(string.Format("Pedido salvo com sucesso!!"));
+            TxtNumero.Text= "";
         }
     }
 }
