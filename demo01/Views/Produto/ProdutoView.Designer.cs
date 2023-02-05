@@ -42,10 +42,6 @@ namespace demo01.Views.Produtos
             this.label5 = new System.Windows.Forms.Label();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.listaprodutos = new System.Windows.Forms.DataGridView();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -54,6 +50,10 @@ namespace demo01.Views.Produtos
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.listaprodutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -165,35 +165,6 @@ namespace demo01.Views.Produtos
             this.listaprodutos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listaprodutos_MouseDoubleClick);
             this.listaprodutos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listaprodutos_MouseDown);
             // 
-            // código
-            // 
-            this.código.DataPropertyName = "CdProduto";
-            this.código.HeaderText = "Código";
-            this.código.Name = "código";
-            this.código.ReadOnly = true;
-            // 
-            // descrição
-            // 
-            this.descrição.DataPropertyName = "Descricao";
-            this.descrição.HeaderText = "Descrição";
-            this.descrição.Name = "descrição";
-            this.descrição.ReadOnly = true;
-            this.descrição.Width = 200;
-            // 
-            // preçoUn
-            // 
-            this.preçoUn.DataPropertyName = "valor";
-            this.preçoUn.HeaderText = "Valor";
-            this.preçoUn.Name = "preçoUn";
-            this.preçoUn.ReadOnly = true;
-            // 
-            // estoque
-            // 
-            this.estoque.DataPropertyName = "Estoque";
-            this.estoque.HeaderText = "Estoque";
-            this.estoque.Name = "estoque";
-            this.estoque.ReadOnly = true;
-            // 
             // btnSalvar
             // 
             this.btnSalvar.Enabled = false;
@@ -280,6 +251,35 @@ namespace demo01.Views.Produtos
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
+            // código
+            // 
+            this.código.DataPropertyName = "CodigoProduto";
+            this.código.HeaderText = "Código";
+            this.código.Name = "código";
+            this.código.ReadOnly = true;
+            // 
+            // descrição
+            // 
+            this.descrição.DataPropertyName = "Descricao";
+            this.descrição.HeaderText = "Descrição";
+            this.descrição.Name = "descrição";
+            this.descrição.ReadOnly = true;
+            this.descrição.Width = 200;
+            // 
+            // preçoUn
+            // 
+            this.preçoUn.DataPropertyName = "valor";
+            this.preçoUn.HeaderText = "Valor";
+            this.preçoUn.Name = "preçoUn";
+            this.preçoUn.ReadOnly = true;
+            // 
+            // estoque
+            // 
+            this.estoque.DataPropertyName = "Estoque";
+            this.estoque.HeaderText = "Estoque";
+            this.estoque.Name = "estoque";
+            this.estoque.ReadOnly = true;
+            // 
             // ProdutoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,13 +332,13 @@ namespace demo01.Views.Produtos
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnExcluirProduto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn código;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preçoUn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estoque;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn código;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preçoUn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estoque;
     }
 }

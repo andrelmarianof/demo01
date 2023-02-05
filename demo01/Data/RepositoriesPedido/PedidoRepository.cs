@@ -73,14 +73,28 @@ namespace demo01.Data.RepositoriesPedido
 
             }
         }
-        public List<Pedido> ObterTodosProdutosPorNumeroPedido(int numeroPedido)
+        public List<Pedido> ObterTodosProdutosPorNumeroPedido(string columnSort)
         {
-            using (SqlConnection con = ConnectionProvider.ObterConexao())
-            {
-                var sql = @"SELECT * FROM Pedido WHERE Numero = @numeroPedido";
-                return con.Query<Pedido>(sql, new { numeroPedido }).ToList();
-            }
+            //using (SqlConnection con = ConnectionProvider.ObterConexao())
+            //{
+            //    var sql = @"SELECT * FROM Pedido WHERE Numero = @numeroPedido";
+            //    return con.Query<Pedido>(sql, new { numeroPedido }).ToList();
+            //}
+                using (SqlConnection con = ConnectionProvider.ObterConexao())
+                {
+                    var query = new StringBuilder();
+                    query.AppendLine("SELECT * FROM pedido");
+                    query.AppendLine("/**WHERE**/");
+
+                    var queryBuilder = new SqlBuilder();
+                    var template = queryBuilder.AddTemplate(query.ToString());
+                    queryBuilder.OrderBy(columnSort);
+
+                    return con.Query<Pedido>(template.RawSql, template.Parameters).ToList();
+                }
+
         }
+        
         public string ConsultarUltimoPedido()
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())

@@ -105,7 +105,7 @@ namespace demo01.Views.Pedido
         public void btnNovoPedido_Click(object sender, EventArgs e)
         {
          
-            if ((txtCdCliente.Text != " ")&(txtDescricaoCliente.Text != " "))
+            if ((txtCdCliente.Text != "")&(txtDescricaoCliente.Text != ""))
             {
                 try
                 {
@@ -134,6 +134,10 @@ namespace demo01.Views.Pedido
                 {
                     MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
                 }
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
             }
         }
 
@@ -183,6 +187,7 @@ namespace demo01.Views.Pedido
                     {
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
                         InserirProdutos();
+                        ListarProdutos(nameof(Domain.Pedidos.Pedido.NumeroPedido));
                     }
                     else
                     {
@@ -201,20 +206,41 @@ namespace demo01.Views.Pedido
                 MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
             }
         }
-        //private void ListarProdutos(string numeroPedido)
-        //{
-        //    try
-        //    {
-        //        List<Produto> lista = new PedidoRepository().ObterTodosProdutosPorNumeroPedido(numeroPedido);
-        //        _bsListaProduto = new BindingSource(lista, "");
-        //        listaprodutos.AutoGenerateColumns = false;
-        //        listaprodutos.DataSource = _bsListaProduto;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        MessageBox.Show("Erro ao listar produtos!");
-        //    }
-        //}
+        private void ListarProdutos(string sortColumn = "CdCliente")
+        {
+            //try
+            //{
+            //    List<Produto> lista = new List<Produto>();
+            //    lista = new PedidoRepository().ObterTodosProdutosPorNumeroPedido(pedido);
+            //    _bsListaProduto = new BindingSource(lista, "");
+            //    ListaProdutosDoPedido.AutoGenerateColumns = false;
+            //    ListaProdutosDoPedido.DataSource = _bsListaProduto;
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Erro ao listar produtos!");
+            //}
+            
+                try
+                {
+
+
+                    List<Domain.Pedidos.Pedido> lista1 = new List<Domain.Pedidos.Pedido>();
+                    lista1 = new PedidoRepository().ObterTodosProdutosPorNumeroPedido(sortColumn);
+
+
+                    _bsListaCliente = new BindingSource(lista1, "");
+                     ListaProdutosDoPedido.AutoGenerateColumns = false;
+                      ListaProdutosDoPedido.DataSource = _bsListaCliente;
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao Listar dados!");
+                }
+                return;
+            }
+        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
