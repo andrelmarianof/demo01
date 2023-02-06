@@ -246,6 +246,8 @@ namespace demo01.Views.Produtos
                 txtValor.Text = currentProduto.Valor.ToString();
             }
         }
+
+
         #endregion
 
         #region "Eventos"

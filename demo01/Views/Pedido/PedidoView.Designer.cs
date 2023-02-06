@@ -32,7 +32,7 @@ namespace demo01.Views.Pedido
             this.btnSalvarPedido = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCdCliente = new System.Windows.Forms.TextBox();
-            this.txtDescricaoCliente = new System.Windows.Forms.TextBox();
+            this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,6 +45,11 @@ namespace demo01.Views.Pedido
             this.txtValor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ListaProdutosDoPedido = new System.Windows.Forms.DataGridView();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPesquisarCliente = new System.Windows.Forms.Button();
             this.TxtNumero = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -66,11 +71,8 @@ namespace demo01.Views.Pedido
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancelarPedido = new System.Windows.Forms.Button();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPesquisarPedido = new System.Windows.Forms.Button();
+            this.btnExcluirPedidoItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,10 +106,10 @@ namespace demo01.Views.Pedido
             // 
             // txtDescricaoCliente
             // 
-            this.txtDescricaoCliente.Location = new System.Drawing.Point(109, 159);
-            this.txtDescricaoCliente.Name = "txtDescricaoCliente";
-            this.txtDescricaoCliente.Size = new System.Drawing.Size(211, 20);
-            this.txtDescricaoCliente.TabIndex = 6;
+            this.txtNomeCliente.Location = new System.Drawing.Point(109, 159);
+            this.txtNomeCliente.Name = "txtDescricaoCliente";
+            this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
+            this.txtNomeCliente.TabIndex = 6;
             // 
             // label1
             // 
@@ -121,7 +123,7 @@ namespace demo01.Views.Pedido
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(109, 186);
+            this.label3.Location = new System.Drawing.Point(109, 495);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 14;
@@ -131,7 +133,7 @@ namespace demo01.Views.Pedido
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 185);
+            this.label4.Location = new System.Drawing.Point(15, 494);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 13);
             this.label4.TabIndex = 13;
@@ -139,22 +141,22 @@ namespace demo01.Views.Pedido
             // 
             // txtCdProduto
             // 
-            this.txtCdProduto.Location = new System.Drawing.Point(18, 202);
+            this.txtCdProduto.Location = new System.Drawing.Point(18, 511);
             this.txtCdProduto.Name = "txtCdProduto";
             this.txtCdProduto.Size = new System.Drawing.Size(86, 20);
             this.txtCdProduto.TabIndex = 12;
             // 
             // txtDescricaoProduto
             // 
-            this.txtDescricaoProduto.Location = new System.Drawing.Point(109, 202);
+            this.txtDescricaoProduto.Location = new System.Drawing.Point(109, 511);
             this.txtDescricaoProduto.Name = "txtDescricaoProduto";
-            this.txtDescricaoProduto.Size = new System.Drawing.Size(211, 20);
+            this.txtDescricaoProduto.Size = new System.Drawing.Size(256, 20);
             this.txtDescricaoProduto.TabIndex = 11;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(407, 185);
+            this.label5.Location = new System.Drawing.Point(487, 494);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 17;
@@ -162,14 +164,14 @@ namespace demo01.Views.Pedido
             // 
             // txtQtd
             // 
-            this.txtQtd.Location = new System.Drawing.Point(406, 202);
+            this.txtQtd.Location = new System.Drawing.Point(486, 511);
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.Size = new System.Drawing.Size(76, 20);
             this.txtQtd.TabIndex = 16;
             // 
             // btnAddProduto
             // 
-            this.btnAddProduto.Location = new System.Drawing.Point(522, 202);
+            this.btnAddProduto.Location = new System.Drawing.Point(18, 205);
             this.btnAddProduto.Name = "btnAddProduto";
             this.btnAddProduto.Size = new System.Drawing.Size(102, 20);
             this.btnAddProduto.TabIndex = 18;
@@ -189,7 +191,7 @@ namespace demo01.Views.Pedido
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(325, 202);
+            this.txtValor.Location = new System.Drawing.Point(405, 511);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(76, 20);
             this.txtValor.TabIndex = 20;
@@ -197,7 +199,7 @@ namespace demo01.Views.Pedido
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(325, 186);
+            this.label6.Location = new System.Drawing.Point(405, 495);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 21;
@@ -214,9 +216,39 @@ namespace demo01.Views.Pedido
             this.Column4});
             this.ListaProdutosDoPedido.Location = new System.Drawing.Point(18, 231);
             this.ListaProdutosDoPedido.Name = "ListaProdutosDoPedido";
-            this.ListaProdutosDoPedido.Size = new System.Drawing.Size(544, 320);
+            this.ListaProdutosDoPedido.Size = new System.Drawing.Size(544, 249);
             this.ListaProdutosDoPedido.TabIndex = 22;
             this.ListaProdutosDoPedido.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "CdProduto";
+            this.Column5.HeaderText = "Código";
+            this.Column5.Name = "Column5";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Descricao";
+            this.Column1.HeaderText = "Descrição";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "VlVenda";
+            this.Column2.HeaderText = "Valor";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "QtdVenda";
+            this.Column3.HeaderText = "Quantidade";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Total";
+            this.Column4.HeaderText = "Total item";
+            this.Column4.Name = "Column4";
             // 
             // btnPesquisarCliente
             // 
@@ -247,7 +279,7 @@ namespace demo01.Views.Pedido
             // 
             // btnPesquisarProduto
             // 
-            this.btnPesquisarProduto.Location = new System.Drawing.Point(488, 200);
+            this.btnPesquisarProduto.Location = new System.Drawing.Point(371, 508);
             this.btnPesquisarProduto.Name = "btnPesquisarProduto";
             this.btnPesquisarProduto.Size = new System.Drawing.Size(28, 25);
             this.btnPesquisarProduto.TabIndex = 26;
@@ -381,35 +413,25 @@ namespace demo01.Views.Pedido
             this.btnCancelarPedido.UseVisualStyleBackColor = true;
             this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
             // 
-            // Column5
+            // btnPesquisarPedido
             // 
-            this.Column5.DataPropertyName = "CdProduto";
-            this.Column5.HeaderText = "Código";
-            this.Column5.Name = "Column5";
+            this.btnPesquisarPedido.Location = new System.Drawing.Point(109, 115);
+            this.btnPesquisarPedido.Name = "btnPesquisarPedido";
+            this.btnPesquisarPedido.Size = new System.Drawing.Size(28, 25);
+            this.btnPesquisarPedido.TabIndex = 23;
+            this.btnPesquisarPedido.Text = "...";
+            this.btnPesquisarPedido.UseVisualStyleBackColor = true;
+            this.btnPesquisarPedido.Click += new System.EventHandler(this.btnPesquisarCliente_Click);
             // 
-            // Column1
+            // btnExcluirPedidoItem
             // 
-            this.Column1.DataPropertyName = "Descricao";
-            this.Column1.HeaderText = "Descrição";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "VlVenda";
-            this.Column2.HeaderText = "Valor";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "QtdVenda";
-            this.Column3.HeaderText = "Quantidade";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Total";
-            this.Column4.HeaderText = "Total item";
-            this.Column4.Name = "Column4";
+            this.btnExcluirPedidoItem.Location = new System.Drawing.Point(126, 205);
+            this.btnExcluirPedidoItem.Name = "btnExcluirPedidoItem";
+            this.btnExcluirPedidoItem.Size = new System.Drawing.Size(102, 20);
+            this.btnExcluirPedidoItem.TabIndex = 18;
+            this.btnExcluirPedidoItem.Text = "&Excluir Produto";
+            this.btnExcluirPedidoItem.UseVisualStyleBackColor = true;
+            this.btnExcluirPedidoItem.Click += new System.EventHandler(this.btnAddProduto_Click);
             // 
             // PedidoView
             // 
@@ -420,11 +442,13 @@ namespace demo01.Views.Pedido
             this.Controls.Add(this.btnPesquisarProduto);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.TxtNumero);
+            this.Controls.Add(this.btnPesquisarPedido);
             this.Controls.Add(this.btnPesquisarCliente);
             this.Controls.Add(this.ListaProdutosDoPedido);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtValor);
             this.Controls.Add(this.btnNovoPedido);
+            this.Controls.Add(this.btnExcluirPedidoItem);
             this.Controls.Add(this.btnAddProduto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtQtd);
@@ -435,7 +459,7 @@ namespace demo01.Views.Pedido
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCdCliente);
-            this.Controls.Add(this.txtDescricaoCliente);
+            this.Controls.Add(this.txtNomeCliente);
             this.Controls.Add(this.btnSalvarPedido);
             this.Name = "PedidoView";
             this.Text = "Pedido";
@@ -451,7 +475,7 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.Button btnSalvarPedido;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCdCliente;
-        private System.Windows.Forms.TextBox txtDescricaoCliente;
+        private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -490,5 +514,7 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Button btnPesquisarPedido;
+        private System.Windows.Forms.Button btnExcluirPedidoItem;
     }
 }

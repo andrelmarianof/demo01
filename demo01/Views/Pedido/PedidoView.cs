@@ -16,6 +16,20 @@ namespace demo01.Views.Pedido
 
     public partial class PedidoView : MetroFramework.Forms.MetroForm
     {
+
+
+        #region Private 
+
+        private enum StatusControlEnum
+        {
+            Loaded,
+            Editing,
+            Empty
+        }
+
+        private StatusControlEnum _statusPedido = StatusControlEnum.Empty;
+        private StatusControlEnum _statusPedidoItem = StatusControlEnum.Empty;
+        #endregion
         private object sortColumn;
         private BindingSource _bsListaCliente;
         private BindingSource _bsListaProduto;
@@ -34,13 +48,25 @@ namespace demo01.Views.Pedido
             btnAddProduto.Enabled = false;
             btnPesquisarProduto.Enabled = false;
 
+            txtCdCliente.Leave += OnClienteLeave;
+
 
         }
-       
+
+        private void OnClienteLeave(object sender, EventArgs e)
+        {
+            CarregarCliente();
+        }
+
+        //private void OnClienteLeave(object sender, EventArgs e)
+        //{
+
+        //}
+
         private void NovoPedido()
         {
             txtCdCliente.Enabled = true;
-            txtDescricaoCliente.Enabled = true;
+            txtNomeCliente.Enabled = true;
             txtCdProduto.Enabled = false;
             txtDescricaoProduto.Enabled = false;
             txtValor.Enabled = false;
@@ -49,7 +75,7 @@ namespace demo01.Views.Pedido
         private void LimparCampos()
         {
             txtCdCliente.Text = "";
-            txtDescricaoCliente.Text = "";
+            txtNomeCliente.Text = "";
             txtCdProduto.Text = "";
             txtDescricaoProduto.Text = "";
             txtValor.Text = "";
@@ -58,7 +84,7 @@ namespace demo01.Views.Pedido
         private void InserirProdutos()
         {
             txtCdCliente.Enabled = false;
-            txtDescricaoCliente.Enabled = false;
+            txtNomeCliente.Enabled = false;
             txtCdProduto.Enabled = true;
             txtDescricaoProduto.Enabled = true;
             txtValor.Enabled = true;
@@ -81,9 +107,36 @@ namespace demo01.Views.Pedido
             btnNovoPedido.Enabled = true;
             btnPesquisarCliente.Enabled = true;
             txtCdCliente.Enabled = true;
-            txtDescricaoCliente.Enabled = true;
+            txtNomeCliente.Enabled = true;
             btnSalvarPedido.Enabled = false;
             btnPesquisarProduto.Enabled = false;
+        }
+        private void MudarStatusDeControles(StatusControlEnum status)
+        {
+
+            switch (status)
+            {
+                case StatusControlEnum.Loaded:
+                    txtCdProduto.Enabled = false;
+                    txtDescricaoProduto.Enabled = false;
+                    txtQtd.Enabled = false;
+                    txtValor.Enabled = false;
+                    btnAddProduto.Enabled = false;
+                    btnAddProduto.Enabled = false;
+                    btnNovoPedido.Enabled = true;
+                    btnPesquisarCliente.Enabled = true;
+                    txtCdCliente.Enabled = true;
+                    txtNomeCliente.Enabled = true;
+                    btnSalvarPedido.Enabled = false;
+                    btnPesquisarProduto.Enabled = false;
+                    break;
+                case StatusControlEnum.Editing:
+                    break;
+                case StatusControlEnum.Empty:
+                    break;
+            }
+
+
         }
         private void cdCliente_TextChanged(object sender, EventArgs e)
         {
@@ -104,15 +157,22 @@ namespace demo01.Views.Pedido
         {
             BuscarCliente formcliente = new BuscarCliente();
             formcliente.ShowDialog();
+
+            if(formcliente.ReturnValue != null)
+            {
+                txtCdCliente.Text = formcliente.ReturnValue;
+                CarregarCliente();
+            }
         }
 
         public void btnNovoPedido_Click(object sender, EventArgs e)
         {
 
-            if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != ""))
+            if ((txtCdCliente.Text != "") & (txtNomeCliente.Text != ""))
             {
                 try
                 {
+                    MudarStatusDeControles(StatusControlEnum.Editing);
 
                     string numero = new PedidoAppService().BuscarNumero();
                     int txtnumero = int.Parse(numero);
@@ -255,7 +315,7 @@ namespace demo01.Views.Pedido
             resposta = MessageBox.Show("Deseje realmente cancelar este pedido?", "Cancelar pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resposta != DialogResult.No)
             {
-                if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != ""))
+                if ((txtCdCliente.Text != "") & (txtNomeCliente.Text != ""))
                 {
                     var pedido = new PedidoRepository().ObterPedido(delete.Text);
                     var result = new PedidoRepository().DeletePedido(pedido);
@@ -279,5 +339,21 @@ namespace demo01.Views.Pedido
             else
                 MessageBox.Show(string.Format("Processo cancelado! "));
         }
+
+        #region Métodos internos
+        private void CarregarCliente()
+        {
+            if (!string.IsNullOrWhiteSpace(txtCdCliente.Text))
+            {
+                var cliente = new ClienteRepository().ObterPorCodigo(txtCdCliente.Text);
+
+                if(cliente != null)
+                {
+                    txtCdCliente.Text = cliente.CdCliente;
+                    txtNomeCliente.Text = cliente.NomeCliente;
+                }
+            }
+        }
+        #endregion
     }
 }

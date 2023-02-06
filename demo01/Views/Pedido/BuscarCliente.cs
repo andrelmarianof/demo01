@@ -13,7 +13,13 @@ namespace demo01.Views.Pedido
 {
     public partial class BuscarCliente : MetroFramework.Forms.MetroForm
     {
-        public BindingSource _bsListaCliente;
+        private BindingSource _bsListaCliente;
+
+        #region Return Values
+
+        public string ReturnValue;
+
+        #endregion
         public BuscarCliente()
         {
             InitializeComponent();
@@ -55,6 +61,15 @@ namespace demo01.Views.Pedido
             //    form1.Sobrenome = txtSobrenome.Text;
             //    form1.ShowDialog();
             //}
+        }
+
+        private void buscarClienteGrid_DoubleClick(object sender, EventArgs e)
+        {
+            if (_bsListaCliente.Current != null && _bsListaCliente.Current is Domain.Clientes.Cliente cliente)
+            {
+                ReturnValue = cliente.CdCliente;
+                this.Close();
+            }
         }
     }
        
