@@ -70,6 +70,7 @@ namespace demo01.Views.Pedido
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelarPedido = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).BeginInit();
             this.SuspendLayout();
             // 
@@ -400,11 +401,22 @@ namespace demo01.Views.Pedido
             this.Column4.HeaderText = "Total item";
             this.Column4.Name = "Column4";
             // 
+            // btnCancelarPedido
+            // 
+            this.btnCancelarPedido.Location = new System.Drawing.Point(213, 73);
+            this.btnCancelarPedido.Name = "btnCancelarPedido";
+            this.btnCancelarPedido.Size = new System.Drawing.Size(98, 25);
+            this.btnCancelarPedido.TabIndex = 27;
+            this.btnCancelarPedido.Text = "&Cancelar Pedido ";
+            this.btnCancelarPedido.UseVisualStyleBackColor = true;
+            this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
+            // 
             // PedidoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 554);
+            this.Controls.Add(this.btnCancelarPedido);
             this.Controls.Add(this.btnPesquisarProduto);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.TxtNumero);
@@ -477,5 +489,6 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Button btnCancelarPedido;
     }
 }

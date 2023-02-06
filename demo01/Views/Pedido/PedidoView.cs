@@ -7,10 +7,12 @@ using demo01.Domain.Produtos;
 using demo01.Views.Pedido;
 using System.Collections.Generic;
 using demo01.Data.RepositoriesCliente;
+using demo01.Domain.Pedidos;
+using System.Diagnostics;
 
 namespace demo01.Views.Pedido
 {
-   
+
     public partial class PedidoView : MetroFramework.Forms.MetroForm
     {
         private object sortColumn;
@@ -27,26 +29,13 @@ namespace demo01.Views.Pedido
         {
             InitializeComponent();
             NovoPedido();
-            
+            btnSalvarPedido.Enabled = false;
+            btnAddProduto.Enabled = false;
+            btnPesquisarProduto.Enabled = false;
+
 
         }
-        private void Inserir()
-        {
-            if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != "") & (txtCdProduto.Text != "") & (txtDescricaoProduto.Text != ""))
-            {
-
-                try
-                {
-                    var pedido = new Domain.Pedidos.Pedido();
-                    
-
-                }
-                catch
-                {
-
-                }
-            }
-        }
+       
         private void NovoPedido()
         {
             txtCdCliente.Enabled = true;
@@ -80,10 +69,24 @@ namespace demo01.Views.Pedido
             txtValor.Text = " ";
             txtQtd.Text = " ";
         }
-
+        private void confirmarPedido()
+        {
+            txtCdProduto.Enabled = false;
+            txtDescricaoProduto.Enabled = false;
+            txtQtd.Enabled = false;
+            txtValor.Enabled = false;
+            btnAddProduto.Enabled = false;
+            btnAddProduto.Enabled = false;
+            btnNovoPedido.Enabled = true;
+            btnPesquisarCliente.Enabled = true;
+            txtCdCliente.Enabled = true;
+            txtDescricaoCliente.Enabled = true;
+            btnSalvarPedido.Enabled = false;
+            btnPesquisarProduto.Enabled = false;
+        }
         private void cdCliente_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -104,8 +107,8 @@ namespace demo01.Views.Pedido
 
         public void btnNovoPedido_Click(object sender, EventArgs e)
         {
-         
-            if ((txtCdCliente.Text != "")&(txtDescricaoCliente.Text != ""))
+
+            if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != ""))
             {
                 try
                 {
@@ -122,17 +125,18 @@ namespace demo01.Views.Pedido
                     {
                         MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
                         InserirProdutos();
+                        btnPesquisarProduto.Enabled = true;
+                        btnAddProduto.Enabled = true;
                     }
                     else
                     {
                         MessageBox.Show("O cliente não existe na base de dados");
-
                     }
 
                 }
                 catch
                 {
-                    MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
+                    MessageBox.Show(string.Format("Ocorreu um erro na criação do pedido, tente novamente!"));
                 }
             }
             else
@@ -149,10 +153,11 @@ namespace demo01.Views.Pedido
         }
         public void CarregaForm(string cdcliente)
         {
-           
+            var grid = new PedidoRepository().ObterPedido(TxtNumero.Text);
+            Debug.WriteLine(grid);
         }
 
-            public void PedidoView_Load(object sender, EventArgs e)
+        public void PedidoView_Load(object sender, EventArgs e)
         {
             //txtCdCliente.Text = BuscarProduto.
             //txtCdProduto.Text = CdProduto;
@@ -162,7 +167,7 @@ namespace demo01.Views.Pedido
 
         private void btnAddProduto_Click(object sender, EventArgs e)
         {
-            if ((txtCdProduto.Text != " ") & (txtDescricaoProduto.Text != " ")&(txtQtd.Text != " ")&(txtValor.Text != " "))
+            if ((txtCdProduto.Text != " ") & (txtDescricaoProduto.Text != " ") & (txtQtd.Text != " ") & (txtValor.Text != " "))
             {
                 try
                 {
@@ -187,7 +192,10 @@ namespace demo01.Views.Pedido
                     {
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
                         InserirProdutos();
-                        ListarProdutos(nameof(Domain.Pedidos.Pedido.NumeroPedido));
+                        var grid = new PedidoRepository().ObterProdutos(TxtNumero.Text);
+                        ListarProdutos(TxtNumero.Text);
+                        btnSalvarPedido.Enabled = true;
+                        //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
                     }
                     else
                     {
@@ -196,9 +204,9 @@ namespace demo01.Views.Pedido
                     }
 
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
+                    MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"), ex.Message);
                 }
             }
             else
@@ -206,41 +214,20 @@ namespace demo01.Views.Pedido
                 MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
             }
         }
-        private void ListarProdutos(string sortColumn = "CdCliente")
+        private void ListarProdutos(string numero = "")
         {
-            //try
-            //{
-            //    List<Produto> lista = new List<Produto>();
-            //    lista = new PedidoRepository().ObterTodosProdutosPorNumeroPedido(pedido);
-            //    _bsListaProduto = new BindingSource(lista, "");
-            //    ListaProdutosDoPedido.AutoGenerateColumns = false;
-            //    ListaProdutosDoPedido.DataSource = _bsListaProduto;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Erro ao listar produtos!");
-            //}
-            
-                try
-                {
-
-
-                    List<Domain.Pedidos.Pedido> lista1 = new List<Domain.Pedidos.Pedido>();
-                    lista1 = new PedidoRepository().ObterTodosProdutosPorNumeroPedido(sortColumn);
-
-
-                    _bsListaCliente = new BindingSource(lista1, "");
-                     ListaProdutosDoPedido.AutoGenerateColumns = false;
-                      ListaProdutosDoPedido.DataSource = _bsListaCliente;
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Erro ao Listar dados!");
-                }
-                return;
+            try
+            {
+                List<Produto> lista = new PedidoRepository().ObterProdutos(numero);
+                _bsListaProduto = new BindingSource(lista, "");
+                ListaProdutosDoPedido.AutoGenerateColumns = false;
+                ListaProdutosDoPedido.DataSource = _bsListaProduto;
             }
-        
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar produtos!");
+            }
+        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -251,7 +238,39 @@ namespace demo01.Views.Pedido
         {
             LimparCampos();
             MessageBox.Show(string.Format("Pedido salvo com sucesso!!"));
-            TxtNumero.Text= "";
+            TxtNumero.Text = "";
+            confirmarPedido();
+        }
+
+        private void btnCancelarPedido_Click(object sender, EventArgs e)
+        {
+            DialogResult resposta = DialogResult;
+            var delete = TxtNumero;
+
+            resposta = MessageBox.Show("Deseje realmente cancelar este pedido?", "Cancelar pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resposta != DialogResult.No)
+            {
+                if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != ""))
+                {
+                    var pedido = new PedidoRepository().ObterPedido("29");
+                    var result = new PedidoRepository().DeletePedido(pedido);
+                    if (result == true)
+                    {
+                        MessageBox.Show(string.Format("Pedido N° {0} cancelado com sucesso!", TxtNumero.Text));
+                        LimparCampos();
+                        TxtNumero.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format("Não foi possivel cancelar o pedido N° {0}!", TxtNumero.Text));
+                    }
+                }
+                else
+
+                    MessageBox.Show(string.Format("Selecione um produto para que possa realizar a exclusão!"));
+            }
+            else
+                MessageBox.Show(string.Format("Processo cancelado! "));
         }
     }
 }

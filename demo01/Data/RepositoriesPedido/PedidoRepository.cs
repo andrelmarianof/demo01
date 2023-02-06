@@ -1,110 +1,112 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using demo01.Application.Pedidos;
+﻿/**refatorado*/
 using System.Data.SqlClient;
-using demo01.Data.Provider;
 using Dapper;
+using demo01.Application.Pedidos;
+using demo01.Data.Provider;
+using demo01.Domain.Pedido;
 using demo01.Domain.Pedidos;
 
 namespace demo01.Data.RepositoriesPedido
 {
     class PedidoRepository
     {
+        private readonly SqlConnection _connection;
+
+        public PedidoRepository()
+        {
+            _connection = ConnectionProvider.ObterConexao();
+        }
+
         public bool InsertPedido(Pedido pedido)
         {
-            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            var sql = @"
+                INSERT INTO pedido (Numero, CdCliente)
+                OUTPUT INSERTED.Numero
+                VALUES (@numero, @cdcliente)";
+
+            var resp = _connection.ExecuteScalar(sql, new
             {
+                numero = pedido.Numero,
+                cdcliente = pedido.CdCliente
+            });
 
-                var sql1 = @"
- INSERT INTO pedido
-    (Numero,
-    CdCliente)
- OUTPUT INSERTED.Numero
- VALUES
-    ( @numero,
-     @cdcliente)";
-
-                var resp1 = con.ExecuteScalar(sql1, new
-                {
-                    numero = pedido.Numero,
-                    cdcliente = pedido.CdCliente
-                });
-
-                if (resp1 == null)
-                {
-                    return false;
-                }
-                return true;
+            if (resp == null)
+            {
+                return false;
             }
+
+            return true;
         }
+
         public bool InsertProduto(Pedido pedido)
         {
-            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            var sql = @"
+                INSERT INTO pedidoItem (NumeroPedido, CdProduto, QtdVenda, VlVenda)
+                OUTPUT INSERTED.NumeroPedido
+                VALUES (@numeropedido, @cdproduto, @qtdvenda, @vlvenda)";
+
+            var resp = _connection.ExecuteScalar(sql, new
             {
+                numeropedido = pedido.NumeroPedido,
+                cdproduto = pedido.CdProduto,
+                qtdvenda = pedido.QtdVenda,
+                vlvenda = pedido.VlVenda
+            });
 
-                var sql2 = @"
- INSERT INTO pedidoItem
-    (NumeroPedido,
-    CdProduto,
-    QtdVenda,
-    VlVenda)
- OUTPUT INSERTED.NumeroPedido
- VALUES
-    ( @numeropedido,
-     @cdproduto,
-     @qtdvenda,
-     @vlvenda)";
-                var resp2 = con.ExecuteScalar(sql2, new
-                {
-                    numeropedido = pedido.NumeroPedido,
-                    cdproduto = pedido.CdProduto,
-                    qtdvenda = pedido.QtdVenda,
-                    vlvenda = pedido.VlVenda
-                });
-
-                if ((resp2 == null) & (resp2 == null))
-                {
-                    return false;
-                }
-                return true;
-
+            if (resp == null)
+            {
+                return false;
             }
+
+            return true;
         }
-        public List<Pedido> ObterTodosProdutosPorNumeroPedido(string columnSort)
+
+        public bool DeletePedido(Pedido pedido)
         {
-            //using (SqlConnection con = ConnectionProvider.ObterConexao())
-            //{
-            //    var sql = @"SELECT * FROM Pedido WHERE Numero = @numeroPedido";
-            //    return con.Query<Pedido>(sql, new { numeroPedido }).ToList();
-            //}
-                using (SqlConnection con = ConnectionProvider.ObterConexao())
-                {
-                    var query = new StringBuilder();
-                    query.AppendLine("SELECT * FROM pedido");
-                    query.AppendLine("/**WHERE**/");
+            var sql = @"
+                DELETE FROM pedido 
+                OUTPUT DELETED.numero
+                WHERE Numero = @numero";
 
-                    var queryBuilder = new SqlBuilder();
-                    var template = queryBuilder.AddTemplate(query.ToString());
-                    queryBuilder.OrderBy(columnSort);
+            var resp = _connection.ExecuteScalar(sql, new
+            {
+                numero = pedido.Numero
+            });
 
-                    return con.Query<Pedido>(template.RawSql, template.Parameters).ToList();
-                }
+            if (resp == null)
+            {
+                return false;
+            }
 
+            return true;
         }
-        
+
         public string ConsultarUltimoPedido()
         {
-            using (SqlConnection con = ConnectionProvider.ObterConexao())
-            {
-                var result = con.QueryFirstOrDefault<string>(@"SELECT top 1 Numero FROM Pedido ORDER BY Numero DESC");
-                return result;
-                
-            }
+            return _connection.QueryFirstOrDefault<string>(@"
+                SELECT top 1 Numero FROM Pedido ORDER BY Numero DESC");
         }
 
-    } 
-  
+        public Pedido ObterPedido(string numero = "")
+        {
+            var query = "SELECT * FROM pedido WHERE numero = @numero";
+            return _connection.QueryFirstOrDefault<Pedido>(query, new { numero });
+        }
+
+        public PedidoItem ObterProdutos(string numero = "")
+        {
+            var query = @"
+                SELECT pedidoItem.NumeroPedido
+                     , pedidoItem.CdProduto
+                     , produto.Descricao
+                     , pedidoItem.QtdVenda
+                     , pedidoItem.VlVenda
+                FROM pedido
+	                INNER JOIN pedidoItem ON pedido.Numero = pedidoItem.NumeroPedido
+	                INNER JOIN produto ON pedidoItem.CdProduto = produto.CdProduto
+                WHERE pedido.Numero = @numero";
+            return _connection.QueryFirstOrDefault<PedidoItem>(query, new { numero });
+        }
+
+    }
 }

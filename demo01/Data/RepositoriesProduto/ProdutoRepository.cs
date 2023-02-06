@@ -79,7 +79,7 @@ namespace demo01.Data.Repositories
 
     //}
     #endregion
-    
+
     public class ProdutoRepository
     {
 
@@ -186,7 +186,7 @@ WHERE cdproduto = @cdproduto
                 return con.Query<Produto>(template.RawSql, template.Parameters).ToList();
             }
         }
-        
+
         public Produto ObterPorCodigo(string cdProduto)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
@@ -201,8 +201,6 @@ WHERE cdproduto = @cdproduto
                 queryBuilder.Where("CdProduto = @cdProduto", new { cdProduto });
 
                 return con.QuerySingleOrDefault<Produto>(template.RawSql, template.Parameters);
-
-
             }
         }
         #endregion

@@ -84,6 +84,7 @@
     <Compile Include="Domain\Cliente\Cliente.cs" />
     <Compile Include="Domain\Core\Result.cs" />
     <Compile Include="Domain\Pedido\Pedido.cs" />
+    <Compile Include="Domain\Pedido\PedidoItem.cs" />
     <Compile Include="Domain\Produto\Produto.cs" />
     <Compile Include="fPrincipal.cs">
       <SubType>Form</SubType>
