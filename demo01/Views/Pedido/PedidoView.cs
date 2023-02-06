@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using demo01.Data.RepositoriesCliente;
 using demo01.Domain.Pedidos;
 using System.Diagnostics;
+using demo01.Domain.Pedido;
 
 namespace demo01.Views.Pedido
 {
@@ -192,8 +193,9 @@ namespace demo01.Views.Pedido
                     {
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
                         InserirProdutos();
-                        var grid = new PedidoRepository().ObterProdutos(TxtNumero.Text);
-                        ListarProdutos(TxtNumero.Text);
+
+                        ListarProdutos("45");
+
                         btnSalvarPedido.Enabled = true;
                         //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
                     }
@@ -214,14 +216,17 @@ namespace demo01.Views.Pedido
                 MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
             }
         }
-        private void ListarProdutos(string numero = "")
+        private void ListarProdutos(string numero)
         {
             try
             {
-                List<Produto> lista = new PedidoRepository().ObterProdutos(numero);
+                List<PedidoItem> lista = new List<PedidoItem>();
+                lista = new PedidoRepository().ObterProdutos(numero);
+
                 _bsListaProduto = new BindingSource(lista, "");
                 ListaProdutosDoPedido.AutoGenerateColumns = false;
                 ListaProdutosDoPedido.DataSource = _bsListaProduto;
+
             }
             catch (Exception)
             {

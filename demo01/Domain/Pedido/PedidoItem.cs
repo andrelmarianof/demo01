@@ -13,5 +13,6 @@ namespace demo01.Domain.Pedido
         public string Descricao { get; set; }
         public decimal QtdVenda { get; set; }
         public decimal VlVenda { get; set; }
+        public decimal Total { get; set; }
     }
 }

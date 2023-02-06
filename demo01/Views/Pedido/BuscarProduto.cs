@@ -14,9 +14,7 @@ namespace demo01.Views.Pedido
 {
     public partial class BuscarProduto : MetroFramework.Forms.MetroForm 
     {
-        public string CdProduto { get; set; }
-        public string Descricao { get; set; }
-        public decimal Valor { get; set; }
+        
 
         public BuscarProduto()
         {
@@ -50,20 +48,14 @@ namespace demo01.Views.Pedido
         private void LerProduto()
         {
               
-                var currentProduto = GetCurrentProduto();
-            if (currentProduto != null)
-            {
-
-
-                using (var pedidoView = new PedidoView())
-                {
-                    CdProduto = currentProduto.CdProduto;
-                    Descricao = currentProduto.Descricao;
-                    Valor = currentProduto.Valor;
-                    Close();
-                    pedidoView.ShowDialog();
-                }
-            }
+            //var currentProduto = GetCurrentProduto();
+            //if (currentProduto != null)
+            //{
+            //   CdProduto = currentProduto.CdProduto;
+            //   Descricao = currentProduto.Descricao;
+            //   Valor = currentProduto.Valor;
+            //   Close();
+            //}
         }
         private Produto GetCurrentProduto()
         {

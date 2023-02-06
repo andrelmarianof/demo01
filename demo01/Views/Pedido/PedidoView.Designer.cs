@@ -65,12 +65,12 @@ namespace demo01.Views.Pedido
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelarPedido = new System.Windows.Forms.Button();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCancelarPedido = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).BeginInit();
             this.SuspendLayout();
             // 
@@ -371,6 +371,16 @@ namespace demo01.Views.Pedido
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             // 
+            // btnCancelarPedido
+            // 
+            this.btnCancelarPedido.Location = new System.Drawing.Point(213, 73);
+            this.btnCancelarPedido.Name = "btnCancelarPedido";
+            this.btnCancelarPedido.Size = new System.Drawing.Size(98, 25);
+            this.btnCancelarPedido.TabIndex = 27;
+            this.btnCancelarPedido.Text = "&Cancelar Pedido ";
+            this.btnCancelarPedido.UseVisualStyleBackColor = true;
+            this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
+            // 
             // Column5
             // 
             this.Column5.DataPropertyName = "CdProduto";
@@ -385,13 +395,13 @@ namespace demo01.Views.Pedido
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "Valor";
+            this.Column2.DataPropertyName = "VlVenda";
             this.Column2.HeaderText = "Valor";
             this.Column2.Name = "Column2";
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "Quantidade";
+            this.Column3.DataPropertyName = "QtdVenda";
             this.Column3.HeaderText = "Quantidade";
             this.Column3.Name = "Column3";
             // 
@@ -400,16 +410,6 @@ namespace demo01.Views.Pedido
             this.Column4.DataPropertyName = "Total";
             this.Column4.HeaderText = "Total item";
             this.Column4.Name = "Column4";
-            // 
-            // btnCancelarPedido
-            // 
-            this.btnCancelarPedido.Location = new System.Drawing.Point(213, 73);
-            this.btnCancelarPedido.Name = "btnCancelarPedido";
-            this.btnCancelarPedido.Size = new System.Drawing.Size(98, 25);
-            this.btnCancelarPedido.TabIndex = 27;
-            this.btnCancelarPedido.Text = "&Cancelar Pedido ";
-            this.btnCancelarPedido.UseVisualStyleBackColor = true;
-            this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
             // 
             // PedidoView
             // 
@@ -484,11 +484,11 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.Button btnCancelarPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.Button btnCancelarPedido;
     }
 }
