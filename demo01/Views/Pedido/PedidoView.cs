@@ -48,12 +48,12 @@ namespace demo01.Views.Pedido
         }
         private void LimparCampos()
         {
-            txtCdCliente.Text = " ";
-            txtDescricaoCliente.Text = " ";
-            txtCdProduto.Text = " ";
-            txtDescricaoProduto.Text = " ";
-            txtValor.Text = " ";
-            txtQtd.Text = " ";
+            txtCdCliente.Text = "";
+            txtDescricaoCliente.Text = "";
+            txtCdProduto.Text = "";
+            txtDescricaoProduto.Text = "";
+            txtValor.Text = "";
+            txtQtd.Text = "";
         }
         private void InserirProdutos()
         {
@@ -65,10 +65,10 @@ namespace demo01.Views.Pedido
             txtQtd.Enabled = true;
             btnNovoPedido.Enabled = false;
             btnPesquisarCliente.Enabled = false;
-            txtCdProduto.Text = " ";
-            txtDescricaoProduto.Text = " ";
-            txtValor.Text = " ";
-            txtQtd.Text = " ";
+            txtCdProduto.Text = "";
+            txtDescricaoProduto.Text = "";
+            txtValor.Text = "";
+            txtQtd.Text = "";
         }
         private void confirmarPedido()
         {
@@ -168,7 +168,7 @@ namespace demo01.Views.Pedido
 
         private void btnAddProduto_Click(object sender, EventArgs e)
         {
-            if ((txtCdProduto.Text != " ") & (txtDescricaoProduto.Text != " ") & (txtQtd.Text != " ") & (txtValor.Text != " "))
+            if ((txtCdProduto.Text != "") & (txtDescricaoProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != ""))
             {
                 try
                 {
@@ -194,7 +194,7 @@ namespace demo01.Views.Pedido
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
                         InserirProdutos();
 
-                        ListarProdutos("45");
+                        ListarProdutos(pedido.NumeroPedido);
 
                         btnSalvarPedido.Enabled = true;
                         //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
@@ -257,12 +257,14 @@ namespace demo01.Views.Pedido
             {
                 if ((txtCdCliente.Text != "") & (txtDescricaoCliente.Text != ""))
                 {
-                    var pedido = new PedidoRepository().ObterPedido("29");
+                    var pedido = new PedidoRepository().ObterPedido(delete.Text);
                     var result = new PedidoRepository().DeletePedido(pedido);
                     if (result == true)
                     {
                         MessageBox.Show(string.Format("Pedido N° {0} cancelado com sucesso!", TxtNumero.Text));
                         LimparCampos();
+                        NovoPedido();
+                        _bsListaProduto.Clear();
                         TxtNumero.Text = "";
                     }
                     else
