@@ -1,4 +1,5 @@
 ﻿
+using C1.Win.C1Command;
 using System;
 
 namespace demo01.Views.Produtos
@@ -42,14 +43,32 @@ namespace demo01.Views.Produtos
             this.label5 = new System.Windows.Forms.Label();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.listaprodutos = new System.Windows.Forms.DataGridView();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnNovo = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnExcluirProduto = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
+            this.c1Command2 = new C1.Win.C1Command.C1Command();
+            this.c1Command3 = new C1.Win.C1Command.C1Command();
+            this.c1Command4 = new C1.Win.C1Command.C1Command();
+            this.c1Command5 = new C1.Win.C1Command.C1Command();
+            this.c1Command6 = new C1.Win.C1Command.C1Command();
+            this.c1Command7 = new C1.Win.C1Command.C1Command();
+            this.c1Command8 = new C1.Win.C1Command.C1Command();
+            this.c1Command9 = new C1.Win.C1Command.C1Command();
+            this.c1Command10 = new C1.Win.C1Command.C1Command();
+            this.c1Command11 = new C1.Win.C1Command.C1Command();
+            this.c1Command12 = new C1.Win.C1Command.C1Command();
+            this.c1Command13 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink2 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink5 = new C1.Win.C1Command.C1CommandLink();
+            this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
+            this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink6 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink7 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink8 = new C1.Win.C1Command.C1CommandLink();
             this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +78,7 @@ namespace demo01.Views.Produtos
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -72,7 +92,7 @@ namespace demo01.Views.Produtos
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 156);
+            this.label1.Location = new System.Drawing.Point(1, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 9;
@@ -81,24 +101,24 @@ namespace demo01.Views.Produtos
             // txtCdProduto
             // 
             this.txtCdProduto.Enabled = false;
-            this.txtCdProduto.Location = new System.Drawing.Point(11, 174);
+            this.txtCdProduto.Location = new System.Drawing.Point(4, 113);
             this.txtCdProduto.Name = "txtCdProduto";
-            this.txtCdProduto.Size = new System.Drawing.Size(91, 20);
+            this.txtCdProduto.Size = new System.Drawing.Size(81, 20);
             this.txtCdProduto.TabIndex = 5;
             this.txtCdProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cdProduto_KeyPress);
             // 
             // txtDescricaoProduto
             // 
             this.txtDescricaoProduto.Enabled = false;
-            this.txtDescricaoProduto.Location = new System.Drawing.Point(108, 174);
+            this.txtDescricaoProduto.Location = new System.Drawing.Point(101, 113);
             this.txtDescricaoProduto.Name = "txtDescricaoProduto";
-            this.txtDescricaoProduto.Size = new System.Drawing.Size(211, 20);
+            this.txtDescricaoProduto.Size = new System.Drawing.Size(201, 20);
             this.txtDescricaoProduto.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(108, 156);
+            this.label3.Location = new System.Drawing.Point(101, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 11;
@@ -107,7 +127,7 @@ namespace demo01.Views.Produtos
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(427, 156);
+            this.label4.Location = new System.Drawing.Point(420, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 13);
             this.label4.TabIndex = 13;
@@ -116,7 +136,7 @@ namespace demo01.Views.Produtos
             // txtQtd
             // 
             this.txtQtd.Enabled = false;
-            this.txtQtd.Location = new System.Drawing.Point(430, 174);
+            this.txtQtd.Location = new System.Drawing.Point(423, 113);
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.Size = new System.Drawing.Size(117, 20);
             this.txtQtd.TabIndex = 8;
@@ -125,7 +145,7 @@ namespace demo01.Views.Produtos
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(322, 156);
+            this.label5.Location = new System.Drawing.Point(315, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 13);
             this.label5.TabIndex = 15;
@@ -134,10 +154,10 @@ namespace demo01.Views.Produtos
             // txtValor
             // 
             this.txtValor.Enabled = false;
-            this.txtValor.Location = new System.Drawing.Point(325, 174);
+            this.txtValor.Location = new System.Drawing.Point(318, 113);
             this.txtValor.MaxLength = 1000000;
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(99, 20);
+            this.txtValor.Size = new System.Drawing.Size(89, 20);
             this.txtValor.TabIndex = 7;
             this.txtValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.valor_KeyPress);
             // 
@@ -151,10 +171,10 @@ namespace demo01.Views.Produtos
             this.descrição,
             this.preçoUn,
             this.estoque});
-            this.listaprodutos.Location = new System.Drawing.Point(11, 200);
+            this.listaprodutos.Location = new System.Drawing.Point(4, 139);
             this.listaprodutos.Name = "listaprodutos";
             this.listaprodutos.ReadOnly = true;
-            this.listaprodutos.Size = new System.Drawing.Size(549, 219);
+            this.listaprodutos.Size = new System.Drawing.Size(539, 264);
             this.listaprodutos.TabIndex = 13;
             this.listaprodutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProdutos_CellClick);
             this.listaprodutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaprodutos_CellContentClick);
@@ -165,52 +185,10 @@ namespace demo01.Views.Produtos
             this.listaprodutos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listaprodutos_MouseDoubleClick);
             this.listaprodutos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listaprodutos_MouseDown);
             // 
-            // btnSalvar
-            // 
-            this.btnSalvar.Enabled = false;
-            this.btnSalvar.Location = new System.Drawing.Point(413, 18);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 3;
-            this.btnSalvar.Text = "&Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.salvar_Click_1);
-            // 
-            // btnNovo
-            // 
-            this.btnNovo.Location = new System.Drawing.Point(413, 92);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 1;
-            this.btnNovo.Text = "&Novo";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.novo_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(413, 48);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 4;
-            this.btnCancelar.Text = "&Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.cancelar_Click);
-            // 
-            // btnExcluirProduto
-            // 
-            this.btnExcluirProduto.Location = new System.Drawing.Point(413, 71);
-            this.btnExcluirProduto.Name = "btnExcluirProduto";
-            this.btnExcluirProduto.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluirProduto.TabIndex = 2;
-            this.btnExcluirProduto.Text = "&Excluir";
-            this.btnExcluirProduto.UseVisualStyleBackColor = true;
-            this.btnExcluirProduto.Click += new System.EventHandler(this.ExcluirProduto_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(23, 71);
+            this.pictureBox1.Location = new System.Drawing.Point(425, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -221,7 +199,7 @@ namespace demo01.Views.Produtos
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(128, 71);
+            this.pictureBox2.Location = new System.Drawing.Point(530, 18);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -232,7 +210,7 @@ namespace demo01.Views.Produtos
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(93, 71);
+            this.pictureBox3.Location = new System.Drawing.Point(495, 18);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(32, 32);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -243,7 +221,7 @@ namespace demo01.Views.Produtos
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(58, 71);
+            this.pictureBox4.Location = new System.Drawing.Point(460, 18);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(32, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -251,9 +229,166 @@ namespace demo01.Views.Produtos
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
+            // c1CommandHolder1
+            // 
+            this.c1CommandHolder1.Commands.Add(this.c1Command2);
+            this.c1CommandHolder1.Commands.Add(this.c1Command3);
+            this.c1CommandHolder1.Commands.Add(this.c1Command4);
+            this.c1CommandHolder1.Commands.Add(this.c1Command5);
+            this.c1CommandHolder1.Commands.Add(this.c1Command6);
+            this.c1CommandHolder1.Commands.Add(this.c1Command7);
+            this.c1CommandHolder1.Commands.Add(this.c1Command8);
+            this.c1CommandHolder1.Commands.Add(this.c1Command9);
+            this.c1CommandHolder1.Commands.Add(this.c1Command10);
+            this.c1CommandHolder1.Commands.Add(this.c1Command11);
+            this.c1CommandHolder1.Commands.Add(this.c1Command12);
+            this.c1CommandHolder1.Commands.Add(this.c1Command13);
+            this.c1CommandHolder1.Owner = this;
+            // 
+            // c1Command2
+            // 
+            this.c1Command2.Image = ((System.Drawing.Image)(resources.GetObject("c1Command2.Image")));
+            this.c1Command2.Name = "c1Command2";
+            this.c1Command2.ShortcutText = "";
+            this.c1Command2.Text = "&Delete";
+            // 
+            // c1Command3
+            // 
+            this.c1Command3.Image = ((System.Drawing.Image)(resources.GetObject("c1Command3.Image")));
+            this.c1Command3.Name = "c1Command3";
+            this.c1Command3.ShortcutText = "";
+            this.c1Command3.Text = "&Save";
+            // 
+            // c1Command4
+            // 
+            this.c1Command4.Image = ((System.Drawing.Image)(resources.GetObject("c1Command4.Image")));
+            this.c1Command4.Name = "c1Command4";
+            this.c1Command4.ShortcutText = "";
+            this.c1Command4.Text = "&Undo";
+            // 
+            // c1Command5
+            // 
+            this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
+            this.c1Command5.Name = "c1Command5";
+            this.c1Command5.ShortcutText = "";
+            this.c1Command5.Text = "&New";
+            // 
+            // c1Command6
+            // 
+            this.c1Command6.Image = ((System.Drawing.Image)(resources.GetObject("c1Command6.Image")));
+            this.c1Command6.Name = "c1Command6";
+            this.c1Command6.ShortcutText = "";
+            this.c1Command6.Text = "&New";
+            // 
+            // c1Command7
+            // 
+            this.c1Command7.Image = ((System.Drawing.Image)(resources.GetObject("c1Command7.Image")));
+            this.c1Command7.Name = "c1Command7";
+            this.c1Command7.ShortcutText = "";
+            this.c1Command7.Text = "&Delete";
+            // 
+            // c1Command8
+            // 
+            this.c1Command8.Image = ((System.Drawing.Image)(resources.GetObject("c1Command8.Image")));
+            this.c1Command8.Name = "c1Command8";
+            this.c1Command8.ShortcutText = "";
+            this.c1Command8.Text = "&Save";
+            // 
+            // c1Command9
+            // 
+            this.c1Command9.Image = ((System.Drawing.Image)(resources.GetObject("c1Command9.Image")));
+            this.c1Command9.Name = "c1Command9";
+            this.c1Command9.ShortcutText = "";
+            this.c1Command9.Text = "&Undo";
+            // 
+            // c1Command10
+            // 
+            this.c1Command10.Image = ((System.Drawing.Image)(resources.GetObject("c1Command10.Image")));
+            this.c1Command10.Name = "c1Command10";
+            this.c1Command10.ShortcutText = "";
+            this.c1Command10.Text = "&New";
+            // 
+            // c1Command11
+            // 
+            this.c1Command11.Image = ((System.Drawing.Image)(resources.GetObject("c1Command11.Image")));
+            this.c1Command11.Name = "c1Command11";
+            this.c1Command11.ShortcutText = "";
+            this.c1Command11.Text = "&Delete";
+            this.c1Command11.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command11_Click);
+            // 
+            // c1Command12
+            // 
+            this.c1Command12.Image = ((System.Drawing.Image)(resources.GetObject("c1Command12.Image")));
+            this.c1Command12.Name = "c1Command12";
+            this.c1Command12.ShortcutText = "";
+            this.c1Command12.Text = "Save all";
+            this.c1Command12.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command12_Click);
+            // 
+            // c1Command13
+            // 
+            this.c1Command13.Image = ((System.Drawing.Image)(resources.GetObject("c1Command13.Image")));
+            this.c1Command13.Name = "c1Command13";
+            this.c1Command13.ShortcutText = "";
+            this.c1Command13.Text = "&Undo";
+            this.c1Command13.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command13_Click);
+            // 
+            // c1CommandLink2
+            // 
+            this.c1CommandLink2.Command = this.c1Command2;
+            this.c1CommandLink2.SortOrder = 1;
+            // 
+            // c1CommandLink3
+            // 
+            this.c1CommandLink3.Command = this.c1Command3;
+            this.c1CommandLink3.SortOrder = 2;
+            // 
+            // c1CommandLink4
+            // 
+            this.c1CommandLink4.Command = this.c1Command4;
+            this.c1CommandLink4.SortOrder = 3;
+            // 
+            // c1CommandLink5
+            // 
+            this.c1CommandLink5.Command = this.c1Command5;
+            // 
+            // c1ToolBar2
+            // 
+            this.c1ToolBar2.AccessibleName = "Tool Bar";
+            this.c1ToolBar2.CommandHolder = this.c1CommandHolder1;
+            this.c1ToolBar2.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
+            this.c1CommandLink1,
+            this.c1CommandLink6,
+            this.c1CommandLink7,
+            this.c1CommandLink8});
+            this.c1ToolBar2.Location = new System.Drawing.Point(23, 63);
+            this.c1ToolBar2.Name = "c1ToolBar2";
+            this.c1ToolBar2.Size = new System.Drawing.Size(98, 26);
+            this.c1ToolBar2.Text = "c1ToolBar2";
+            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
+            // 
+            // c1CommandLink1
+            // 
+            this.c1CommandLink1.Command = this.c1Command10;
+            // 
+            // c1CommandLink6
+            // 
+            this.c1CommandLink6.Command = this.c1Command11;
+            this.c1CommandLink6.SortOrder = 1;
+            // 
+            // c1CommandLink7
+            // 
+            this.c1CommandLink7.Command = this.c1Command12;
+            this.c1CommandLink7.SortOrder = 2;
+            this.c1CommandLink7.ButtonLookChanged += new System.EventHandler(this.c1CommandLink7_ButtonLookChanged);
+            // 
+            // c1CommandLink8
+            // 
+            this.c1CommandLink8.Command = this.c1Command13;
+            this.c1CommandLink8.SortOrder = 3;
+            // 
             // código
             // 
-            this.código.DataPropertyName = "CodigoProduto";
+            this.código.DataPropertyName = "CdProduto";
             this.código.HeaderText = "Código";
             this.código.Name = "código";
             this.código.ReadOnly = true;
@@ -285,14 +420,11 @@ namespace demo01.Views.Produtos
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 426);
+            this.Controls.Add(this.c1ToolBar2);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnExcluirProduto);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnNovo);
-            this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.listaprodutos);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtValor);
@@ -312,6 +444,7 @@ namespace demo01.Views.Produtos
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,17 +461,38 @@ namespace demo01.Views.Produtos
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.DataGridView listaprodutos;
-        private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnExcluirProduto;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private C1ToolBar c1ToolBar1;
+        private C1CommandHolder c1CommandHolder1;
+        private C1Command c1Command2;
+        private C1Command c1Command3;
+        private C1Command c1Command4;
+        private C1Command c1Command5;
+        private C1CommandLink c1CommandLink5;
+        private C1CommandLink c1CommandLink2;
+        private C1CommandLink c1CommandLink3;
+        private C1CommandLink c1CommandLink4;
+        private C1Command c1Command6;
+        private C1Command c1Command7;
+        private C1Command c1Command8;
+        private C1Command c1Command9;
+        private C1ToolBar c1ToolBar2;
+        private C1Command c1Command10;
+        private C1Command c1Command11;
+        private C1Command c1Command12;
+        private C1Command c1Command13;
+        private C1CommandLink c1CommandLink1;
+        private C1CommandLink c1CommandLink6;
+        private C1CommandLink c1CommandLink7;
+        private C1CommandLink c1CommandLink8;
         private System.Windows.Forms.DataGridViewTextBoxColumn código;
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.DataGridViewTextBoxColumn preçoUn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estoque;
+
+        public C1ToolBar C1ToolBar1 { get => c1ToolBar1; set => c1ToolBar1 = value; }
     }
 }

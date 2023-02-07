@@ -14,8 +14,8 @@ namespace demo01.Views.Pedido
 {
     public partial class BuscarProduto : MetroFramework.Forms.MetroForm 
     {
-        
 
+        public string ReturnValue;
         public BuscarProduto()
         {
             InitializeComponent();
@@ -69,14 +69,13 @@ namespace demo01.Views.Pedido
             return null;
         }
 
-        private void formBuscarProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void formBuscarProduto_DoubleClick(object sender, EventArgs e)
         {
-            LerProduto();
-        }
-
-        private void formBuscarProduto_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            LerProduto();
+            if (_bsListaProduto.Current != null && _bsListaProduto.Current is Domain.Produtos.Produto produto)
+            {
+                ReturnValue = produto.CdProduto;
+                this.Close();
+            }
         }
     }
 }

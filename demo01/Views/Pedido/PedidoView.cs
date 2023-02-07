@@ -10,6 +10,7 @@ using demo01.Data.RepositoriesCliente;
 using demo01.Domain.Pedidos;
 using System.Diagnostics;
 using demo01.Domain.Pedido;
+using demo01.Data.Repositories;
 
 namespace demo01.Views.Pedido
 {
@@ -56,6 +57,10 @@ namespace demo01.Views.Pedido
         private void OnClienteLeave(object sender, EventArgs e)
         {
             CarregarCliente();
+        }
+        private void OnProdutoLeave(object sender, EventArgs e)
+        {
+
         }
 
         //private void OnClienteLeave(object sender, EventArgs e)
@@ -209,8 +214,13 @@ namespace demo01.Views.Pedido
         private void btnPesquisarProduto_Click(object sender, EventArgs e)
         {
             BuscarProduto formproduto = new BuscarProduto();
-            DialogResult dialogResult = formproduto.ShowDialog();
-            txtCdCliente.Text = formproduto.Text;
+            formproduto.ShowDialog();
+
+            if (formproduto.ReturnValue != null)
+            {
+                txtCdProduto.Text = formproduto.ReturnValue;
+                CarregarProduto();
+            }
         }
         public void CarregaForm(string cdcliente)
         {
@@ -351,6 +361,20 @@ namespace demo01.Views.Pedido
                 {
                     txtCdCliente.Text = cliente.CdCliente;
                     txtNomeCliente.Text = cliente.NomeCliente;
+                }
+            }
+        }
+        private void CarregarProduto()
+        {
+            if (!string.IsNullOrWhiteSpace(txtCdProduto.Text))
+            {
+                var produto = new ProdutoRepository().ObterPorCodigo(txtCdProduto.Text);
+
+                if (produto != null)
+                {
+                    txtCdProduto.Text = produto.CdProduto;
+                    txtDescricaoProduto.Text = produto.Descricao;
+                    txtValor.Text = produto.Valor.ToString();
                 }
             }
         }

@@ -168,10 +168,6 @@ namespace demo01.Views.Produtos
         {
             HabilitarCampo();
             txtCdProduto.Enabled = false;
-            btnSalvar.Enabled = true;
-            btnNovo.Enabled = false;
-            btnCancelar.Enabled = true;
-            btnExcluirProduto.Enabled = false;
         }
 
 
@@ -197,7 +193,6 @@ namespace demo01.Views.Produtos
             txtQtd.Enabled = false;
             txtValor.Enabled = false;
             txtDescricaoProduto.Enabled = false;
-            btnSalvar.Enabled = false;
         }
 
 
@@ -255,9 +250,6 @@ namespace demo01.Views.Produtos
         {
             LerProduto();
             DesabilitarCampo();
-            btnNovo.Enabled = true;
-            btnExcluirProduto.Enabled = true;
-            btnCancelar.Enabled = false;
 
         }
         private void listaprodutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -290,7 +282,6 @@ namespace demo01.Views.Produtos
             if (txtCdProduto.Enabled == false)
             {
                 AtualizarProduto();
-                btnNovo.Enabled = true;
             }
             else
             {
@@ -300,19 +291,12 @@ namespace demo01.Views.Produtos
         private void cancelar_Click(object sender, EventArgs e)
         {
             limparCampos();
-            btnNovo.Enabled = true;
-            btnExcluirProduto.Enabled = true;
-            btnSalvar.Enabled = false;
             DesabilitarCampo();
-            btnCancelar.Enabled = false;
         }
         private void novo_Click(object sender, EventArgs e)
         {
             HabilitarCampo();
             limparCampos();
-            btnSalvar.Enabled = true;
-            btnExcluirProduto.Enabled = false;
-            btnCancelar.Enabled = true;
         }
         private void valor_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -371,19 +355,12 @@ namespace demo01.Views.Produtos
         {
             HabilitarCampo();
             limparCampos();
-            btnSalvar.Enabled = true;
-            btnExcluirProduto.Enabled = false;
-            btnCancelar.Enabled = true;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             limparCampos();
-            btnNovo.Enabled = true;
-            btnExcluirProduto.Enabled = true;
-            btnSalvar.Enabled = false;
             DesabilitarCampo();
-            btnCancelar.Enabled = false;
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -391,7 +368,6 @@ namespace demo01.Views.Produtos
             if (txtCdProduto.Enabled == false)
             {
                 AtualizarProduto();
-                btnNovo.Enabled = true;
             }
             else
             {
@@ -424,6 +400,73 @@ namespace demo01.Views.Produtos
             }
             else
                 MessageBox.Show(string.Format("Processo cancelado! "));
+        }
+
+        private void c1ToolBar2_Click(object sender, EventArgs e)
+        {
+            HabilitarCampo();
+            limparCampos();
+        }
+
+        private void c1Command11_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            var resposta = DialogResult;
+            var currentProduto = GetCurrentProduto();
+            if (currentProduto == null)
+                return;
+
+            resposta = MessageBox.Show("Deseje realmente excluir este produto?", "Excluir produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resposta != DialogResult.No)
+            {
+                if ((txtCdProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != "") & (txtDescricaoProduto.Text != ""))
+                {
+                    //objTabela.CdProduto = txtCdProduto.Text.Trim();
+                    var result = new ProdutoRepository().DeleteProduto(currentProduto);
+                    MessageBox.Show(string.Format("Produto {0} Excluido com sucesso!", txtDescricaoProduto.Text));
+                    limparCampos();
+                    ListarGrid();
+                    DesabilitarCampo();
+                }
+                else
+
+                    MessageBox.Show(string.Format("Selecione um produto para que possa realizar a exclusão!"));
+            }
+            else
+                MessageBox.Show(string.Format("Processo cancelado! "));
+        }
+
+        private void c1CommandLink7_ButtonLookChanged(object sender, EventArgs e)
+        {
+            if (txtCdProduto.Enabled == false)
+            {
+                AtualizarProduto();
+            }
+            else
+            {
+                InserirProduto();
+            }
+        }
+
+        private void c1Command13_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            limparCampos();
+            DesabilitarCampo();
+        }
+
+       
+
+        
+
+        private void c1Command12_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            if (txtCdProduto.Enabled == false)
+            {
+                AtualizarProduto();
+            }
+            else
+            {
+                InserirProduto();
+            }
         }
     }
 }
