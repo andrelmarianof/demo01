@@ -30,12 +30,17 @@ namespace demo01.Views.Cliente
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClienteView));
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.txtCodigoClientezz = new System.Windows.Forms.TextBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listacliente = new System.Windows.Forms.DataGridView();
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,19 +48,26 @@ namespace demo01.Views.Cliente
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.c1DataSet1 = new C1.Data.C1DataSet();
+            this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
+            this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
+            this.c1Command1 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink2 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command2 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command3 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command4 = new C1.Win.C1Command.C1Command();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(135, 162);
+            this.txtNomeCliente.Location = new System.Drawing.Point(135, 114);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
             this.txtNomeCliente.TabIndex = 4;
@@ -64,7 +76,7 @@ namespace demo01.Views.Cliente
             // 
             // txtCodigoClientezz
             // 
-            this.txtCodigoClientezz.Location = new System.Drawing.Point(14, 162);
+            this.txtCodigoClientezz.Location = new System.Drawing.Point(14, 114);
             this.txtCodigoClientezz.Name = "txtCodigoClientezz";
             this.txtCodigoClientezz.Size = new System.Drawing.Size(114, 20);
             this.txtCodigoClientezz.TabIndex = 3;
@@ -73,7 +85,7 @@ namespace demo01.Views.Cliente
             // 
             // BtnSalvar
             // 
-            this.BtnSalvar.Location = new System.Drawing.Point(92, 90);
+            this.BtnSalvar.Location = new System.Drawing.Point(388, 11);
             this.BtnSalvar.Name = "BtnSalvar";
             this.BtnSalvar.Size = new System.Drawing.Size(75, 23);
             this.BtnSalvar.TabIndex = 1;
@@ -84,7 +96,7 @@ namespace demo01.Views.Cliente
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 146);
+            this.label1.Location = new System.Drawing.Point(11, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 4;
@@ -93,7 +105,7 @@ namespace demo01.Views.Cliente
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(132, 146);
+            this.label2.Location = new System.Drawing.Point(132, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
@@ -109,86 +121,16 @@ namespace demo01.Views.Cliente
             this.descrição,
             this.Cpf,
             this.Email});
-            this.listacliente.Location = new System.Drawing.Point(11, 188);
+            this.listacliente.Location = new System.Drawing.Point(11, 140);
             this.listacliente.Name = "listacliente";
             this.listacliente.ReadOnly = true;
-            this.listacliente.Size = new System.Drawing.Size(644, 223);
+            this.listacliente.Size = new System.Drawing.Size(658, 266);
             this.listacliente.TabIndex = 7;
             this.listacliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellClick);
             this.listacliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellContentClick);
             this.listacliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listacliente_CellDoubleClick);
             this.listacliente.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listacliente_CellFormatting);
             this.listacliente.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Listacliente_ColumnHeaderMouseClick);
-            // 
-            // btnNovoCliente
-            // 
-            this.btnNovoCliente.Location = new System.Drawing.Point(11, 90);
-            this.btnNovoCliente.Name = "btnNovoCliente";
-            this.btnNovoCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnNovoCliente.TabIndex = 0;
-            this.btnNovoCliente.Text = "&Novo";
-            this.btnNovoCliente.UseVisualStyleBackColor = true;
-            this.btnNovoCliente.Click += new System.EventHandler(this.btnNovoCliente_Click);
-            // 
-            // btnExcluirCliente
-            // 
-            this.btnExcluirCliente.Location = new System.Drawing.Point(173, 90);
-            this.btnExcluirCliente.Name = "btnExcluirCliente";
-            this.btnExcluirCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluirCliente.TabIndex = 2;
-            this.btnExcluirCliente.Text = "&Excluir";
-            this.btnExcluirCliente.UseVisualStyleBackColor = true;
-            this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(349, 146);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "&C P F";
-            // 
-            // mskCPF
-            // 
-            this.mskCPF.Location = new System.Drawing.Point(352, 162);
-            this.mskCPF.Mask = "000.000.000-00";
-            this.mskCPF.Name = "mskCPF";
-            this.mskCPF.Size = new System.Drawing.Size(100, 20);
-            this.mskCPF.TabIndex = 5;
-            this.mskCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(455, 146);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "&E-mail";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(458, 162);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(211, 20);
-            this.txtEmail.TabIndex = 6;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
-            // 
-            // c1DataSet1
-            // 
-            this.c1DataSet1.BindingContextCtrl = this;
-            this.c1DataSet1.DataLibrary = "";
-            this.c1DataSet1.DataLibraryUrl = "";
-            this.c1DataSet1.DataSetDef = "";
-            this.c1DataSet1.Locale = new System.Globalization.CultureInfo("pt-BR");
-            this.c1DataSet1.Name = "c1DataSet1";
-            this.c1DataSet1.SchemaClassName = "";
-            this.c1DataSet1.SchemaDef = null;
-            // 
-            // clienteBindingSource
-            // 
-            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
             // 
             // código
             // 
@@ -220,12 +162,154 @@ namespace demo01.Views.Cliente
             this.Email.ReadOnly = true;
             this.Email.Width = 200;
             // 
+            // btnNovoCliente
+            // 
+            this.btnNovoCliente.Location = new System.Drawing.Point(307, 11);
+            this.btnNovoCliente.Name = "btnNovoCliente";
+            this.btnNovoCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnNovoCliente.TabIndex = 0;
+            this.btnNovoCliente.Text = "&Novo";
+            this.btnNovoCliente.UseVisualStyleBackColor = true;
+            this.btnNovoCliente.Click += new System.EventHandler(this.btnNovoCliente_Click);
+            // 
+            // btnExcluirCliente
+            // 
+            this.btnExcluirCliente.Location = new System.Drawing.Point(469, 11);
+            this.btnExcluirCliente.Name = "btnExcluirCliente";
+            this.btnExcluirCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluirCliente.TabIndex = 2;
+            this.btnExcluirCliente.Text = "&Excluir";
+            this.btnExcluirCliente.UseVisualStyleBackColor = true;
+            this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(349, 98);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "&C P F";
+            // 
+            // mskCPF
+            // 
+            this.mskCPF.Location = new System.Drawing.Point(352, 114);
+            this.mskCPF.Mask = "000.000.000-00";
+            this.mskCPF.Name = "mskCPF";
+            this.mskCPF.Size = new System.Drawing.Size(100, 20);
+            this.mskCPF.TabIndex = 5;
+            this.mskCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(455, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "&E-mail";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(458, 114);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(211, 20);
+            this.txtEmail.TabIndex = 6;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
+            // 
+            // c1DataSet1
+            // 
+            this.c1DataSet1.BindingContextCtrl = this;
+            this.c1DataSet1.DataLibrary = "";
+            this.c1DataSet1.DataLibraryUrl = "";
+            this.c1DataSet1.DataSetDef = "";
+            this.c1DataSet1.Locale = new System.Globalization.CultureInfo("pt-BR");
+            this.c1DataSet1.Name = "c1DataSet1";
+            this.c1DataSet1.SchemaClassName = "";
+            this.c1DataSet1.SchemaDef = null;
+            // 
+            // c1ToolBar2
+            // 
+            this.c1ToolBar2.AccessibleName = "Tool Bar";
+            this.c1ToolBar2.AutoSize = false;
+            this.c1ToolBar2.CommandHolder = null;
+            this.c1ToolBar2.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
+            this.c1CommandLink1,
+            this.c1CommandLink2,
+            this.c1CommandLink3,
+            this.c1CommandLink4});
+            this.c1ToolBar2.Location = new System.Drawing.Point(8, 63);
+            this.c1ToolBar2.Name = "c1ToolBar2";
+            this.c1ToolBar2.Size = new System.Drawing.Size(661, 26);
+            this.c1ToolBar2.Text = "c1ToolBar2";
+            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
+            // 
+            // c1CommandLink1
+            // 
+            this.c1CommandLink1.Command = this.c1Command1;
+            // 
+            // c1CommandHolder1
+            // 
+            this.c1CommandHolder1.Commands.Add(this.c1Command1);
+            this.c1CommandHolder1.Commands.Add(this.c1Command2);
+            this.c1CommandHolder1.Commands.Add(this.c1Command3);
+            this.c1CommandHolder1.Commands.Add(this.c1Command4);
+            this.c1CommandHolder1.Owner = this;
+            // 
+            // c1Command1
+            // 
+            this.c1Command1.Image = ((System.Drawing.Image)(resources.GetObject("c1Command1.Image")));
+            this.c1Command1.Name = "c1Command1";
+            this.c1Command1.ShortcutText = "";
+            this.c1Command1.Text = "&New";
+            // 
+            // c1CommandLink2
+            // 
+            this.c1CommandLink2.Command = this.c1Command2;
+            this.c1CommandLink2.SortOrder = 1;
+            // 
+            // c1Command2
+            // 
+            this.c1Command2.Image = ((System.Drawing.Image)(resources.GetObject("c1Command2.Image")));
+            this.c1Command2.Name = "c1Command2";
+            this.c1Command2.ShortcutText = "";
+            this.c1Command2.Text = "Save all";
+            // 
+            // c1CommandLink3
+            // 
+            this.c1CommandLink3.Command = this.c1Command3;
+            this.c1CommandLink3.SortOrder = 2;
+            // 
+            // c1Command3
+            // 
+            this.c1Command3.Image = ((System.Drawing.Image)(resources.GetObject("c1Command3.Image")));
+            this.c1Command3.Name = "c1Command3";
+            this.c1Command3.ShortcutText = "";
+            this.c1Command3.Text = "&Delete";
+            // 
+            // c1CommandLink4
+            // 
+            this.c1CommandLink4.Command = this.c1Command4;
+            this.c1CommandLink4.SortOrder = 3;
+            // 
+            // c1Command4
+            // 
+            this.c1Command4.Image = ((System.Drawing.Image)(resources.GetObject("c1Command4.Image")));
+            this.c1Command4.Name = "c1Command4";
+            this.c1Command4.ShortcutText = "";
+            this.c1Command4.Text = "Save all";
+            // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
+            // 
             // ClienteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackImagePadding = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.ClientSize = new System.Drawing.Size(678, 424);
+            this.ClientSize = new System.Drawing.Size(678, 425);
+            this.Controls.Add(this.c1ToolBar2);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.mskCPF);
@@ -243,6 +327,7 @@ namespace demo01.Views.Cliente
             this.Load += new System.EventHandler(this.Cliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -269,5 +354,15 @@ namespace demo01.Views.Cliente
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cpf;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink1;
+        private C1.Win.C1Command.C1Command c1Command1;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink2;
+        private C1.Win.C1Command.C1Command c1Command2;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink3;
+        private C1.Win.C1Command.C1Command c1Command3;
+        private C1.Win.C1Command.C1CommandHolder c1CommandHolder1;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink4;
+        private C1.Win.C1Command.C1Command c1Command4;
+        private C1.Win.C1Command.C1ToolBar c1ToolBar2;
     }
 }

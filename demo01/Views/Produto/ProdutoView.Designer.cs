@@ -64,15 +64,15 @@ namespace demo01.Views.Produtos
             this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink5 = new C1.Win.C1Command.C1CommandLink();
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink6 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink7 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink8 = new C1.Win.C1Command.C1CommandLink();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.listaprodutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -138,7 +138,7 @@ namespace demo01.Views.Produtos
             this.txtQtd.Enabled = false;
             this.txtQtd.Location = new System.Drawing.Point(423, 113);
             this.txtQtd.Name = "txtQtd";
-            this.txtQtd.Size = new System.Drawing.Size(117, 20);
+            this.txtQtd.Size = new System.Drawing.Size(120, 20);
             this.txtQtd.TabIndex = 8;
             this.txtQtd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtd_KeyPress);
             // 
@@ -351,41 +351,6 @@ namespace demo01.Views.Produtos
             // 
             this.c1CommandLink5.Command = this.c1Command5;
             // 
-            // c1ToolBar2
-            // 
-            this.c1ToolBar2.AccessibleName = "Tool Bar";
-            this.c1ToolBar2.CommandHolder = this.c1CommandHolder1;
-            this.c1ToolBar2.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
-            this.c1CommandLink1,
-            this.c1CommandLink6,
-            this.c1CommandLink7,
-            this.c1CommandLink8});
-            this.c1ToolBar2.Location = new System.Drawing.Point(23, 63);
-            this.c1ToolBar2.Name = "c1ToolBar2";
-            this.c1ToolBar2.Size = new System.Drawing.Size(98, 26);
-            this.c1ToolBar2.Text = "c1ToolBar2";
-            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
-            // 
-            // c1CommandLink1
-            // 
-            this.c1CommandLink1.Command = this.c1Command10;
-            // 
-            // c1CommandLink6
-            // 
-            this.c1CommandLink6.Command = this.c1Command11;
-            this.c1CommandLink6.SortOrder = 1;
-            // 
-            // c1CommandLink7
-            // 
-            this.c1CommandLink7.Command = this.c1Command12;
-            this.c1CommandLink7.SortOrder = 2;
-            this.c1CommandLink7.ButtonLookChanged += new System.EventHandler(this.c1CommandLink7_ButtonLookChanged);
-            // 
-            // c1CommandLink8
-            // 
-            this.c1CommandLink8.Command = this.c1Command13;
-            this.c1CommandLink8.SortOrder = 3;
-            // 
             // código
             // 
             this.código.DataPropertyName = "CdProduto";
@@ -414,6 +379,42 @@ namespace demo01.Views.Produtos
             this.estoque.HeaderText = "Estoque";
             this.estoque.Name = "estoque";
             this.estoque.ReadOnly = true;
+            // 
+            // c1ToolBar2
+            // 
+            this.c1ToolBar2.AccessibleName = "Tool Bar";
+            this.c1ToolBar2.AutoSize = false;
+            this.c1ToolBar2.CommandHolder = this.c1CommandHolder1;
+            this.c1ToolBar2.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
+            this.c1CommandLink1,
+            this.c1CommandLink6,
+            this.c1CommandLink7,
+            this.c1CommandLink8});
+            this.c1ToolBar2.Location = new System.Drawing.Point(7, 56);
+            this.c1ToolBar2.Name = "c1ToolBar2";
+            this.c1ToolBar2.Size = new System.Drawing.Size(536, 26);
+            this.c1ToolBar2.Text = "c1ToolBar2";
+            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
+            // 
+            // c1CommandLink1
+            // 
+            this.c1CommandLink1.Command = this.c1Command10;
+            // 
+            // c1CommandLink6
+            // 
+            this.c1CommandLink6.Command = this.c1Command11;
+            this.c1CommandLink6.SortOrder = 1;
+            // 
+            // c1CommandLink7
+            // 
+            this.c1CommandLink7.Command = this.c1Command12;
+            this.c1CommandLink7.SortOrder = 2;
+            this.c1CommandLink7.ButtonLookChanged += new System.EventHandler(this.c1CommandLink7_ButtonLookChanged);
+            // 
+            // c1CommandLink8
+            // 
+            this.c1CommandLink8.Command = this.c1Command13;
+            this.c1CommandLink8.SortOrder = 3;
             // 
             // ProdutoView
             // 
@@ -479,19 +480,19 @@ namespace demo01.Views.Produtos
         private C1Command c1Command7;
         private C1Command c1Command8;
         private C1Command c1Command9;
-        private C1ToolBar c1ToolBar2;
         private C1Command c1Command10;
         private C1Command c1Command11;
         private C1Command c1Command12;
         private C1Command c1Command13;
-        private C1CommandLink c1CommandLink1;
-        private C1CommandLink c1CommandLink6;
-        private C1CommandLink c1CommandLink7;
-        private C1CommandLink c1CommandLink8;
         private System.Windows.Forms.DataGridViewTextBoxColumn código;
         private System.Windows.Forms.DataGridViewTextBoxColumn descrição;
         private System.Windows.Forms.DataGridViewTextBoxColumn preçoUn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estoque;
+        private C1ToolBar c1ToolBar2;
+        private C1CommandLink c1CommandLink1;
+        private C1CommandLink c1CommandLink6;
+        private C1CommandLink c1CommandLink7;
+        private C1CommandLink c1CommandLink8;
 
         public C1ToolBar C1ToolBar1 { get => c1ToolBar1; set => c1ToolBar1 = value; }
     }
