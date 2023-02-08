@@ -43,10 +43,10 @@ namespace demo01.Views.Produtos
             this.label5 = new System.Windows.Forms.Label();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.listaprodutos = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
             this.c1Command2 = new C1.Win.C1Command.C1Command();
             this.c1Command3 = new C1.Win.C1Command.C1Command();
@@ -64,20 +64,12 @@ namespace demo01.Views.Produtos
             this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink5 = new C1.Win.C1Command.C1CommandLink();
-            this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preçoUn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink6 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink7 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink8 = new C1.Win.C1Command.C1CommandLink();
             ((System.ComponentModel.ISupportInitialize)(this.listaprodutos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,49 +177,34 @@ namespace demo01.Views.Produtos
             this.listaprodutos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listaprodutos_MouseDoubleClick);
             this.listaprodutos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listaprodutos_MouseDown);
             // 
-            // pictureBox1
+            // código
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(425, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.código.DataPropertyName = "CdProduto";
+            this.código.HeaderText = "Código";
+            this.código.Name = "código";
+            this.código.ReadOnly = true;
             // 
-            // pictureBox2
+            // descrição
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(530, 18);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 17;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.descrição.DataPropertyName = "Descricao";
+            this.descrição.HeaderText = "Descrição";
+            this.descrição.Name = "descrição";
+            this.descrição.ReadOnly = true;
+            this.descrição.Width = 200;
             // 
-            // pictureBox3
+            // preçoUn
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(495, 18);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 18;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.preçoUn.DataPropertyName = "valor";
+            this.preçoUn.HeaderText = "Valor";
+            this.preçoUn.Name = "preçoUn";
+            this.preçoUn.ReadOnly = true;
             // 
-            // pictureBox4
+            // estoque
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(460, 18);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 19;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.estoque.DataPropertyName = "Estoque";
+            this.estoque.HeaderText = "Estoque";
+            this.estoque.Name = "estoque";
+            this.estoque.ReadOnly = true;
             // 
             // c1CommandHolder1
             // 
@@ -351,35 +328,6 @@ namespace demo01.Views.Produtos
             // 
             this.c1CommandLink5.Command = this.c1Command5;
             // 
-            // código
-            // 
-            this.código.DataPropertyName = "CdProduto";
-            this.código.HeaderText = "Código";
-            this.código.Name = "código";
-            this.código.ReadOnly = true;
-            // 
-            // descrição
-            // 
-            this.descrição.DataPropertyName = "Descricao";
-            this.descrição.HeaderText = "Descrição";
-            this.descrição.Name = "descrição";
-            this.descrição.ReadOnly = true;
-            this.descrição.Width = 200;
-            // 
-            // preçoUn
-            // 
-            this.preçoUn.DataPropertyName = "valor";
-            this.preçoUn.HeaderText = "Valor";
-            this.preçoUn.Name = "preçoUn";
-            this.preçoUn.ReadOnly = true;
-            // 
-            // estoque
-            // 
-            this.estoque.DataPropertyName = "Estoque";
-            this.estoque.HeaderText = "Estoque";
-            this.estoque.Name = "estoque";
-            this.estoque.ReadOnly = true;
-            // 
             // c1ToolBar2
             // 
             this.c1ToolBar2.AccessibleName = "Tool Bar";
@@ -422,10 +370,6 @@ namespace demo01.Views.Produtos
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 426);
             this.Controls.Add(this.c1ToolBar2);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.listaprodutos);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtValor);
@@ -441,10 +385,6 @@ namespace demo01.Views.Produtos
             this.Text = "&Cadastro de produto";
             this.Load += new System.EventHandler(this.fProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listaprodutos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -462,10 +402,6 @@ namespace demo01.Views.Produtos
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.DataGridView listaprodutos;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private C1ToolBar c1ToolBar1;
         private C1CommandHolder c1CommandHolder1;
         private C1Command c1Command2;

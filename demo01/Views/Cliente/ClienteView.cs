@@ -26,8 +26,6 @@ namespace demo01.Views.Cliente
         {
             InitializeComponent();
             DesabilitarCampo();
-            BtnSalvar.Enabled = false;
-            btnExcluirCliente.Enabled = true;
 
         }
         #endregion
@@ -53,8 +51,6 @@ namespace demo01.Views.Cliente
                             limparCampos();
                             ListarGrid();
                             DesabilitarCampo();
-                            BtnSalvar.Enabled = false;
-                            btnExcluirCliente.Enabled = true;
                         }
                            else
                         {
@@ -121,8 +117,6 @@ namespace demo01.Views.Cliente
                         {
                             MessageBox.Show(string.Format("O cadastro do cliente {0} foi alterado com sucesso!", txtNomeCliente.Text));
                             ListarGrid();
-                            btnNovoCliente.Enabled = true;
-                            BtnSalvar.Enabled = false;
                             DesabilitarCampo();
                         }
                         else
@@ -186,9 +180,6 @@ namespace demo01.Views.Cliente
         private void Editar()
         {
             HabilitarCampo();
-            btnExcluirCliente.Enabled = false;
-            btnNovoCliente.Enabled = false;
-            BtnSalvar.Enabled = true;
             txtCodigoClientezz.Enabled = false;
             txtEmail.Enabled = true; 
         }
@@ -216,7 +207,6 @@ namespace demo01.Views.Cliente
 
                     ListarGrid();
                     LerCliente();
-                    BtnSalvar.Enabled = false;
 
                 }
                 else
@@ -285,8 +275,6 @@ namespace demo01.Views.Cliente
         {
             limparCampos();
             HabilitarCampo();
-            BtnSalvar.Enabled = true;
-            btnExcluirCliente.Enabled = false;
 
             if (txtCodigoClientezz.Enabled)
                 txtCodigoClientezz.Focus();
@@ -294,8 +282,6 @@ namespace demo01.Views.Cliente
         private void listacliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LerCliente();
-            BtnSalvar.Enabled = false;
-            btnNovoCliente.Enabled = true;
             DesabilitarCampo();
         }
         private void BtnSalvar_Click(object sender, EventArgs e)
@@ -319,7 +305,6 @@ namespace demo01.Views.Cliente
         public void listacliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             LerCliente();
-            btnExcluirCliente.Enabled = true;
         }
         private void listacliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -368,8 +353,6 @@ namespace demo01.Views.Cliente
         {
             limparCampos();
             HabilitarCampo();
-            BtnSalvar.Enabled = true;
-            btnExcluirCliente.Enabled = false;
 
             if (txtCodigoClientezz.Enabled)
                 txtCodigoClientezz.Focus();
@@ -378,8 +361,6 @@ namespace demo01.Views.Cliente
         {
             limparCampos();
             HabilitarCampo();
-            BtnSalvar.Enabled = true;
-            btnExcluirCliente.Enabled = false;
 
             if (txtCodigoClientezz.Enabled)
                 txtCodigoClientezz.Focus();
@@ -388,8 +369,6 @@ namespace demo01.Views.Cliente
         {
             limparCampos();
             HabilitarCampo();
-            BtnSalvar.Enabled = true;
-            btnExcluirCliente.Enabled = false;
 
             if (txtCodigoClientezz.Enabled)
                 txtCodigoClientezz.Focus();

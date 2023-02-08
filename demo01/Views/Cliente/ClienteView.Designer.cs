@@ -33,7 +33,6 @@ namespace demo01.Views.Cliente
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClienteView));
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.txtCodigoClientezz = new System.Windows.Forms.TextBox();
-            this.BtnSalvar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listacliente = new System.Windows.Forms.DataGridView();
@@ -41,8 +40,6 @@ namespace demo01.Views.Cliente
             this.descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnNovoCliente = new System.Windows.Forms.Button();
-            this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.mskCPF = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,8 +55,8 @@ namespace demo01.Views.Cliente
             this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command4 = new C1.Win.C1Command.C1Command();
             this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
-            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.c1Command5 = new C1.Win.C1Command.C1Command();
+            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
@@ -83,16 +80,6 @@ namespace demo01.Views.Cliente
             this.txtCodigoClientezz.TabIndex = 3;
             this.txtCodigoClientezz.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
             this.txtCodigoClientezz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
-            // 
-            // BtnSalvar
-            // 
-            this.BtnSalvar.Location = new System.Drawing.Point(388, 11);
-            this.BtnSalvar.Name = "BtnSalvar";
-            this.BtnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.BtnSalvar.TabIndex = 1;
-            this.BtnSalvar.Text = "&Salvar";
-            this.BtnSalvar.UseVisualStyleBackColor = true;
-            this.BtnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // label1
             // 
@@ -162,26 +149,6 @@ namespace demo01.Views.Cliente
             this.Email.Name = "Email";
             this.Email.ReadOnly = true;
             this.Email.Width = 200;
-            // 
-            // btnNovoCliente
-            // 
-            this.btnNovoCliente.Location = new System.Drawing.Point(307, 11);
-            this.btnNovoCliente.Name = "btnNovoCliente";
-            this.btnNovoCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnNovoCliente.TabIndex = 0;
-            this.btnNovoCliente.Text = "&Novo";
-            this.btnNovoCliente.UseVisualStyleBackColor = true;
-            this.btnNovoCliente.Click += new System.EventHandler(this.btnNovoCliente_Click);
-            // 
-            // btnExcluirCliente
-            // 
-            this.btnExcluirCliente.Location = new System.Drawing.Point(469, 11);
-            this.btnExcluirCliente.Name = "btnExcluirCliente";
-            this.btnExcluirCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluirCliente.TabIndex = 2;
-            this.btnExcluirCliente.Text = "&Excluir";
-            this.btnExcluirCliente.UseVisualStyleBackColor = true;
-            this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
             // 
             // label3
             // 
@@ -301,16 +268,16 @@ namespace demo01.Views.Cliente
             this.c1CommandHolder1.Commands.Add(this.c1Command5);
             this.c1CommandHolder1.Owner = this;
             // 
-            // clienteBindingSource
-            // 
-            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
-            // 
             // c1Command5
             // 
             this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
             this.c1Command5.Name = "c1Command5";
             this.c1Command5.ShortcutText = "";
             this.c1Command5.Text = "Cancelar";
+            // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
             // 
             // ClienteView
             // 
@@ -323,12 +290,9 @@ namespace demo01.Views.Cliente
             this.Controls.Add(this.label4);
             this.Controls.Add(this.mskCPF);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnExcluirCliente);
-            this.Controls.Add(this.btnNovoCliente);
             this.Controls.Add(this.listacliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.BtnSalvar);
             this.Controls.Add(this.txtCodigoClientezz);
             this.Controls.Add(this.txtNomeCliente);
             this.Name = "ClienteView";
@@ -347,12 +311,9 @@ namespace demo01.Views.Cliente
 
         private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.TextBox txtCodigoClientezz;
-        private System.Windows.Forms.Button BtnSalvar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView listacliente;
-        private System.Windows.Forms.Button btnNovoCliente;
-        private System.Windows.Forms.Button btnExcluirCliente;
         private System.Windows.Forms.BindingSource clienteBindingSource;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MaskedTextBox mskCPF;
