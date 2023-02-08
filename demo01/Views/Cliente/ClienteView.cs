@@ -386,7 +386,13 @@ namespace demo01.Views.Cliente
         }
         private void c1Command02_Clic(object sender, EventArgs e)
         {
+            limparCampos();
+            HabilitarCampo();
+            BtnSalvar.Enabled = true;
+            btnExcluirCliente.Enabled = false;
 
+            if (txtCodigoClientezz.Enabled)
+                txtCodigoClientezz.Focus();
         }
     }
 }

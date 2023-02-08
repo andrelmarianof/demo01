@@ -29,6 +29,7 @@ namespace demo01.Views.Pedido
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PedidoView));
             this.btnSalvarPedido = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCdCliente = new System.Windows.Forms.TextBox();
@@ -73,12 +74,30 @@ namespace demo01.Views.Pedido
             this.btnCancelarPedido = new System.Windows.Forms.Button();
             this.btnPesquisarPedido = new System.Windows.Forms.Button();
             this.btnExcluirPedidoItem = new System.Windows.Forms.Button();
+            this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
+            this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command1 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command5 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink2 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command2 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command3 = new C1.Win.C1Command.C1Command();
+            this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
+            this.c1Command4 = new C1.Win.C1Command.C1Command();
+            this.c1Command6 = new C1.Win.C1Command.C1Command();
+            this.c1ToolBar1 = new C1.Win.C1Command.C1ToolBar();
+            this.c1CommandLink5 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink6 = new C1.Win.C1Command.C1CommandLink();
+            this.c1CommandLink7 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command7 = new C1.Win.C1Command.C1Command();
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvarPedido
             // 
-            this.btnSalvarPedido.Location = new System.Drawing.Point(109, 73);
+            this.btnSalvarPedido.Location = new System.Drawing.Point(464, 98);
             this.btnSalvarPedido.Name = "btnSalvarPedido";
             this.btnSalvarPedido.Size = new System.Drawing.Size(98, 25);
             this.btnSalvarPedido.TabIndex = 0;
@@ -101,15 +120,15 @@ namespace demo01.Views.Pedido
             this.txtCdCliente.Location = new System.Drawing.Point(18, 159);
             this.txtCdCliente.Name = "txtCdCliente";
             this.txtCdCliente.Size = new System.Drawing.Size(86, 20);
-            this.txtCdCliente.TabIndex = 7;
+            this.txtCdCliente.TabIndex = 0;
             this.txtCdCliente.TextChanged += new System.EventHandler(this.cdCliente_TextChanged);
             // 
-            // txtDescricaoCliente
+            // txtNomeCliente
             // 
             this.txtNomeCliente.Location = new System.Drawing.Point(109, 159);
-            this.txtNomeCliente.Name = "txtDescricaoCliente";
+            this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
-            this.txtNomeCliente.TabIndex = 6;
+            this.txtNomeCliente.TabIndex = 1;
             // 
             // label1
             // 
@@ -144,14 +163,14 @@ namespace demo01.Views.Pedido
             this.txtCdProduto.Location = new System.Drawing.Point(18, 511);
             this.txtCdProduto.Name = "txtCdProduto";
             this.txtCdProduto.Size = new System.Drawing.Size(86, 20);
-            this.txtCdProduto.TabIndex = 12;
+            this.txtCdProduto.TabIndex = 3;
             // 
             // txtDescricaoProduto
             // 
             this.txtDescricaoProduto.Location = new System.Drawing.Point(109, 511);
             this.txtDescricaoProduto.Name = "txtDescricaoProduto";
             this.txtDescricaoProduto.Size = new System.Drawing.Size(256, 20);
-            this.txtDescricaoProduto.TabIndex = 11;
+            this.txtDescricaoProduto.TabIndex = 4;
             // 
             // label5
             // 
@@ -167,11 +186,11 @@ namespace demo01.Views.Pedido
             this.txtQtd.Location = new System.Drawing.Point(486, 511);
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.Size = new System.Drawing.Size(76, 20);
-            this.txtQtd.TabIndex = 16;
+            this.txtQtd.TabIndex = 7;
             // 
             // btnAddProduto
             // 
-            this.btnAddProduto.Location = new System.Drawing.Point(18, 205);
+            this.btnAddProduto.Location = new System.Drawing.Point(446, 143);
             this.btnAddProduto.Name = "btnAddProduto";
             this.btnAddProduto.Size = new System.Drawing.Size(102, 20);
             this.btnAddProduto.TabIndex = 18;
@@ -181,7 +200,7 @@ namespace demo01.Views.Pedido
             // 
             // btnNovoPedido
             // 
-            this.btnNovoPedido.Location = new System.Drawing.Point(18, 73);
+            this.btnNovoPedido.Location = new System.Drawing.Point(372, 104);
             this.btnNovoPedido.Name = "btnNovoPedido";
             this.btnNovoPedido.Size = new System.Drawing.Size(86, 25);
             this.btnNovoPedido.TabIndex = 19;
@@ -194,7 +213,7 @@ namespace demo01.Views.Pedido
             this.txtValor.Location = new System.Drawing.Point(405, 511);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(76, 20);
-            this.txtValor.TabIndex = 20;
+            this.txtValor.TabIndex = 6;
             // 
             // label6
             // 
@@ -219,6 +238,7 @@ namespace demo01.Views.Pedido
             this.ListaProdutosDoPedido.Size = new System.Drawing.Size(544, 249);
             this.ListaProdutosDoPedido.TabIndex = 22;
             this.ListaProdutosDoPedido.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.ListaProdutosDoPedido.DoubleClick += new System.EventHandler(this.ListaProdutosDoPedido_DoubleClick);
             // 
             // Column5
             // 
@@ -255,7 +275,7 @@ namespace demo01.Views.Pedido
             this.btnPesquisarCliente.Location = new System.Drawing.Point(325, 156);
             this.btnPesquisarCliente.Name = "btnPesquisarCliente";
             this.btnPesquisarCliente.Size = new System.Drawing.Size(28, 25);
-            this.btnPesquisarCliente.TabIndex = 23;
+            this.btnPesquisarCliente.TabIndex = 2;
             this.btnPesquisarCliente.Text = "...";
             this.btnPesquisarCliente.UseVisualStyleBackColor = true;
             this.btnPesquisarCliente.Click += new System.EventHandler(this.btnPesquisarCliente_Click);
@@ -266,7 +286,7 @@ namespace demo01.Views.Pedido
             this.TxtNumero.Location = new System.Drawing.Point(18, 120);
             this.TxtNumero.Name = "TxtNumero";
             this.TxtNumero.Size = new System.Drawing.Size(86, 20);
-            this.TxtNumero.TabIndex = 24;
+            this.TxtNumero.TabIndex = 8;
             // 
             // label7
             // 
@@ -282,7 +302,7 @@ namespace demo01.Views.Pedido
             this.btnPesquisarProduto.Location = new System.Drawing.Point(371, 508);
             this.btnPesquisarProduto.Name = "btnPesquisarProduto";
             this.btnPesquisarProduto.Size = new System.Drawing.Size(28, 25);
-            this.btnPesquisarProduto.TabIndex = 26;
+            this.btnPesquisarProduto.TabIndex = 5;
             this.btnPesquisarProduto.Text = "...";
             this.btnPesquisarProduto.UseVisualStyleBackColor = true;
             this.btnPesquisarProduto.Click += new System.EventHandler(this.btnPesquisarProduto_Click);
@@ -405,7 +425,7 @@ namespace demo01.Views.Pedido
             // 
             // btnCancelarPedido
             // 
-            this.btnCancelarPedido.Location = new System.Drawing.Point(213, 73);
+            this.btnCancelarPedido.Location = new System.Drawing.Point(572, 98);
             this.btnCancelarPedido.Name = "btnCancelarPedido";
             this.btnCancelarPedido.Size = new System.Drawing.Size(98, 25);
             this.btnCancelarPedido.TabIndex = 27;
@@ -421,11 +441,11 @@ namespace demo01.Views.Pedido
             this.btnPesquisarPedido.TabIndex = 23;
             this.btnPesquisarPedido.Text = "...";
             this.btnPesquisarPedido.UseVisualStyleBackColor = true;
-            this.btnPesquisarPedido.Click += new System.EventHandler(this.btnPesquisarCliente_Click);
+            this.btnPesquisarPedido.Click += new System.EventHandler(this.btnPesquisarPedido_Click_1);
             // 
             // btnExcluirPedidoItem
             // 
-            this.btnExcluirPedidoItem.Location = new System.Drawing.Point(126, 205);
+            this.btnExcluirPedidoItem.Location = new System.Drawing.Point(554, 156);
             this.btnExcluirPedidoItem.Name = "btnExcluirPedidoItem";
             this.btnExcluirPedidoItem.Size = new System.Drawing.Size(102, 20);
             this.btnExcluirPedidoItem.TabIndex = 18;
@@ -433,11 +453,143 @@ namespace demo01.Views.Pedido
             this.btnExcluirPedidoItem.UseVisualStyleBackColor = true;
             this.btnExcluirPedidoItem.Click += new System.EventHandler(this.btnAddProduto_Click);
             // 
+            // c1ToolBar2
+            // 
+            this.c1ToolBar2.AccessibleName = "Tool Bar";
+            this.c1ToolBar2.AutoSize = false;
+            this.c1ToolBar2.CommandHolder = null;
+            this.c1ToolBar2.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
+            this.c1CommandLink1,
+            this.c1CommandLink4,
+            this.c1CommandLink2,
+            this.c1CommandLink3,
+            this.c1CommandLink7});
+            this.c1ToolBar2.Location = new System.Drawing.Point(18, 75);
+            this.c1ToolBar2.Name = "c1ToolBar2";
+            this.c1ToolBar2.Size = new System.Drawing.Size(544, 26);
+            this.c1ToolBar2.Text = "c1ToolBar2";
+            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
+            // 
+            // c1CommandLink1
+            // 
+            this.c1CommandLink1.Command = this.c1Command1;
+            // 
+            // c1Command1
+            // 
+            this.c1Command1.Image = ((System.Drawing.Image)(resources.GetObject("c1Command1.Image")));
+            this.c1Command1.Name = "c1Command1";
+            this.c1Command1.ShortcutText = "";
+            this.c1Command1.Text = "&New";
+            this.c1Command1.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command1_Click_1);
+            // 
+            // c1CommandLink4
+            // 
+            this.c1CommandLink4.Command = this.c1Command5;
+            this.c1CommandLink4.SortOrder = 1;
+            // 
+            // c1Command5
+            // 
+            this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
+            this.c1Command5.Name = "c1Command5";
+            this.c1Command5.ShortcutText = "";
+            this.c1Command5.Text = "&Save";
+            this.c1Command5.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command5_Click);
+            // 
+            // c1CommandLink2
+            // 
+            this.c1CommandLink2.Command = this.c1Command2;
+            this.c1CommandLink2.SortOrder = 2;
+            // 
+            // c1Command2
+            // 
+            this.c1Command2.Image = ((System.Drawing.Image)(resources.GetObject("c1Command2.Image")));
+            this.c1Command2.Name = "c1Command2";
+            this.c1Command2.ShortcutText = "";
+            this.c1Command2.Text = "SalvarPedido";
+            this.c1Command2.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command2_Click);
+            // 
+            // c1CommandLink3
+            // 
+            this.c1CommandLink3.Command = this.c1Command3;
+            this.c1CommandLink3.SortOrder = 3;
+            // 
+            // c1Command3
+            // 
+            this.c1Command3.Image = ((System.Drawing.Image)(resources.GetObject("c1Command3.Image")));
+            this.c1Command3.Name = "c1Command3";
+            this.c1Command3.ShortcutText = "";
+            this.c1Command3.Text = "DeletarPedido";
+            this.c1Command3.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command3_Click);
+            // 
+            // c1CommandHolder1
+            // 
+            this.c1CommandHolder1.Commands.Add(this.c1Command1);
+            this.c1CommandHolder1.Commands.Add(this.c1Command3);
+            this.c1CommandHolder1.Commands.Add(this.c1Command2);
+            this.c1CommandHolder1.Commands.Add(this.c1Command4);
+            this.c1CommandHolder1.Commands.Add(this.c1Command5);
+            this.c1CommandHolder1.Commands.Add(this.c1Command6);
+            this.c1CommandHolder1.Commands.Add(this.c1Command7);
+            this.c1CommandHolder1.Owner = this;
+            // 
+            // c1Command4
+            // 
+            this.c1Command4.Image = ((System.Drawing.Image)(resources.GetObject("c1Command4.Image")));
+            this.c1Command4.Name = "c1Command4";
+            this.c1Command4.ShortcutText = "";
+            this.c1Command4.Text = "&Save";
+            this.c1Command4.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command4_Click);
+            // 
+            // c1Command6
+            // 
+            this.c1Command6.Image = ((System.Drawing.Image)(resources.GetObject("c1Command6.Image")));
+            this.c1Command6.Name = "c1Command6";
+            this.c1Command6.ShortcutText = "";
+            this.c1Command6.Text = "&Delete";
+            this.c1Command6.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command6_Click);
+            // 
+            // c1ToolBar1
+            // 
+            this.c1ToolBar1.AccessibleName = "Tool Bar";
+            this.c1ToolBar1.AutoSize = false;
+            this.c1ToolBar1.CommandHolder = null;
+            this.c1ToolBar1.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
+            this.c1CommandLink5,
+            this.c1CommandLink6});
+            this.c1ToolBar1.Location = new System.Drawing.Point(18, 187);
+            this.c1ToolBar1.Name = "c1ToolBar1";
+            this.c1ToolBar1.Size = new System.Drawing.Size(544, 26);
+            this.c1ToolBar1.Text = "c1ToolBar1";
+            // 
+            // c1CommandLink5
+            // 
+            this.c1CommandLink5.Command = this.c1Command4;
+            // 
+            // c1CommandLink6
+            // 
+            this.c1CommandLink6.Command = this.c1Command6;
+            this.c1CommandLink6.SortOrder = 1;
+            // 
+            // c1CommandLink7
+            // 
+            this.c1CommandLink7.Command = this.c1Command7;
+            this.c1CommandLink7.SortOrder = 4;
+            // 
+            // c1Command7
+            // 
+            this.c1Command7.Image = ((System.Drawing.Image)(resources.GetObject("c1Command7.Image")));
+            this.c1Command7.Name = "c1Command7";
+            this.c1Command7.ShortcutText = "";
+            this.c1Command7.Text = "&Undo";
+            this.c1Command7.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command7_Click);
+            // 
             // PedidoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 554);
+            this.Controls.Add(this.c1ToolBar1);
+            this.Controls.Add(this.c1ToolBar2);
             this.Controls.Add(this.btnCancelarPedido);
             this.Controls.Add(this.btnPesquisarProduto);
             this.Controls.Add(this.label7);
@@ -465,6 +617,7 @@ namespace demo01.Views.Pedido
             this.Text = "Pedido";
             this.Load += new System.EventHandler(this.PedidoView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,5 +669,22 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.Button btnPesquisarPedido;
         private System.Windows.Forms.Button btnExcluirPedidoItem;
+        private C1.Win.C1Command.C1ToolBar c1ToolBar2;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink1;
+        private C1.Win.C1Command.C1Command c1Command1;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink2;
+        private C1.Win.C1Command.C1Command c1Command2;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink3;
+        private C1.Win.C1Command.C1Command c1Command3;
+        private C1.Win.C1Command.C1CommandHolder c1CommandHolder1;
+        private C1.Win.C1Command.C1Command c1Command4;
+        private C1.Win.C1Command.C1ToolBar c1ToolBar1;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink5;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink4;
+        private C1.Win.C1Command.C1Command c1Command5;
+        private C1.Win.C1Command.C1Command c1Command6;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink6;
+        private C1.Win.C1Command.C1CommandLink c1CommandLink7;
+        private C1.Win.C1Command.C1Command c1Command7;
     }
 }

@@ -40,7 +40,7 @@ namespace demo01.Data.RepositoriesPedido
 
             return true;
         }
-
+        
         public bool InsertProduto(Pedido pedido)
         {
             var sql = @"
@@ -103,6 +103,21 @@ namespace demo01.Data.RepositoriesPedido
             queryBuilder.Where("pedido.Numero = @numero", new { numero });
 
             return _connection.Query<PedidoItem>(template.RawSql, template.Parameters).ToList();
+        }
+        public List<demo01.Domain.Pedidos.Pedido> ListarPedido(string columnSort)
+        {
+            using (SqlConnection con = ConnectionProvider.ObterConexao())
+            {
+                var query = new StringBuilder();
+                query.AppendLine("SELECT * FROM pedido");
+                query.AppendLine("/**orderby**/");
+
+                var queryBuilder = new SqlBuilder();
+                var template = queryBuilder.AddTemplate(query.ToString());
+                queryBuilder.OrderBy(columnSort);
+
+                return con.Query<Pedido>(template.RawSql, template.Parameters).ToList();
+            }
         }
 
 
