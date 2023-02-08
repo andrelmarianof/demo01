@@ -50,7 +50,6 @@ namespace demo01.Views.Cliente
             this.c1DataSet1 = new C1.Data.C1DataSet();
             this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
-            this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
             this.c1Command1 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink2 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command2 = new C1.Win.C1Command.C1Command();
@@ -58,7 +57,9 @@ namespace demo01.Views.Cliente
             this.c1Command3 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command4 = new C1.Win.C1Command.C1Command();
+            this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.c1Command5 = new C1.Win.C1Command.C1Command();
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
@@ -248,20 +249,12 @@ namespace demo01.Views.Cliente
             // 
             this.c1CommandLink1.Command = this.c1Command1;
             // 
-            // c1CommandHolder1
-            // 
-            this.c1CommandHolder1.Commands.Add(this.c1Command1);
-            this.c1CommandHolder1.Commands.Add(this.c1Command2);
-            this.c1CommandHolder1.Commands.Add(this.c1Command3);
-            this.c1CommandHolder1.Commands.Add(this.c1Command4);
-            this.c1CommandHolder1.Owner = this;
-            // 
             // c1Command1
             // 
             this.c1Command1.Image = ((System.Drawing.Image)(resources.GetObject("c1Command1.Image")));
             this.c1Command1.Name = "c1Command1";
             this.c1Command1.ShortcutText = "";
-            this.c1Command1.Text = "&New";
+            this.c1Command1.Text = "&Novo Cliente";
             // 
             // c1CommandLink2
             // 
@@ -273,7 +266,7 @@ namespace demo01.Views.Cliente
             this.c1Command2.Image = ((System.Drawing.Image)(resources.GetObject("c1Command2.Image")));
             this.c1Command2.Name = "c1Command2";
             this.c1Command2.ShortcutText = "";
-            this.c1Command2.Text = "Save all";
+            this.c1Command2.Text = "Salvar Cliente";
             // 
             // c1CommandLink3
             // 
@@ -285,11 +278,11 @@ namespace demo01.Views.Cliente
             this.c1Command3.Image = ((System.Drawing.Image)(resources.GetObject("c1Command3.Image")));
             this.c1Command3.Name = "c1Command3";
             this.c1Command3.ShortcutText = "";
-            this.c1Command3.Text = "&Delete";
+            this.c1Command3.Text = "Deletar Cliente";
             // 
             // c1CommandLink4
             // 
-            this.c1CommandLink4.Command = this.c1Command4;
+            this.c1CommandLink4.Command = this.c1Command5;
             this.c1CommandLink4.SortOrder = 3;
             // 
             // c1Command4
@@ -299,9 +292,25 @@ namespace demo01.Views.Cliente
             this.c1Command4.ShortcutText = "";
             this.c1Command4.Text = "Save all";
             // 
+            // c1CommandHolder1
+            // 
+            this.c1CommandHolder1.Commands.Add(this.c1Command1);
+            this.c1CommandHolder1.Commands.Add(this.c1Command2);
+            this.c1CommandHolder1.Commands.Add(this.c1Command3);
+            this.c1CommandHolder1.Commands.Add(this.c1Command4);
+            this.c1CommandHolder1.Commands.Add(this.c1Command5);
+            this.c1CommandHolder1.Owner = this;
+            // 
             // clienteBindingSource
             // 
             this.clienteBindingSource.DataSource = typeof(demo01.Views.Cliente.ClienteView);
+            // 
+            // c1Command5
+            // 
+            this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
+            this.c1Command5.Name = "c1Command5";
+            this.c1Command5.ShortcutText = "";
+            this.c1Command5.Text = "Cancelar";
             // 
             // ClienteView
             // 
@@ -364,5 +373,6 @@ namespace demo01.Views.Cliente
         private C1.Win.C1Command.C1CommandLink c1CommandLink4;
         private C1.Win.C1Command.C1Command c1Command4;
         private C1.Win.C1Command.C1ToolBar c1ToolBar2;
+        private C1.Win.C1Command.C1Command c1Command5;
     }
 }

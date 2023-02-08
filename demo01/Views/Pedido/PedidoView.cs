@@ -45,9 +45,6 @@ namespace demo01.Views.Pedido
         {
             InitializeComponent();
             NovoPedido();
-            btnSalvarPedido.Enabled = false;
-            btnAddProduto.Enabled = false;
-            btnPesquisarProduto.Enabled = false;
 
             txtCdCliente.Leave += OnClienteLeave;
 
@@ -94,8 +91,6 @@ namespace demo01.Views.Pedido
             txtDescricaoProduto.Enabled = true;
             txtValor.Enabled = true;
             txtQtd.Enabled = true;
-            btnNovoPedido.Enabled = false;
-            btnPesquisarCliente.Enabled = false;
             txtCdProduto.Text = "";
             txtDescricaoProduto.Text = "";
             txtValor.Text = "";
@@ -107,14 +102,8 @@ namespace demo01.Views.Pedido
             txtDescricaoProduto.Enabled = false;
             txtQtd.Enabled = false;
             txtValor.Enabled = false;
-            btnAddProduto.Enabled = false;
-            btnAddProduto.Enabled = false;
-            btnNovoPedido.Enabled = true;
-            btnPesquisarCliente.Enabled = true;
             txtCdCliente.Enabled = true;
             txtNomeCliente.Enabled = true;
-            btnSalvarPedido.Enabled = false;
-            btnPesquisarProduto.Enabled = false;
         }
         private void MudarStatusDeControles(StatusControlEnum status)
         {
@@ -126,14 +115,8 @@ namespace demo01.Views.Pedido
                     txtDescricaoProduto.Enabled = false;
                     txtQtd.Enabled = false;
                     txtValor.Enabled = false;
-                    btnAddProduto.Enabled = false;
-                    btnAddProduto.Enabled = false;
-                    btnNovoPedido.Enabled = true;
-                    btnPesquisarCliente.Enabled = true;
                     txtCdCliente.Enabled = true;
                     txtNomeCliente.Enabled = true;
-                    btnSalvarPedido.Enabled = false;
-                    btnPesquisarProduto.Enabled = false;
                     txtCdCliente.Text = "";
                     txtCdProduto.Text = "";
                     txtDescricaoProduto.Text = "";
@@ -209,8 +192,6 @@ namespace demo01.Views.Pedido
                     {
                         MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
                         InserirProdutos();
-                        btnPesquisarProduto.Enabled = true;
-                        btnAddProduto.Enabled = true;
                     }
                     else
                     {
@@ -284,7 +265,6 @@ namespace demo01.Views.Pedido
 
                         ListarProdutos(pedido.NumeroPedido);
 
-                        btnSalvarPedido.Enabled = true;
                         //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
                     }
                     else
@@ -486,8 +466,6 @@ namespace demo01.Views.Pedido
                     {
                         MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
                         InserirProdutos();
-                        btnPesquisarProduto.Enabled = true;
-                        btnAddProduto.Enabled = true;
                     }
                     else
                     {
@@ -535,8 +513,6 @@ namespace demo01.Views.Pedido
                         InserirProdutos();
 
                         ListarProdutos(pedido.NumeroPedido);
-
-                        btnSalvarPedido.Enabled = true;
                         //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
                     }
                     else
@@ -605,6 +581,49 @@ namespace demo01.Views.Pedido
             if (_bsListaProduto.Current != null && _bsListaProduto.Current is demo01.Domain.Pedidos.Pedido pedido)
             {
                 txtCdProduto.Text = pedido.CdProduto;
+            }
+        }
+
+        
+
+        private void c1Command8_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+
+            {
+                BuscarPedido formpedido = new BuscarPedido();
+                formpedido.ShowDialog();
+
+                if (formpedido.ReturnValue != null)
+                {
+                    TxtNumero.Text = formpedido.ReturnValue;
+                    CarregarPedido();
+                }
+            }
+        }
+
+        private void c1Command10_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            BuscarProduto formproduto = new BuscarProduto();
+            formproduto.ShowDialog();
+
+            if (formproduto.ReturnValue != null)
+            {
+                txtCdProduto.Text = formproduto.ReturnValue;
+                CarregarProduto();
+            }
+        }
+
+        private void c1Command11_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            {
+                BuscarCliente formpedido = new BuscarCliente();
+                formpedido.ShowDialog();
+
+                if (formpedido.ReturnValue != null)
+                {
+                    txtCdCliente.Text = formpedido.ReturnValue;
+                    CarregarCliente();
+                }
             }
         }
     }
