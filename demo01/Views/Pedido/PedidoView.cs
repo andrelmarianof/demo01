@@ -589,7 +589,7 @@ namespace demo01.Views.Pedido
             }
             else
             {
-                MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
+                MessageBox.Show(string.Format("Preencha todos os campos para inserir o produto no pedido!!"));
             }
         }
 
