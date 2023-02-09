@@ -80,20 +80,20 @@ namespace demo01.Views.Pedido
             this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
             this.c1Command4 = new C1.Win.C1Command.C1Command();
             this.c1Command6 = new C1.Win.C1Command.C1Command();
+            this.c1Command8 = new C1.Win.C1Command.C1Command();
+            this.c1Command9 = new C1.Win.C1Command.C1Command();
+            this.c1Command10 = new C1.Win.C1Command.C1Command();
+            this.c1Command11 = new C1.Win.C1Command.C1Command();
             this.c1ToolBar1 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink5 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink6 = new C1.Win.C1Command.C1CommandLink();
             this.c1ToolBar3 = new C1.Win.C1Command.C1ToolBar();
-            this.c1Command8 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink12 = new C1.Win.C1Command.C1CommandLink();
             this.c1CommandLink8 = new C1.Win.C1Command.C1CommandLink();
-            this.c1Command9 = new C1.Win.C1Command.C1Command();
             this.c1ToolBar4 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink14 = new C1.Win.C1Command.C1CommandLink();
             this.c1ToolBar5 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink10 = new C1.Win.C1Command.C1CommandLink();
-            this.c1Command10 = new C1.Win.C1Command.C1Command();
-            this.c1Command11 = new C1.Win.C1Command.C1Command();
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
             this.SuspendLayout();
@@ -115,6 +115,7 @@ namespace demo01.Views.Pedido
             this.txtCdCliente.Size = new System.Drawing.Size(86, 20);
             this.txtCdCliente.TabIndex = 0;
             this.txtCdCliente.TextChanged += new System.EventHandler(this.cdCliente_TextChanged);
+            this.txtCdCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCdCliente_KeyPress);
             // 
             // txtNomeCliente
             // 
@@ -157,6 +158,8 @@ namespace demo01.Views.Pedido
             this.txtCdProduto.Name = "txtCdProduto";
             this.txtCdProduto.Size = new System.Drawing.Size(86, 20);
             this.txtCdProduto.TabIndex = 3;
+            this.txtCdProduto.TextChanged += new System.EventHandler(this.txtCdProduto_TextChanged);
+            this.txtCdProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCdProduto_KeyPress);
             // 
             // txtDescricaoProduto
             // 
@@ -250,6 +253,7 @@ namespace demo01.Views.Pedido
             this.TxtNumero.Name = "TxtNumero";
             this.TxtNumero.Size = new System.Drawing.Size(86, 20);
             this.TxtNumero.TabIndex = 8;
+            this.TxtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumero_KeyPress);
             // 
             // label7
             // 
@@ -488,6 +492,36 @@ namespace demo01.Views.Pedido
             this.c1Command6.Text = "Deletar Produto";
             this.c1Command6.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command6_Click);
             // 
+            // c1Command8
+            // 
+            this.c1Command8.Image = ((System.Drawing.Image)(resources.GetObject("c1Command8.Image")));
+            this.c1Command8.Name = "c1Command8";
+            this.c1Command8.ShortcutText = "";
+            this.c1Command8.Text = "Pesquisar Pedido";
+            this.c1Command8.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command8_Click);
+            // 
+            // c1Command9
+            // 
+            this.c1Command9.Name = "c1Command9";
+            this.c1Command9.ShortcutText = "";
+            this.c1Command9.Text = "New Command";
+            // 
+            // c1Command10
+            // 
+            this.c1Command10.Image = ((System.Drawing.Image)(resources.GetObject("c1Command10.Image")));
+            this.c1Command10.Name = "c1Command10";
+            this.c1Command10.ShortcutText = "";
+            this.c1Command10.Text = "Pesquisar Produto";
+            this.c1Command10.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command10_Click_1);
+            // 
+            // c1Command11
+            // 
+            this.c1Command11.Image = ((System.Drawing.Image)(resources.GetObject("c1Command11.Image")));
+            this.c1Command11.Name = "c1Command11";
+            this.c1Command11.ShortcutText = "";
+            this.c1Command11.Text = "Pesquisar Cliente";
+            this.c1Command11.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command11_Click);
+            // 
             // c1ToolBar1
             // 
             this.c1ToolBar1.AccessibleName = "Tool Bar";
@@ -523,14 +557,6 @@ namespace demo01.Views.Pedido
             this.c1ToolBar3.Size = new System.Drawing.Size(26, 26);
             this.c1ToolBar3.Text = "c1ToolBar3";
             // 
-            // c1Command8
-            // 
-            this.c1Command8.Image = ((System.Drawing.Image)(resources.GetObject("c1Command8.Image")));
-            this.c1Command8.Name = "c1Command8";
-            this.c1Command8.ShortcutText = "";
-            this.c1Command8.Text = "Pesquisar Pedido";
-            this.c1Command8.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command8_Click);
-            // 
             // c1CommandLink12
             // 
             this.c1CommandLink12.Command = this.c1Command8;
@@ -539,12 +565,6 @@ namespace demo01.Views.Pedido
             // 
             this.c1CommandLink8.Command = this.c1Command9;
             this.c1CommandLink8.SortOrder = 1;
-            // 
-            // c1Command9
-            // 
-            this.c1Command9.Name = "c1Command9";
-            this.c1Command9.ShortcutText = "";
-            this.c1Command9.Text = "New Command";
             // 
             // c1ToolBar4
             // 
@@ -577,22 +597,6 @@ namespace demo01.Views.Pedido
             // c1CommandLink10
             // 
             this.c1CommandLink10.Command = this.c1Command10;
-            // 
-            // c1Command10
-            // 
-            this.c1Command10.Image = ((System.Drawing.Image)(resources.GetObject("c1Command10.Image")));
-            this.c1Command10.Name = "c1Command10";
-            this.c1Command10.ShortcutText = "";
-            this.c1Command10.Text = "Pesquisar Produto";
-            this.c1Command10.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command10_Click_1);
-            // 
-            // c1Command11
-            // 
-            this.c1Command11.Image = ((System.Drawing.Image)(resources.GetObject("c1Command11.Image")));
-            this.c1Command11.Name = "c1Command11";
-            this.c1Command11.ShortcutText = "";
-            this.c1Command11.Text = "Pesquisar Cliente";
-            this.c1Command11.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command11_Click);
             // 
             // PedidoView
             // 
