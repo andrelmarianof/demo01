@@ -1,21 +1,21 @@
 ﻿using demo01.Domain.Core;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace demo01.Domain.Pedidos
 {
+    
     class Pedido
     {
+        #region Construtores
         public string Numero { get; set; }
         public string CdCliente { get; set; }
         public string NumeroPedido { get; set; }
         public string CdProduto { get; set; }
         public decimal QtdVenda { get; set; }
         public decimal VlVenda { get; set; }
+        #endregion
 
+        #region Validaçoes
         public ResultPedido IsValid()
         {
             var messages = new List<string>();
@@ -40,7 +40,6 @@ namespace demo01.Domain.Pedidos
             {
                 messages.Add("O valor do produto não pode ser negativo, verifique!");
             }
-
             return new ResultPedido(messages.Count == 0, messages);
         }
         public ResultPedido IsValidCriar()
@@ -59,7 +58,25 @@ namespace demo01.Domain.Pedidos
             {
                 messages.Add("O código do produto está em branco, verifique!");
             }
+            if (QtdVenda == 0)
+            {
+                messages.Add("Insira quantidade ao produto para adiciona-lo ao pedido");
+            }
+            if (QtdVenda < 0)
+            {
+                messages.Add("Insira quantidade ao produto para adiciona-lo ao pedido");
+            }
+            if (VlVenda < 0)
+            {
+                messages.Add("O valor do produto não pode ser negativo, verifique!");
+            }
+            if (VlVenda == 0)
+            {
+                messages.Add("O valor do produto não pode ser zero, verifique!");
+            }
             return new ResultPedido(messages.Count == 0, messages);
         }
+        #endregion
+
     }
 }

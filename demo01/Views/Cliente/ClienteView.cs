@@ -293,6 +293,30 @@ namespace demo01.Views.Cliente
             else
                 InserirCliente();
         }
+        private void c1ToolBar2_Click(object sender, EventArgs e)
+        {
+            limparCampos();
+            HabilitarCampo();
+
+            if (txtCodigoClientezz.Enabled)
+                txtCodigoClientezz.Focus();
+        }
+        private void c1Command01_Clic(object sender, EventArgs e)
+        {
+            limparCampos();
+            HabilitarCampo();
+
+            if (txtCodigoClientezz.Enabled)
+                txtCodigoClientezz.Focus();
+        }
+        private void c1Command02_Clic(object sender, EventArgs e)
+        {
+            limparCampos();
+            HabilitarCampo();
+
+            if (txtCodigoClientezz.Enabled)
+                txtCodigoClientezz.Focus();
+        }
 
 
         public void Cliente_Load(object sender, EventArgs e)
@@ -348,30 +372,5 @@ namespace demo01.Views.Cliente
 
 
         #endregion
-
-        private void c1ToolBar2_Click(object sender, EventArgs e)
-        {
-            limparCampos();
-            HabilitarCampo();
-
-            if (txtCodigoClientezz.Enabled)
-                txtCodigoClientezz.Focus();
-        }
-        private void c1Command01_Clic(object sender, EventArgs e)
-        {
-            limparCampos();
-            HabilitarCampo();
-
-            if (txtCodigoClientezz.Enabled)
-                txtCodigoClientezz.Focus();
-        }
-        private void c1Command02_Clic(object sender, EventArgs e)
-        {
-            limparCampos();
-            HabilitarCampo();
-
-            if (txtCodigoClientezz.Enabled)
-                txtCodigoClientezz.Focus();
-        }
     }
 }

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using demo01.Application.Pedidos;
-using demo01.Domain.Pedidos;
 using demo01.Data.RepositoriesPedido;
-using demo01.Domain.Produtos;
-using demo01.Views.Pedido;
 using System.Collections.Generic;
 using demo01.Data.RepositoriesCliente;
-using demo01.Domain.Pedidos;
-using System.Diagnostics;
 using demo01.Domain.Pedido;
 using demo01.Data.Repositories;
 
@@ -28,19 +23,21 @@ namespace demo01.Views.Pedido
             Empty,
             New
         }
-
         private StatusControlEnum _statusPedido = StatusControlEnum.Empty;
         private StatusControlEnum _statusPedidoItem = StatusControlEnum.Empty;
         #endregion
+
+        #region Declaraçoes
         private object sortColumn;
         private BindingSource _bsListaCliente;
         private BindingSource _bsListaProduto;
         private object listaprodutos;
+        #endregion
 
+        #region Construtores
         public string CdProduto { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
-
 
         public PedidoView()
         {
@@ -49,96 +46,11 @@ namespace demo01.Views.Pedido
             TxtNumero.Leave += OnPedidoLeave;
             txtCdProduto.Leave += OnProdutoLeave;
             txtCdCliente.Leave += OnClienteLeave;
-
-
-
-
         }
+        #endregion
 
-        private void OnProdutoItemChanged(object sender, EventArgs e)
-        {
-            var currentPedidoItem = GetCurrentPedidoItem();
-            if (currentPedidoItem != null)
-            {
-                txtCdProduto.Text = currentPedidoItem.CdProduto.ToString();
-                txtDescricaoProduto.Text = currentPedidoItem.Descricao;
-                txtQtd.Text = currentPedidoItem.QtdVenda.ToString();
-                txtValor.Text = currentPedidoItem.VlVenda.ToString();
+        #region Métodos internos
 
-            }
-        }
-
-        private PedidoItem GetCurrentPedidoItem()
-        {
-
-            if (_bsListaProduto == null || _bsListaProduto.Current == null)
-                return null;
-
-            if (_bsListaProduto.Current is PedidoItem currentPedidoItem)
-                return currentPedidoItem;
-
-            return null;
-        }
-
-        private void OnClienteLeave(object sender, EventArgs e)
-        {
-            CarregarCliente();
-        }
-        private void OnPedidoLeave(object sender, EventArgs e)
-        {
-            CarregarPedido();
-            c1Command3.Enabled = true;
-        }
-        private void OnProdutoLeave(object sender, EventArgs e)
-        {
-            CarregarProduto();
-        }
-
-        //private void OnClienteLeave(object sender, EventArgs e)
-        //{
-
-        //}
-
-        private void NovoPedido()
-        {
-            txtCdCliente.Enabled = true;
-            txtNomeCliente.Enabled = true;
-            txtCdProduto.Enabled = false;
-            txtDescricaoProduto.Enabled = false;
-            txtValor.Enabled = false;
-            txtQtd.Enabled = false;
-        }
-        private void LimparCampos()
-        {
-            txtCdCliente.Text = "";
-            txtNomeCliente.Text = "";
-            txtCdProduto.Text = "";
-            txtDescricaoProduto.Text = "";
-            txtValor.Text = "";
-            txtQtd.Text = "";
-        }
-        private void InserirProdutos()
-        {
-            txtCdCliente.Enabled = false;
-            txtNomeCliente.Enabled = false;
-            txtCdProduto.Enabled = true;
-            txtDescricaoProduto.Enabled = true;
-            txtValor.Enabled = true;
-            txtQtd.Enabled = true;
-            txtCdProduto.Text = "";
-            txtDescricaoProduto.Text = "";
-            txtValor.Text = "";
-            txtQtd.Text = "";
-        }
-        private void confirmarPedido()
-        {
-            txtCdProduto.Enabled = false;
-            txtDescricaoProduto.Enabled = false;
-            txtQtd.Enabled = false;
-            txtValor.Enabled = false;
-            txtCdCliente.Enabled = true;
-            txtNomeCliente.Enabled = true;
-        }
         private void MudarStatusDeControles(StatusControlEnum status)
         {
 
@@ -219,81 +131,40 @@ namespace demo01.Views.Pedido
                     ListaProdutosDoPedido.Rows.Clear();
                     break;
             }
-
-
-        }
-        
-        private void cdCliente_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void LerProduto()
         {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-        public void PedidoView_Load(object sender, EventArgs e)
-        {
-            //txtCdCliente.Text = BuscarProduto.
-            //txtCdProduto.Text = CdProduto;
-            //txtCescricaoProduto.Text = Descricao;
-            //txtValor.Text = Valor.ToString();
-        }
-
-        private void btnAddProduto_Click(object sender, EventArgs e)
-        {
-            if ((txtCdProduto.Text != "") & (txtDescricaoProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != ""))
+            if (_bsListaProduto.Current != null && _bsListaProduto.Current is demo01.Domain.Pedidos.Pedido pedido)
             {
-                try
-                {
-                    var pedido = new Domain.Pedidos.Pedido();
-                    pedido.CdProduto = txtCdProduto.Text.Trim();
-                    pedido.NumeroPedido = TxtNumero.Text.Trim();
-                    decimal valorProduto;
-                    if (!decimal.TryParse(txtValor.Text.Trim(), out valorProduto))
-                    {
-                        MessageBox.Show(string.Format("Valor informado não é válido!"));
-                        return;
-                    }
-                    decimal quantidade;
-                    if (!decimal.TryParse(txtQtd.Text.Trim(), out quantidade))
-                    {
-                        MessageBox.Show(string.Format("Valor informado para quantidade não é válido!"));
-                        return;
-                    }
-                    var result = new PedidoAppService().ValidarProduto(pedido);
-
-                    if (result.Success)
-                    {
-                        MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
-                        InserirProdutos();
-
-                        ListarProdutos(pedido.NumeroPedido);
-
-                        //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Produto não cadastrado!");
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"), ex.Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show(string.Format("Selecione um produto para que possa inserir no pedido!"));
+                txtCdProduto.Text = pedido.CdProduto;
             }
         }
+        private void OnProdutoItemChanged(object sender, EventArgs e)
+        {
+            var currentPedidoItem = GetCurrentPedidoItem();
+            if (currentPedidoItem != null)
+            {
+                txtCdProduto.Text = currentPedidoItem.CdProduto.ToString();
+                txtDescricaoProduto.Text = currentPedidoItem.Descricao;
+                txtQtd.Text = currentPedidoItem.QtdVenda.ToString();
+                txtValor.Text = currentPedidoItem.VlVenda.ToString();
+
+            }
+        }
+
+        private PedidoItem GetCurrentPedidoItem()
+        {
+
+            if (_bsListaProduto == null || _bsListaProduto.Current == null)
+                return null;
+
+            if (_bsListaProduto.Current is PedidoItem currentPedidoItem)
+                return currentPedidoItem;
+
+            return null;
+        }
+
         private void ListarProdutos(string numero)
         {
             try
@@ -312,53 +183,6 @@ namespace demo01.Views.Pedido
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void btnSalvarPedido_Click(object sender, EventArgs e)
-        {
-            LimparCampos();
-            MessageBox.Show(string.Format("Pedido salvo com sucesso!!"));
-            TxtNumero.Text = "";
-            confirmarPedido();
-        }
-
-        private void btnCancelarPedido_Click(object sender, EventArgs e)
-        {
-            DialogResult resposta = DialogResult;
-            var delete = TxtNumero;
-
-            resposta = MessageBox.Show("Deseje realmente cancelar este pedido?", "Cancelar pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resposta != DialogResult.No)
-            {
-                if ((txtCdCliente.Text != "") & (txtNomeCliente.Text != ""))
-                {
-                    var pedido = new PedidoRepository().ObterPedido(delete.Text);
-                    var result = new PedidoRepository().DeletePedido(pedido);
-                    if (result == true)
-                    {
-                        MessageBox.Show(string.Format("Pedido N° {0} cancelado com sucesso!", TxtNumero.Text));
-                        LimparCampos();
-                        NovoPedido();
-                        _bsListaProduto.Clear();
-                        TxtNumero.Text = "";
-                    }
-                    else
-                    {
-                        MessageBox.Show(string.Format("Não foi possivel cancelar o pedido N° {0}!", TxtNumero.Text));
-                    }
-                }
-                else
-
-                    MessageBox.Show(string.Format("Selecione um produto para que possa realizar a exclusão!"));
-            }
-            else
-                MessageBox.Show(string.Format("Processo cancelado! "));
-        }
-
-        #region Métodos internos
         private void CarregarCliente()
         {
             if (!string.IsNullOrWhiteSpace(txtCdCliente.Text))
@@ -372,6 +196,7 @@ namespace demo01.Views.Pedido
                 }
             }
         }
+
         private void CarregarPedido()
         {
             if (!string.IsNullOrWhiteSpace(TxtNumero.Text))
@@ -389,6 +214,7 @@ namespace demo01.Views.Pedido
                 }
             }
         }
+
         private void CarregarProduto()
         {
             if (!string.IsNullOrWhiteSpace(txtCdProduto.Text))
@@ -406,16 +232,8 @@ namespace demo01.Views.Pedido
 
         #endregion
 
-        private void c1ToolBar2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void c1Command1_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
-        {
-            MudarStatusDeControles(StatusControlEnum.New);
-        }
-
+        #region Eventos
+       
         private void c1Command2_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             if ((txtCdProduto.Text == "") & (txtDescricaoProduto.Text == "") & (txtQtd.Text == "") & (txtValor.Text == ""))
@@ -426,7 +244,6 @@ namespace demo01.Views.Pedido
             else
                 MessageBox.Show(string.Format("Finalize a edição do produto para poder salvar o pedido!!"));
         }
-
         private void c1Command3_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             DialogResult resposta = DialogResult;
@@ -442,10 +259,9 @@ namespace demo01.Views.Pedido
                     if (result == true)
                     {
                         MessageBox.Show(string.Format("Pedido N° {0} excluido com sucesso!", TxtNumero.Text));
-                        LimparCampos();
-                        NovoPedido();
                         _bsListaProduto.Clear();
                         TxtNumero.Text = "";
+                        MudarStatusDeControles(StatusControlEnum.Loaded);
                     }
                     else
                     {
@@ -459,7 +275,6 @@ namespace demo01.Views.Pedido
             else
                 MessageBox.Show(string.Format("Processo cancelado! "));
         }
-
         private void c1Command5_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             if (txtCdCliente.Text == "")
@@ -490,7 +305,6 @@ namespace demo01.Views.Pedido
                     if (result.Success)
                     {
                         MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
-                        InserirProdutos();
                     }
                     else
                     {
@@ -508,7 +322,6 @@ namespace demo01.Views.Pedido
                 MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
             }
         }
-
         private void c1Command4_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             if ((txtCdProduto.Text != "") & (txtDescricaoProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != ""))
@@ -532,17 +345,16 @@ namespace demo01.Views.Pedido
                         return;
                     }
                     var IndentificadorProduto = new PedidoRepository().ObterQuantidadeDeProdutos();
-                    pedidoitem.IdentificadorProduto = IndentificadorProduto ++;
+                    pedidoitem.IdentificadorProduto = IndentificadorProduto++;
                     pedido.QtdVenda = quantidade;
                     pedido.VlVenda = valorProduto;
                     pedidoitem.IdentificadorProduto = IndentificadorProduto;
                     var result = new PedidoAppService().ValidarProduto(pedido);
-                    
+
 
                     if (result.Success)
                     {
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
-                        InserirProdutos();
 
                         ListarProdutos(pedido.NumeroPedido);
                         //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
@@ -564,63 +376,8 @@ namespace demo01.Views.Pedido
                 MessageBox.Show(string.Format("Preencha todos os campos para inserir o produto no pedido!!"));
             }
         }
-
-        private void c1Command6_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
-        {
-
-        }
-
-        private void btnPesquisarPedido_Click_1(object sender, EventArgs e)
-        {
-            {
-                BuscarPedido formpedido = new BuscarPedido();
-                formpedido.ShowDialog();
-
-                if (formpedido.ReturnValue != null)
-                {
-                    TxtNumero.Text = formpedido.ReturnValue;
-                    CarregarPedido();
-                }
-            }
-        }
-
-        private void btnPesquisarCliente_Click(object sender, EventArgs e)
-        {
-            {
-                BuscarCliente formpedido = new BuscarCliente();
-                formpedido.ShowDialog();
-
-                if (formpedido.ReturnValue != null)
-                {
-                    txtCdCliente.Text = formpedido.ReturnValue;
-                    CarregarCliente();
-                }
-            }
-        }
-
-        private void c1Command7_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
-        {
-            MudarStatusDeControles(StatusControlEnum.Loaded);
-        }
-
-        private void ListaProdutosDoPedido_DoubleClick(object sender, EventArgs e)
-        {
-            LerProduto();
-        }
-        private void LerProduto()
-        {
-
-            if (_bsListaProduto.Current != null && _bsListaProduto.Current is demo01.Domain.Pedidos.Pedido pedido)
-            {
-                txtCdProduto.Text = pedido.CdProduto;
-            }
-        }
-
-
-
         private void c1Command8_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
-
             {
                 BuscarPedido formpedido = new BuscarPedido();
                 formpedido.ShowDialog();
@@ -633,7 +390,6 @@ namespace demo01.Views.Pedido
                 }
             }
         }
-
         private void c1Command10_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             BuscarProduto formproduto = new BuscarProduto();
@@ -645,7 +401,6 @@ namespace demo01.Views.Pedido
                 CarregarProduto();
             }
         }
-
         private void c1Command11_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             {
@@ -659,12 +414,10 @@ namespace demo01.Views.Pedido
                 }
             }
         }
-
         private void txtCdCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
-
                 BuscarCliente formpedido = new BuscarCliente();
                 formpedido.ShowDialog();
 
@@ -673,10 +426,8 @@ namespace demo01.Views.Pedido
                     txtCdCliente.Text = formpedido.ReturnValue;
                     CarregarCliente();
                 }
-
             }
         }
-
         private void TxtNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -691,7 +442,6 @@ namespace demo01.Views.Pedido
                 }
             }
         }
-
         private void txtCdProduto_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -706,11 +456,66 @@ namespace demo01.Views.Pedido
                 }
             }
         }
+        private void OnPedidoLeave(object sender, EventArgs e)
+        {
+            CarregarPedido();
+            c1Command3.Enabled = true;
+        }
+       
+        private void OnClienteLeave(object sender, EventArgs e)
+        {
+            CarregarCliente();
+        }
+        private void c1Command1_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            MudarStatusDeControles(StatusControlEnum.New);
+        }
 
+        private void OnProdutoLeave(object sender, EventArgs e)
+        {
+            CarregarProduto();
+        }
+        private void c1Command7_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            MudarStatusDeControles(StatusControlEnum.Loaded);
+        }
+        private void ListaProdutosDoPedido_DoubleClick(object sender, EventArgs e)
+        {
+            LerProduto();
+        }
+        private void c1Command6_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+
+        }
         private void txtCdProduto_TextChanged(object sender, EventArgs e)
         {
 
         }
+        private void cdCliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void PedidoView_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void c1ToolBar2_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
 

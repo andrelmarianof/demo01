@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace demo01.Domain.Pedido
 {
+    #region Construtores
     class PedidoItem
     {
         public int NumeroPedido { get; set; }
@@ -16,4 +17,6 @@ namespace demo01.Domain.Pedido
         public decimal Total { get; set; }
         public int IdentificadorProduto { get; set; }
     }
+    #endregion
+
 }
