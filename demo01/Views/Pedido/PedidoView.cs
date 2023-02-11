@@ -45,19 +45,53 @@ namespace demo01.Views.Pedido
         public PedidoView()
         {
             InitializeComponent();
-            txtCdCliente.Leave += OnClienteLeave;
             MudarStatusDeControles(StatusControlEnum.Loaded);
+            TxtNumero.Leave += OnPedidoLeave;
+            txtCdProduto.Leave += OnProdutoLeave;
+            txtCdCliente.Leave += OnClienteLeave;
 
 
+
+
+        }
+
+        private void OnProdutoItemChanged(object sender, EventArgs e)
+        {
+            var currentPedidoItem = GetCurrentPedidoItem();
+            if (currentPedidoItem != null)
+            {
+                txtCdProduto.Text = currentPedidoItem.CdProduto.ToString();
+                txtDescricaoProduto.Text = currentPedidoItem.Descricao;
+                txtQtd.Text = currentPedidoItem.QtdVenda.ToString();
+                txtValor.Text = currentPedidoItem.VlVenda.ToString();
+
+            }
+        }
+
+        private PedidoItem GetCurrentPedidoItem()
+        {
+
+            if (_bsListaProduto == null || _bsListaProduto.Current == null)
+                return null;
+
+            if (_bsListaProduto.Current is PedidoItem currentPedidoItem)
+                return currentPedidoItem;
+
+            return null;
         }
 
         private void OnClienteLeave(object sender, EventArgs e)
         {
             CarregarCliente();
         }
+        private void OnPedidoLeave(object sender, EventArgs e)
+        {
+            CarregarPedido();
+            c1Command3.Enabled = true;
+        }
         private void OnProdutoLeave(object sender, EventArgs e)
         {
-
+            CarregarProduto();
         }
 
         //private void OnClienteLeave(object sender, EventArgs e)
@@ -138,14 +172,14 @@ namespace demo01.Views.Pedido
                     ListaProdutosDoPedido.Rows.Clear();
                     break;
                 case StatusControlEnum.Editing:
-                    c1Command1.Enabled = false;
+                    c1Command1.Enabled = true;
                     c1Command6.Enabled = true;
                     c1Command4.Enabled = true;
                     c1Command2.Enabled = true;
                     c1Command5.Enabled = false;
                     c1Command3.Enabled = true;
                     c1Command7.Enabled = true;
-                    c1Command8.Enabled = true;
+                    c1Command8.Enabled = false;
                     c1Command11.Enabled = false;
                     c1Command10.Enabled = true;
                     txtCdProduto.Enabled = true;
@@ -182,25 +216,13 @@ namespace demo01.Views.Pedido
                     txtCdCliente.Enabled = true;
                     txtNomeCliente.Enabled = true;
                     TxtNumero.Enabled = false;
-
-
-
                     ListaProdutosDoPedido.Rows.Clear();
                     break;
             }
 
 
         }
-        //private demo01.Domain.Pedidos.Pedido GetCurrentProduto()
-        //{
-
-        //    if (_bsListaProduto == null || _bsListaProduto.Current == null)
-        //        return null;
-
-        //        return _bsListaProduto.Current;
-
-        //    return null;
-        //}
+        
         private void cdCliente_TextChanged(object sender, EventArgs e)
         {
 
@@ -215,75 +237,6 @@ namespace demo01.Views.Pedido
         {
 
         }
-
-        private void btnPesquisarPedido_Click(object sender, EventArgs e)
-        {
-            BuscarCliente formpedido = new BuscarCliente();
-            formpedido.ShowDialog();
-
-            if (formpedido.ReturnValue != null)
-            {
-                TxtNumero.Text = formpedido.ReturnValue;
-                CarregarCliente();
-            }
-        }
-
-        public void btnNovoPedido_Click(object sender, EventArgs e)
-        {
-
-            if ((txtCdCliente.Text != "") & (txtNomeCliente.Text != ""))
-            {
-                try
-                {
-                    MudarStatusDeControles(StatusControlEnum.Editing);
-
-                    string numero = new PedidoAppService().BuscarNumero();
-                    int txtnumero = int.Parse(numero);
-                    txtnumero++;
-                    TxtNumero.Text = txtnumero.ToString();
-                    var pedido = new Domain.Pedidos.Pedido();
-                    pedido.Numero = txtnumero.ToString();
-                    pedido.CdCliente = txtCdCliente.Text.Trim();
-                    var result = new PedidoAppService().ValidarCliente(pedido);
-                    if (result.Success)
-                    {
-                        MessageBox.Show(string.Format("Pedido criado com sucesso, realize a inserção dos produto"));
-                        InserirProdutos();
-                    }
-                    else
-                    {
-                        MessageBox.Show("O cliente não existe na base de dados");
-                    }
-
-                }
-                catch
-                {
-                    MessageBox.Show(string.Format("Ocorreu um erro na criação do pedido, tente novamente!"));
-                }
-            }
-            else
-            {
-                MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
-            }
-        }
-
-        private void btnPesquisarProduto_Click(object sender, EventArgs e)
-        {
-            BuscarProduto formproduto = new BuscarProduto();
-            formproduto.ShowDialog();
-
-            if (formproduto.ReturnValue != null)
-            {
-                txtCdProduto.Text = formproduto.ReturnValue;
-                CarregarProduto();
-            }
-        }
-        public void CarregaForm(string cdcliente)
-        {
-            var grid = new PedidoRepository().ObterPedido(TxtNumero.Text);
-            Debug.WriteLine(grid);
-        }
-
         public void PedidoView_Load(object sender, EventArgs e)
         {
             //txtCdCliente.Text = BuscarProduto.
@@ -347,8 +300,8 @@ namespace demo01.Views.Pedido
             {
                 List<PedidoItem> lista = new List<PedidoItem>();
                 lista = new PedidoRepository().ObterProdutos(numero);
-
                 _bsListaProduto = new BindingSource(lista, "");
+                _bsListaProduto.CurrentItemChanged += OnProdutoItemChanged;
                 ListaProdutosDoPedido.AutoGenerateColumns = false;
                 ListaProdutosDoPedido.DataSource = _bsListaProduto;
 
@@ -431,6 +384,7 @@ namespace demo01.Views.Pedido
                     txtCdCliente.Text = pedido.CdCliente;
                     CarregarCliente();
                     ListarProdutos(pedido.Numero);
+                    MudarStatusDeControles(StatusControlEnum.Editing);
 
                 }
             }
@@ -478,7 +432,7 @@ namespace demo01.Views.Pedido
             DialogResult resposta = DialogResult;
             var delete = TxtNumero;
 
-            resposta = MessageBox.Show("Deseje realmente cancelar este pedido?", "Cancelar pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            resposta = MessageBox.Show("Deseje realmente excluir este pedido?", "excluir pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resposta != DialogResult.No)
             {
                 if ((txtCdCliente.Text != "") & (txtNomeCliente.Text != ""))
@@ -487,7 +441,7 @@ namespace demo01.Views.Pedido
                     var result = new PedidoRepository().DeletePedido(pedido);
                     if (result == true)
                     {
-                        MessageBox.Show(string.Format("Pedido N° {0} cancelado com sucesso!", TxtNumero.Text));
+                        MessageBox.Show(string.Format("Pedido N° {0} excluido com sucesso!", TxtNumero.Text));
                         LimparCampos();
                         NovoPedido();
                         _bsListaProduto.Clear();
@@ -495,7 +449,7 @@ namespace demo01.Views.Pedido
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("Não foi possivel cancelar o pedido N° {0}!", TxtNumero.Text));
+                        MessageBox.Show(string.Format("Não foi possivel excluir o pedido N° {0}!", TxtNumero.Text));
                     }
                 }
                 else
@@ -508,6 +462,17 @@ namespace demo01.Views.Pedido
 
         private void c1Command5_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
+            if (txtCdCliente.Text == "")
+            {
+                if ((txtCdProduto.Text == "") & (txtDescricaoProduto.Text == "") & (txtQtd.Text == "") & (txtValor.Text == ""))
+                {
+                    MudarStatusDeControles(StatusControlEnum.Loaded);
+                    MessageBox.Show(string.Format("Pedido salvo com sucesso!!"));
+                }
+                else
+                    MessageBox.Show(string.Format("Finalize a edição do produto para poder salvar o pedido!!"));
+            }
+            else
             if ((txtCdCliente.Text != "") & (txtNomeCliente.Text != ""))
             {
                 try
@@ -551,6 +516,7 @@ namespace demo01.Views.Pedido
                 try
                 {
                     var pedido = new Domain.Pedidos.Pedido();
+                    var pedidoitem = new PedidoItem();
                     pedido.CdProduto = txtCdProduto.Text.Trim();
                     pedido.NumeroPedido = TxtNumero.Text.Trim();
                     decimal valorProduto;
@@ -565,7 +531,13 @@ namespace demo01.Views.Pedido
                         MessageBox.Show(string.Format("Valor informado para quantidade não é válido!"));
                         return;
                     }
+                    var IndentificadorProduto = new PedidoRepository().ObterQuantidadeDeProdutos();
+                    pedidoitem.IdentificadorProduto = IndentificadorProduto ++;
+                    pedido.QtdVenda = quantidade;
+                    pedido.VlVenda = valorProduto;
+                    pedidoitem.IdentificadorProduto = IndentificadorProduto;
                     var result = new PedidoAppService().ValidarProduto(pedido);
+                    
 
                     if (result.Success)
                     {
@@ -688,20 +660,6 @@ namespace demo01.Views.Pedido
             }
         }
 
-        //private void TxtNumero_Enter(object sender, EventArgs e)
-        //{
-        //    {
-        //        BuscarPedido formpedido = new BuscarPedido();
-        //        formpedido.ShowDialog();
-
-        //        if (formpedido.ReturnValue != null)
-        //        {
-        //            TxtNumero.Text = formpedido.ReturnValue;
-        //            CarregarPedido();
-        //        }
-        //    }
-        //}
-
         private void txtCdCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -736,13 +694,16 @@ namespace demo01.Views.Pedido
 
         private void txtCdProduto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            BuscarProduto formproduto = new BuscarProduto();
-            formproduto.ShowDialog();
-
-            if (formproduto.ReturnValue != null)
+            if (e.KeyChar == 13)
             {
-                txtCdProduto.Text = formproduto.ReturnValue;
-                CarregarProduto();
+                BuscarProduto formproduto = new BuscarProduto();
+                formproduto.ShowDialog();
+
+                if (formproduto.ReturnValue != null)
+                {
+                    txtCdProduto.Text = formproduto.ReturnValue;
+                    CarregarProduto();
+                }
             }
         }
 

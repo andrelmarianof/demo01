@@ -69,14 +69,13 @@ namespace demo01.Views.Pedido
             this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command1 = new C1.Win.C1Command.C1Command();
-            this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
-            this.c1Command5 = new C1.Win.C1Command.C1Command();
-            this.c1CommandLink2 = new C1.Win.C1Command.C1CommandLink();
-            this.c1Command2 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command3 = new C1.Win.C1Command.C1Command();
+            this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command5 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink7 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command7 = new C1.Win.C1Command.C1Command();
+            this.c1Command2 = new C1.Win.C1Command.C1Command();
             this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
             this.c1Command4 = new C1.Win.C1Command.C1Command();
             this.c1Command6 = new C1.Win.C1Command.C1Command();
@@ -209,9 +208,9 @@ namespace demo01.Views.Pedido
             this.Column2,
             this.Column3,
             this.Column4});
-            this.ListaProdutosDoPedido.Location = new System.Drawing.Point(18, 231);
+            this.ListaProdutosDoPedido.Location = new System.Drawing.Point(18, 187);
             this.ListaProdutosDoPedido.Name = "ListaProdutosDoPedido";
-            this.ListaProdutosDoPedido.Size = new System.Drawing.Size(544, 249);
+            this.ListaProdutosDoPedido.Size = new System.Drawing.Size(544, 272);
             this.ListaProdutosDoPedido.TabIndex = 22;
             this.ListaProdutosDoPedido.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.ListaProdutosDoPedido.DoubleClick += new System.EventHandler(this.ListaProdutosDoPedido_DoubleClick);
@@ -387,9 +386,8 @@ namespace demo01.Views.Pedido
             this.c1ToolBar2.CommandHolder = null;
             this.c1ToolBar2.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
             this.c1CommandLink1,
-            this.c1CommandLink4,
-            this.c1CommandLink2,
             this.c1CommandLink3,
+            this.c1CommandLink4,
             this.c1CommandLink7});
             this.c1ToolBar2.Location = new System.Drawing.Point(18, 75);
             this.c1ToolBar2.Name = "c1ToolBar2";
@@ -409,49 +407,36 @@ namespace demo01.Views.Pedido
             this.c1Command1.Text = "Novo Pedido";
             this.c1Command1.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command1_Click_1);
             // 
-            // c1CommandLink4
-            // 
-            this.c1CommandLink4.Command = this.c1Command5;
-            this.c1CommandLink4.SortOrder = 1;
-            // 
-            // c1Command5
-            // 
-            this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
-            this.c1Command5.Name = "c1Command5";
-            this.c1Command5.ShortcutText = "";
-            this.c1Command5.Text = "Gerar Pedido";
-            this.c1Command5.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command5_Click);
-            // 
-            // c1CommandLink2
-            // 
-            this.c1CommandLink2.Command = this.c1Command2;
-            this.c1CommandLink2.SortOrder = 2;
-            // 
-            // c1Command2
-            // 
-            this.c1Command2.Image = ((System.Drawing.Image)(resources.GetObject("c1Command2.Image")));
-            this.c1Command2.Name = "c1Command2";
-            this.c1Command2.ShortcutText = "";
-            this.c1Command2.Text = "Salvar Pedido";
-            this.c1Command2.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command2_Click);
-            // 
             // c1CommandLink3
             // 
             this.c1CommandLink3.Command = this.c1Command3;
-            this.c1CommandLink3.SortOrder = 3;
+            this.c1CommandLink3.SortOrder = 1;
             // 
             // c1Command3
             // 
             this.c1Command3.Image = ((System.Drawing.Image)(resources.GetObject("c1Command3.Image")));
             this.c1Command3.Name = "c1Command3";
             this.c1Command3.ShortcutText = "";
-            this.c1Command3.Text = "DeletarPedido";
+            this.c1Command3.Text = "Ecluir Pedido";
             this.c1Command3.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command3_Click);
+            // 
+            // c1CommandLink4
+            // 
+            this.c1CommandLink4.Command = this.c1Command5;
+            this.c1CommandLink4.SortOrder = 2;
+            // 
+            // c1Command5
+            // 
+            this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
+            this.c1Command5.Name = "c1Command5";
+            this.c1Command5.ShortcutText = "";
+            this.c1Command5.Text = "Salvar Pedido";
+            this.c1Command5.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command5_Click);
             // 
             // c1CommandLink7
             // 
             this.c1CommandLink7.Command = this.c1Command7;
-            this.c1CommandLink7.SortOrder = 4;
+            this.c1CommandLink7.SortOrder = 3;
             // 
             // c1Command7
             // 
@@ -460,6 +445,14 @@ namespace demo01.Views.Pedido
             this.c1Command7.ShortcutText = "";
             this.c1Command7.Text = "Desfazer";
             this.c1Command7.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command7_Click);
+            // 
+            // c1Command2
+            // 
+            this.c1Command2.Image = ((System.Drawing.Image)(resources.GetObject("c1Command2.Image")));
+            this.c1Command2.Name = "c1Command2";
+            this.c1Command2.ShortcutText = "";
+            this.c1Command2.Text = "Salvar Pedido";
+            this.c1Command2.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command2_Click);
             // 
             // c1CommandHolder1
             // 
@@ -481,7 +474,7 @@ namespace demo01.Views.Pedido
             this.c1Command4.Image = ((System.Drawing.Image)(resources.GetObject("c1Command4.Image")));
             this.c1Command4.Name = "c1Command4";
             this.c1Command4.ShortcutText = "";
-            this.c1Command4.Text = "Salvar Produto";
+            this.c1Command4.Text = "Inserir Produto";
             this.c1Command4.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command4_Click);
             // 
             // c1Command6
@@ -489,7 +482,7 @@ namespace demo01.Views.Pedido
             this.c1Command6.Image = ((System.Drawing.Image)(resources.GetObject("c1Command6.Image")));
             this.c1Command6.Name = "c1Command6";
             this.c1Command6.ShortcutText = "";
-            this.c1Command6.Text = "Deletar Produto";
+            this.c1Command6.Text = "Ecluir Produto";
             this.c1Command6.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command6_Click);
             // 
             // c1Command8
@@ -530,7 +523,7 @@ namespace demo01.Views.Pedido
             this.c1ToolBar1.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
             this.c1CommandLink5,
             this.c1CommandLink6});
-            this.c1ToolBar1.Location = new System.Drawing.Point(18, 187);
+            this.c1ToolBar1.Location = new System.Drawing.Point(18, 465);
             this.c1ToolBar1.Name = "c1ToolBar1";
             this.c1ToolBar1.Size = new System.Drawing.Size(544, 26);
             this.c1ToolBar1.Text = "c1ToolBar1";
@@ -673,7 +666,6 @@ namespace demo01.Views.Pedido
         private C1.Win.C1Command.C1ToolBar c1ToolBar2;
         private C1.Win.C1Command.C1CommandLink c1CommandLink1;
         private C1.Win.C1Command.C1Command c1Command1;
-        private C1.Win.C1Command.C1CommandLink c1CommandLink2;
         private C1.Win.C1Command.C1Command c1Command2;
         private C1.Win.C1Command.C1CommandLink c1CommandLink3;
         private C1.Win.C1Command.C1Command c1Command3;

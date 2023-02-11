@@ -104,6 +104,15 @@ namespace demo01.Data.RepositoriesPedido
 
             return _connection.Query<PedidoItem>(template.RawSql, template.Parameters).ToList();
         }
+        public int ObterQuantidadeDeProdutos(string numero = "")
+        {
+            var queryBuilder = new SqlBuilder();
+            var template = queryBuilder.AddTemplate(@"SELECT pedidoItem.NumeroPedido AS NumeroPedido, pedidoItem.CdProduto AS CdProduto, produto.Descricao AS Descricao, pedidoItem.QtdVenda AS QtdVenda, pedidoItem.VlVenda AS VlVenda, (pedidoItem.VlVenda * pedidoItem.QtdVenda) AS Total FROM pedido INNER JOIN pedidoItem ON pedido.Numero = pedidoItem.NumeroPedido INNER JOIN produto ON pedidoItem.CdProduto = produto.CdProduto /**where**/");
+            queryBuilder.Where("pedido.Numero = @numero", new { numero });
+
+            var listaDeProdutos = _connection.Query<PedidoItem>(template.RawSql, template.Parameters);
+            return listaDeProdutos.Count();
+        }
         public List<demo01.Domain.Pedidos.Pedido> ListarPedido(string columnSort)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
