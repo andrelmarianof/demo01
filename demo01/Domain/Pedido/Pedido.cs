@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace demo01.Domain.Pedidos
 {
-    
     class Pedido
     {
         #region Construtores

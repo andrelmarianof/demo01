@@ -21,7 +21,6 @@ namespace demo01.Domain.Clientes
 
         #endregion
 
-
         #region Validacao
 
         public ResultCliente IsValid()

@@ -7,14 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using demo01.Domain.Clientes;
 using demo01.Data.RepositoriesCliente;
-using demo01.Views.Pedido;
 using demo01.Views.Clientes;
+
 namespace demo01.Views.Cliente
-
 {
-
     public partial class ClienteView : MetroFramework.Forms.MetroForm
     {
         #region Declaração

@@ -9,11 +9,8 @@ using demo01.Data.Repositories;
 
 namespace demo01.Views.Pedido
 {
-
     public partial class PedidoView : MetroFramework.Forms.MetroForm
     {
-
-
         #region Private 
 
         private enum StatusControlEnum
