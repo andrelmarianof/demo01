@@ -15,7 +15,7 @@ namespace demo01.Domain.Pedido
         public decimal QtdVenda { get; set; }
         public decimal VlVenda { get; set; }
         public decimal Total { get; set; }
-        public int IdentificadorProduto { get; set; }
+        public Guid Id { get; set; }
     }
     #endregion
 

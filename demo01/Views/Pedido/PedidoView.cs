@@ -341,11 +341,9 @@ namespace demo01.Views.Pedido
                         MessageBox.Show(string.Format("Valor informado para quantidade não é válido!"));
                         return;
                     }
-                    var IndentificadorProduto = new PedidoRepository().ObterQuantidadeDeProdutos();
-                    pedidoitem.IdentificadorProduto = IndentificadorProduto++;
+                    pedidoitem.Id = Guid.NewGuid();
                     pedido.QtdVenda = quantidade;
                     pedido.VlVenda = valorProduto;
-                    pedidoitem.IdentificadorProduto = IndentificadorProduto;
                     var result = new PedidoAppService().ValidarProduto(pedido);
 
 

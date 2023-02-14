@@ -99,6 +99,7 @@
     <Compile Include="Views\Cliente\ClienteView.Designer.cs">
       <DependentUpon>ClienteView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Helpers\TextBoxEventHelpers.cs" />
     <Compile Include="Views\Pedido\BuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>

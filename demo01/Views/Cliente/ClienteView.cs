@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using demo01.Data.RepositoriesCliente;
 using demo01.Views.Clientes;
+using demo01.Views.Helpers;
 
 namespace demo01.Views.Cliente
 {
@@ -246,27 +247,11 @@ namespace demo01.Views.Cliente
         }
         private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+            TextBoxEventHelpers.KeyPressNumericHandler(txtCodigoClientezz, e);
         }
         private void txtCpf_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
         }
         private void btnNovoCliente_Click(object sender, EventArgs e)
         {
