@@ -60,7 +60,7 @@ namespace demo01.Views.Pedido
         {
             if (_bsListaPedido.Current != null && _bsListaPedido.Current is demo01.Domain.Pedidos.Pedido pedido)
             {
-                ReturnValue = pedido.Numero;
+                ReturnValue = pedido.Numero.ToString();
                 this.Close();
             }
         }
@@ -69,7 +69,7 @@ namespace demo01.Views.Pedido
         {
             if (_bsListaPedido.Current != null && _bsListaPedido.Current is demo01.Domain.Pedidos.Pedido pedido)
             {
-                ReturnValue = pedido.Numero;
+                ReturnValue = pedido.Numero.ToString();
                 this.Close();
             }
         }

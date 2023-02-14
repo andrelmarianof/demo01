@@ -132,7 +132,7 @@ namespace demo01.Views.Pedido
 
         private void LerProduto()
         {
-            if (_bsListaProduto.Current != null && _bsListaProduto.Current is demo01.Domain.Pedidos.Pedido pedido)
+            if (_bsListaProduto.Current != null && _bsListaProduto.Current is demo01.Domain.Pedido.PedidoItem pedido)
             {
                 txtCdProduto.Text = pedido.CdProduto;
             }
@@ -162,7 +162,7 @@ namespace demo01.Views.Pedido
             return null;
         }
 
-        private void ListarProdutos(string numero)
+        private void ListarProdutos(int numero)
         {
             try
             {
@@ -188,7 +188,7 @@ namespace demo01.Views.Pedido
 
                 if (cliente != null)
                 {
-                    txtCdCliente.Text = cliente.CdCliente;
+                    txtCdCliente.Text = cliente.CdCliente.ToString();
                     txtNomeCliente.Text = cliente.NomeCliente;
                 }
             }
@@ -202,7 +202,7 @@ namespace demo01.Views.Pedido
 
                 if (pedido != null)
                 {
-                    TxtNumero.Text = pedido.Numero;
+                    TxtNumero.Text = pedido.Numero.ToString();
                     txtCdCliente.Text = pedido.CdCliente;
                     CarregarCliente();
                     ListarProdutos(pedido.Numero);
@@ -230,7 +230,7 @@ namespace demo01.Views.Pedido
         #endregion
 
         #region Eventos
-       
+
         private void c1Command2_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             if ((txtCdProduto.Text == "") & (txtDescricaoProduto.Text == "") & (txtQtd.Text == "") & (txtValor.Text == ""))
@@ -296,7 +296,7 @@ namespace demo01.Views.Pedido
                     txtnumero++;
                     TxtNumero.Text = txtnumero.ToString();
                     var pedido = new Domain.Pedidos.Pedido();
-                    pedido.Numero = txtnumero.ToString();
+                    pedido.Numero = txtnumero;
                     pedido.CdCliente = txtCdCliente.Text.Trim();
                     var result = new PedidoAppService().ValidarCliente(pedido);
                     if (result.Success)
@@ -327,9 +327,27 @@ namespace demo01.Views.Pedido
                 {
                     var pedido = new Domain.Pedidos.Pedido();
                     var pedidoitem = new PedidoItem();
-                    pedido.CdProduto = txtCdProduto.Text.Trim();
-                    pedido.NumeroPedido = TxtNumero.Text.Trim();
+                    pedidoitem.CdProduto = txtCdProduto.Text.Trim();
+                    pedidoitem.Descricao = txtDescricaoProduto.Text;
+                    int numeroInt;
+                    if (Int32.TryParse(TxtNumero.Text.Trim(), out numeroInt))
+                    {
+                        pedidoitem.NumeroPedido = numeroInt;
+                    }
+                    else
+                    {
+                        Console.WriteLine("A conversão falhou. Não foi possível converter a string para int.");
+                    }
+
                     decimal valorProduto;
+                    if (Decimal.TryParse(txtValor.Text.Trim(), out valorProduto))
+                    {
+                        pedidoitem.VlVenda = valorProduto;
+                    }
+                    else
+                    {
+                        Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");
+                    }
                     if (!decimal.TryParse(txtValor.Text.Trim(), out valorProduto))
                     {
                         MessageBox.Show(string.Format("Valor informado não é válido!"));
@@ -342,17 +360,16 @@ namespace demo01.Views.Pedido
                         return;
                     }
                     pedidoitem.Id = Guid.NewGuid();
-                    pedido.QtdVenda = quantidade;
-                    pedido.VlVenda = valorProduto;
-                    var result = new PedidoAppService().ValidarProduto(pedido);
+                    pedidoitem.QtdVenda = quantidade;
+                    pedidoitem.VlVenda = valorProduto;
+                    var result = new PedidoAppService().ValidarProduto(pedidoitem);
 
 
                     if (result.Success)
                     {
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
 
-                        ListarProdutos(pedido.NumeroPedido);
-                        //ListarProdutos(nameof(Domain.Pedidos.Pedido.CdProduto));
+                        ListarProdutos(pedidoitem.NumeroPedido);
                     }
                     else
                     {
@@ -456,7 +473,7 @@ namespace demo01.Views.Pedido
             CarregarPedido();
             c1Command3.Enabled = true;
         }
-       
+
         private void OnClienteLeave(object sender, EventArgs e)
         {
             CarregarCliente();
@@ -480,6 +497,36 @@ namespace demo01.Views.Pedido
         }
         private void c1Command6_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
+            if ((txtCdProduto.Text != "") & (txtDescricaoProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != ""))
+            {
+                try
+                {
+                    var pedido = new Domain.Pedidos.Pedido();
+                    var pedidoitem = new PedidoItem();
+                    pedidoitem.CdProduto = txtCdProduto.Text.Trim();
+                    int numeroInt;
+                    if (Int32.TryParse(TxtNumero.Text.Trim(), out numeroInt))
+                    {
+                        pedidoitem.NumeroPedido = numeroInt;
+                    }
+                    else
+                    {
+                        Console.WriteLine("A conversão falhou. Não foi possível converter a string para int.");
+                    }
+                    pedidoitem.Id = Guid.NewGuid();
+                    var deletarPedido = new PedidoRepository().DeleteItemDoPedido(pedidoitem);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");
+                }
+
+                 
+                
+            }
+            else
+                Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");
+
 
         }
         private void txtCdProduto_TextChanged(object sender, EventArgs e)

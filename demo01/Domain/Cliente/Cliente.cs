@@ -14,11 +14,8 @@ namespace demo01.Domain.Clientes
         #region Construtores
         public string CdCliente { get; set; }
         public string NomeCliente { get; set; }
-
         public string Cpf { get; set; }
-
         public string Email { get; set; }
-
         #endregion
 
         #region Validacao

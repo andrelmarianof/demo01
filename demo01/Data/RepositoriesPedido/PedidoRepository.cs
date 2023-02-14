@@ -41,19 +41,20 @@ namespace demo01.Data.RepositoriesPedido
             return true;
         }
         
-        public bool InsertProduto(Pedido pedido)
+        public bool InsertProduto(PedidoItem pedido)
         {
             var sql = @"
-                INSERT INTO pedidoItem (NumeroPedido, CdProduto, QtdVenda, VlVenda)
+                INSERT INTO pedidoItem (NumeroPedido, CdProduto, QtdVenda, VlVenda, Descricao)
                 OUTPUT INSERTED.NumeroPedido
-                VALUES (@numeropedido, @cdproduto, @qtdvenda, @vlvenda)";
+                VALUES (@numeropedido, @cdproduto, @qtdvenda, @vlvenda, @descricao)";
 
             var resp = _connection.ExecuteScalar(sql, new
             {
                 numeropedido = pedido.NumeroPedido,
                 cdproduto = pedido.CdProduto,
                 qtdvenda = pedido.QtdVenda,
-                vlvenda = pedido.VlVenda
+                vlvenda = pedido.VlVenda,
+                descricao = pedido.Descricao
             });
 
             if (resp == null)
@@ -83,6 +84,27 @@ namespace demo01.Data.RepositoriesPedido
 
             return true;
         }
+        public bool DeleteItemDoPedido(PedidoItem pedido)
+        {
+            var sql = @"
+                DELETE FROM pedidoItem 
+                OUTPUT DELETED.Id
+                WHERE CdProduto = @cdprodut
+                AND Id = @id";
+
+            var resp = _connection.ExecuteScalar(sql, new
+            {
+                cdprodut = pedido.CdProduto,
+                id = pedido.Id
+            });
+
+            if (resp == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public string ConsultarUltimoPedido()
         {
@@ -96,7 +118,7 @@ namespace demo01.Data.RepositoriesPedido
             return _connection.QueryFirstOrDefault<Pedido>(query, new { numero });
         }
 
-        public List<PedidoItem> ObterProdutos(string numero = "")
+        public List<PedidoItem> ObterProdutos(int numero)
         {
             var queryBuilder = new SqlBuilder();
             var template = queryBuilder.AddTemplate(@"SELECT pedidoItem.NumeroPedido AS NumeroPedido, pedidoItem.CdProduto AS CdProduto, produto.Descricao AS Descricao, pedidoItem.QtdVenda AS QtdVenda, pedidoItem.VlVenda AS VlVenda, (pedidoItem.VlVenda * pedidoItem.QtdVenda) AS Total FROM pedido INNER JOIN pedidoItem ON pedido.Numero = pedidoItem.NumeroPedido INNER JOIN produto ON pedidoItem.CdProduto = produto.CdProduto /**where**/");
@@ -120,7 +142,6 @@ namespace demo01.Data.RepositoriesPedido
                 return con.Query<Pedido>(template.RawSql, template.Parameters).ToList();
             }
         }
-
 
     }
 }

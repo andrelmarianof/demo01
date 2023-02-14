@@ -10,6 +10,7 @@ using demo01.Data.RepositoriesPedido;
 using demo01.Domain.Pedidos;
 using demo01.Data.RepositoriesCliente;
 using demo01.Domain.Clientes;
+using demo01.Domain.Pedido;
 
 namespace demo01.Application.Pedidos
 {
@@ -37,7 +38,7 @@ namespace demo01.Application.Pedidos
             }
             return new ResultPedido(false, string.Empty);
         }
-        public ResultPedido InserirProduto(Pedido pedido)
+        public ResultPedido InserirProduto(PedidoItem pedido)
         {
             var validation = pedido.IsValidInserirProduto();
             if (!validation.Success) return validation;
@@ -46,12 +47,12 @@ namespace demo01.Application.Pedidos
 
             return new ResultPedido(true, string.Empty);
         }
-        public ResultPedido ValidarProduto(Pedido pedido)
+        public ResultPedido ValidarProduto(PedidoItem pedido)
         {
             var produtoExiste = new ProdutoRepository().ObterPorCodigo(pedido.CdProduto);
             if (produtoExiste != null)
             {
-                var pedido1 = new Domain.Pedidos.Pedido();
+                //var pedido1 = new Domain.Pedidos.Pedido();
                 var result1 = new PedidoAppService().InserirProduto(pedido);
                 return new ResultPedido(true, "");
             }
