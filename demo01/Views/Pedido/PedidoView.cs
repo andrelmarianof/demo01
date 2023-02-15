@@ -146,9 +146,6 @@ namespace demo01.Views.Pedido
                 txtDescricaoProduto.Text = currentPedidoItem.Descricao;
                 txtQtd.Text = currentPedidoItem.QtdVenda.ToString();
                 txtValor.Text = currentPedidoItem.VlVenda.ToString();
-
-
-
             }
         }
 
