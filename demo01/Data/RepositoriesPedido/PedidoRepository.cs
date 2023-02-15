@@ -84,18 +84,20 @@ namespace demo01.Data.RepositoriesPedido
 
             return true;
         }
-        public bool DeleteItemDoPedido(PedidoItem pedido)
+        public bool DeleteItemDoPedido(PedidoItem pedidoitem)
         {
             var sql = @"
-                DELETE FROM pedidoItem 
-                OUTPUT DELETED.Id
-                WHERE CdProduto = @cdprodut
-                AND Id = @id";
+                DELETE FROM pedidoItem
+                OUTPUT DELETED.NumeroPedido
+                WHERE NumeroPedido = @numeropedido
+                AND Id = @id
+                AND CdProduto = @cdproduto";
 
             var resp = _connection.ExecuteScalar(sql, new
             {
-                cdprodut = pedido.CdProduto,
-                id = pedido.Id
+                cdproduto = pedidoitem.CdProduto,
+                id = pedidoitem.Id,
+                numeropedido = pedidoitem.NumeroPedido
             });
 
             if (resp == null)
@@ -118,15 +120,23 @@ namespace demo01.Data.RepositoriesPedido
             return _connection.QueryFirstOrDefault<Pedido>(query, new { numero });
         }
 
-        public List<PedidoItem> ObterProdutos(int numero)
+        //public List<PedidoItem> ObterListaDeItens(int numero)
+        //{
+        //    var queryBuilder = new SqlBuilder();
+        //    var template = queryBuilder.AddTemplate(@"SELECT pedidoItem.NumeroPedido AS NumeroPedido, pedidoItem.CdProduto AS CdProduto, produto.Descricao AS Descricao, pedidoItem.QtdVenda AS QtdVenda, pedidoItem.VlVenda AS VlVenda, (pedidoItem.VlVenda * pedidoItem.QtdVenda) AS Total FROM pedido INNER JOIN pedidoItem ON pedido.Numero = pedidoItem.NumeroPedido INNER JOIN produto ON pedidoItem.CdProduto = produto.CdProduto /**where**/");
+        //    queryBuilder.Where("pedido.Numero = @numero", new { numero });
+
+        //    return _connection.Query<PedidoItem>(template.RawSql, template.Parameters).ToList();
+        //}
+        public List<PedidoItem> ObterListaDeItens(int numero)
         {
             var queryBuilder = new SqlBuilder();
-            var template = queryBuilder.AddTemplate(@"SELECT pedidoItem.NumeroPedido AS NumeroPedido, pedidoItem.CdProduto AS CdProduto, produto.Descricao AS Descricao, pedidoItem.QtdVenda AS QtdVenda, pedidoItem.VlVenda AS VlVenda, (pedidoItem.VlVenda * pedidoItem.QtdVenda) AS Total FROM pedido INNER JOIN pedidoItem ON pedido.Numero = pedidoItem.NumeroPedido INNER JOIN produto ON pedidoItem.CdProduto = produto.CdProduto /**where**/");
+            var template = queryBuilder.AddTemplate(@"SELECT pedidoItem.Id AS Id, pedidoItem.NumeroPedido AS NumeroPedido, pedidoItem.CdProduto AS CdProduto, produto.Descricao AS Descricao, pedidoItem.QtdVenda AS QtdVenda, pedidoItem.VlVenda AS VlVenda, (pedidoItem.VlVenda * pedidoItem.QtdVenda) AS Total FROM pedido INNER JOIN pedidoItem ON pedido.Numero = pedidoItem.NumeroPedido INNER JOIN produto ON pedidoItem.CdProduto = produto.CdProduto /**where**/");
             queryBuilder.Where("pedido.Numero = @numero", new { numero });
 
             return _connection.Query<PedidoItem>(template.RawSql, template.Parameters).ToList();
         }
-        
+
         public List<demo01.Domain.Pedidos.Pedido> ListarPedido(string columnSort)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())

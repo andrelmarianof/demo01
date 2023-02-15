@@ -137,7 +137,7 @@ namespace demo01.Views.Pedido
                 txtCdProduto.Text = pedido.CdProduto;
             }
         }
-        private void OnProdutoItemChanged(object sender, EventArgs e)
+        public void OnProdutoItemChanged(object sender, EventArgs e)
         {
             var currentPedidoItem = GetCurrentPedidoItem();
             if (currentPedidoItem != null)
@@ -146,6 +146,8 @@ namespace demo01.Views.Pedido
                 txtDescricaoProduto.Text = currentPedidoItem.Descricao;
                 txtQtd.Text = currentPedidoItem.QtdVenda.ToString();
                 txtValor.Text = currentPedidoItem.VlVenda.ToString();
+
+
 
             }
         }
@@ -162,12 +164,12 @@ namespace demo01.Views.Pedido
             return null;
         }
 
-        private void ListarProdutos(int numero)
+        private void ListarItensDoPedido(int numero)
         {
             try
             {
                 List<PedidoItem> lista = new List<PedidoItem>();
-                lista = new PedidoRepository().ObterProdutos(numero);
+                lista = new PedidoRepository().ObterListaDeItens(numero);
                 _bsListaProduto = new BindingSource(lista, "");
                 _bsListaProduto.CurrentItemChanged += OnProdutoItemChanged;
                 ListaProdutosDoPedido.AutoGenerateColumns = false;
@@ -205,7 +207,7 @@ namespace demo01.Views.Pedido
                     TxtNumero.Text = pedido.Numero.ToString();
                     txtCdCliente.Text = pedido.CdCliente;
                     CarregarCliente();
-                    ListarProdutos(pedido.Numero);
+                    ListarItensDoPedido(pedido.Numero);
                     MudarStatusDeControles(StatusControlEnum.Editing);
 
                 }
@@ -216,7 +218,7 @@ namespace demo01.Views.Pedido
         {
             if (!string.IsNullOrWhiteSpace(txtCdProduto.Text))
             {
-                var produto = new ProdutoRepository().ObterPorCodigo(txtCdProduto.Text);
+                var produto = new ProdutoRepository().ObterProdutoPorCodigo(txtCdProduto.Text);
 
                 if (produto != null)
                 {
@@ -369,7 +371,7 @@ namespace demo01.Views.Pedido
                     {
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
 
-                        ListarProdutos(pedidoitem.NumeroPedido);
+                        ListarItensDoPedido(pedidoitem.NumeroPedido);
                     }
                     else
                     {
@@ -513,16 +515,24 @@ namespace demo01.Views.Pedido
                     {
                         Console.WriteLine("A conversão falhou. Não foi possível converter a string para int.");
                     }
-                    pedidoitem.Id = Guid.NewGuid();
+                    var id = GetCurrentPedidoItem();
+                    pedidoitem.Id = id.Id;
                     var deletarPedido = new PedidoRepository().DeleteItemDoPedido(pedidoitem);
+                    if (!deletarPedido)
+                        MessageBox.Show(string.Format("Ocorreu um erro ao excluir o produto! verifique!"));
+                    else
+                    {
+                        MessageBox.Show(string.Format("Produto excluido com sucesso!"));
+                        ListarItensDoPedido(pedidoitem.NumeroPedido);
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");
                 }
 
-                 
-                
+
+
             }
             else
                 Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");

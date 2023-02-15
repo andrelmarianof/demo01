@@ -17,7 +17,7 @@ namespace demo01.App.Produtos
             var validation = produto.IsValid();
             if (!validation.Success) return validation;
 
-            var produtoExistente = new ProdutoRepository().ObterPorCodigo(produto.CdProduto);
+            var produtoExistente = new ProdutoRepository().ObterProdutoPorCodigo(produto.CdProduto);
 
             if (produtoExistente != null )
             {

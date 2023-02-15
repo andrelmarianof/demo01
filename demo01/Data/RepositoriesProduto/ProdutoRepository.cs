@@ -187,7 +187,7 @@ WHERE cdproduto = @cdproduto
             }
         }
 
-        public Produto ObterPorCodigo(string cdProduto)
+        public Produto ObterProdutoPorCodigo(string cdProduto)
         {
             using (SqlConnection con = ConnectionProvider.ObterConexao())
             {

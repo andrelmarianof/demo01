@@ -43,11 +43,6 @@ namespace demo01.Views.Pedido
             this.txtValor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ListaProdutosDoPedido = new System.Windows.Forms.DataGridView();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TxtNumero = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +88,12 @@ namespace demo01.Views.Pedido
             this.c1CommandLink14 = new C1.Win.C1Command.C1CommandLink();
             this.c1ToolBar5 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink10 = new C1.Win.C1Command.C1CommandLink();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
             this.SuspendLayout();
@@ -207,43 +208,14 @@ namespace demo01.Views.Pedido
             this.Column1,
             this.Column2,
             this.Column3,
-            this.Column4});
+            this.Column4,
+            this.Id});
             this.ListaProdutosDoPedido.Location = new System.Drawing.Point(18, 187);
             this.ListaProdutosDoPedido.Name = "ListaProdutosDoPedido";
             this.ListaProdutosDoPedido.Size = new System.Drawing.Size(544, 272);
             this.ListaProdutosDoPedido.TabIndex = 22;
             this.ListaProdutosDoPedido.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.ListaProdutosDoPedido.DoubleClick += new System.EventHandler(this.ListaProdutosDoPedido_DoubleClick);
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "CdProduto";
-            this.Column5.HeaderText = "Código";
-            this.Column5.Name = "Column5";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Descricao";
-            this.Column1.HeaderText = "Descrição";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "VlVenda";
-            this.Column2.HeaderText = "Valor";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "QtdVenda";
-            this.Column3.HeaderText = "Quantidade";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Total";
-            this.Column4.HeaderText = "Total item";
-            this.Column4.Name = "Column4";
             // 
             // TxtNumero
             // 
@@ -591,11 +563,47 @@ namespace demo01.Views.Pedido
             // 
             this.c1CommandLink10.Command = this.c1Command10;
             // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "CdProduto";
+            this.Column5.HeaderText = "Código";
+            this.Column5.Name = "Column5";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Descricao";
+            this.Column1.HeaderText = "Descrição";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "VlVenda";
+            this.Column2.HeaderText = "Valor";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "QtdVenda";
+            this.Column3.HeaderText = "Quantidade";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Total";
+            this.Column4.HeaderText = "Total item";
+            this.Column4.Name = "Column4";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
             // PedidoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 554);
+            this.ClientSize = new System.Drawing.Size(858, 554);
             this.Controls.Add(this.c1ToolBar5);
             this.Controls.Add(this.c1ToolBar4);
             this.Controls.Add(this.c1ToolBar3);
@@ -658,11 +666,6 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private C1.Win.C1Command.C1ToolBar c1ToolBar2;
         private C1.Win.C1Command.C1CommandLink c1CommandLink1;
         private C1.Win.C1Command.C1Command c1Command1;
@@ -690,5 +693,11 @@ namespace demo01.Views.Pedido
         private C1.Win.C1Command.C1Command c1Command10;
         private C1.Win.C1Command.C1CommandLink c1CommandLink10;
         private C1.Win.C1Command.C1Command c1Command11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }

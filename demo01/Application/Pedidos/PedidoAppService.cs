@@ -49,7 +49,7 @@ namespace demo01.Application.Pedidos
         }
         public ResultPedido ValidarProduto(PedidoItem pedido)
         {
-            var produtoExiste = new ProdutoRepository().ObterPorCodigo(pedido.CdProduto);
+            var produtoExiste = new ProdutoRepository().ObterProdutoPorCodigo(pedido.CdProduto);
             if (produtoExiste != null)
             {
                 //var pedido1 = new Domain.Pedidos.Pedido();
