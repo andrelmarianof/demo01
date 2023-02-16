@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using demo01.Data.RepositoriesCliente;
 using demo01.Domain.Pedido;
 using demo01.Data.Repositories;
+using demo01.Views.Helpers;
 
 namespace demo01.Views.Pedido
 {
@@ -61,7 +62,7 @@ namespace demo01.Views.Pedido
                     txtQtd.Text = "";
                     txtValor.Text = "";
                     TxtNumero.Text = "";
-                    c1Command1.Enabled = true;
+                    NovoPedido.Enabled = true;
                     c1Command6.Enabled = false;
                     c1Command4.Enabled = false;
                     c1Command2.Enabled = false;
@@ -81,7 +82,7 @@ namespace demo01.Views.Pedido
                     ListaProdutosDoPedido.Rows.Clear();
                     break;
                 case StatusControlEnum.Editing:
-                    c1Command1.Enabled = true;
+                    NovoPedido.Enabled = true;
                     c1Command6.Enabled = true;
                     c1Command4.Enabled = true;
                     c1Command2.Enabled = true;
@@ -98,6 +99,10 @@ namespace demo01.Views.Pedido
                     txtCdCliente.Enabled = false;
                     txtNomeCliente.Enabled = false;
                     TxtNumero.Enabled = false;
+                    txtCdProduto.Text = "";
+                    txtDescricaoProduto.Text = "";
+                    txtQtd.Text = "";
+                    txtValor.Text = "";
                     break;
                 case StatusControlEnum.Empty:
                     break;
@@ -109,7 +114,7 @@ namespace demo01.Views.Pedido
                     txtQtd.Text = "";
                     txtValor.Text = "";
                     TxtNumero.Text = "";
-                    c1Command1.Enabled = false;
+                    NovoPedido.Enabled = false;
                     c1Command4.Enabled = false;
                     c1Command2.Enabled = false;
                     c1Command5.Enabled = true;
@@ -179,7 +184,7 @@ namespace demo01.Views.Pedido
             }
         }
 
-        private void CarregarCliente()
+        private void CarregarListaDeCliente()
         {
             if (!string.IsNullOrWhiteSpace(txtCdCliente.Text))
             {
@@ -189,6 +194,8 @@ namespace demo01.Views.Pedido
                 {
                     txtCdCliente.Text = cliente.CdCliente.ToString();
                     txtNomeCliente.Text = cliente.NomeCliente;
+                    if (txtCdProduto.Enabled)
+                        txtCdProduto.Focus();
                 }
             }
         }
@@ -203,15 +210,17 @@ namespace demo01.Views.Pedido
                 {
                     TxtNumero.Text = pedido.Numero.ToString();
                     txtCdCliente.Text = pedido.CdCliente;
-                    CarregarCliente();
+                    CarregarListaDeCliente();
                     ListarItensDoPedido(pedido.Numero);
                     MudarStatusDeControles(StatusControlEnum.Editing);
+                    if (txtCdProduto.Enabled)
+                        txtCdProduto.Focus();
 
                 }
             }
         }
 
-        private void CarregarProduto()
+        private void CarregarListaDeProduto()
         {
             if (!string.IsNullOrWhiteSpace(txtCdProduto.Text))
             {
@@ -230,48 +239,7 @@ namespace demo01.Views.Pedido
 
         #region Eventos
 
-        private void c1Command2_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
-        {
-            if ((txtCdProduto.Text == "") & (txtDescricaoProduto.Text == "") & (txtQtd.Text == "") & (txtValor.Text == ""))
-            {
-                MudarStatusDeControles(StatusControlEnum.Loaded);
-                MessageBox.Show(string.Format("Pedido salvo com sucesso!!"));
-            }
-            else
-                MessageBox.Show(string.Format("Finalize a edição do produto para poder salvar o pedido!!"));
-        }
-        private void c1Command3_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
-        {
-            DialogResult resposta = DialogResult;
-            var delete = TxtNumero;
-
-            resposta = MessageBox.Show("Deseje realmente excluir este pedido?", "excluir pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resposta != DialogResult.No)
-            {
-                if ((txtCdCliente.Text != "") & (txtNomeCliente.Text != ""))
-                {
-                    var pedido = new PedidoRepository().ObterPedido(delete.Text);
-                    var result = new PedidoRepository().DeletePedido(pedido);
-                    if (result == true)
-                    {
-                        MessageBox.Show(string.Format("Pedido N° {0} excluido com sucesso!", TxtNumero.Text));
-                        _bsListaProduto.Clear();
-                        TxtNumero.Text = "";
-                        MudarStatusDeControles(StatusControlEnum.Loaded);
-                    }
-                    else
-                    {
-                        MessageBox.Show(string.Format("Não foi possivel excluir o pedido N° {0}!", TxtNumero.Text));
-                    }
-                }
-                else
-
-                    MessageBox.Show(string.Format("Selecione um produto para que possa realizar a exclusão!"));
-            }
-            else
-                MessageBox.Show(string.Format("Processo cancelado! "));
-        }
-        private void c1Command5_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void Salvar_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             if (txtCdCliente.Text == "")
             {
@@ -279,6 +247,8 @@ namespace demo01.Views.Pedido
                 {
                     MudarStatusDeControles(StatusControlEnum.Loaded);
                     MessageBox.Show(string.Format("Pedido salvo com sucesso!!"));
+                    if (txtCdProduto.Enabled == true)
+                        txtCdProduto.Focus();
                 }
                 else
                     MessageBox.Show(string.Format("Finalize a edição do produto para poder salvar o pedido!!"));
@@ -318,7 +288,7 @@ namespace demo01.Views.Pedido
                 MessageBox.Show(string.Format("Selecione um cliente para que possa gerar um pedido!"));
             }
         }
-        private void c1Command4_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void InserirProdutoNoPedido_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             if ((txtCdProduto.Text != "") & (txtDescricaoProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != ""))
             {
@@ -367,7 +337,9 @@ namespace demo01.Views.Pedido
                     if (result.Success)
                     {
                         MessageBox.Show(string.Format("Produto Inserido com sucesso!"));
-
+                        if (txtCdProduto.Enabled == true)
+                            txtCdProduto.Focus();
+                        MudarStatusDeControles(StatusControlEnum.Editing);
                         ListarItensDoPedido(pedidoitem.NumeroPedido);
                     }
                     else
@@ -387,7 +359,7 @@ namespace demo01.Views.Pedido
                 MessageBox.Show(string.Format("Preencha todos os campos para inserir o produto no pedido!!"));
             }
         }
-        private void c1Command8_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void CarregarListaDePedidos_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             {
                 BuscarPedido formpedido = new BuscarPedido();
@@ -398,10 +370,12 @@ namespace demo01.Views.Pedido
                     TxtNumero.Text = formpedido.ReturnValue;
                     CarregarPedido();
                     MudarStatusDeControles(StatusControlEnum.Editing);
+                    if (txtCdProduto.Enabled == true)
+                        txtCdProduto.Focus();
                 }
             }
         }
-        private void c1Command10_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void CarregarListaDeProdutos_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             BuscarProduto formproduto = new BuscarProduto();
             formproduto.ShowDialog();
@@ -409,10 +383,10 @@ namespace demo01.Views.Pedido
             if (formproduto.ReturnValue != null)
             {
                 txtCdProduto.Text = formproduto.ReturnValue;
-                CarregarProduto();
+                CarregarListaDeProduto();
             }
         }
-        private void c1Command11_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void CarregarListaDeClientes_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             {
                 BuscarCliente formpedido = new BuscarCliente();
@@ -421,12 +395,13 @@ namespace demo01.Views.Pedido
                 if (formpedido.ReturnValue != null)
                 {
                     txtCdCliente.Text = formpedido.ReturnValue;
-                    CarregarCliente();
+                    CarregarListaDeCliente();
                 }
             }
         }
         private void txtCdCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
             if (e.KeyChar == 13)
             {
                 BuscarCliente formpedido = new BuscarCliente();
@@ -435,12 +410,14 @@ namespace demo01.Views.Pedido
                 if (formpedido.ReturnValue != null)
                 {
                     txtCdCliente.Text = formpedido.ReturnValue;
-                    CarregarCliente();
+                    CarregarListaDeCliente();
                 }
             }
         }
         private void TxtNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
             if (e.KeyChar == 13)
             {
                 BuscarPedido formpedido = new BuscarPedido();
@@ -455,6 +432,7 @@ namespace demo01.Views.Pedido
         }
         private void txtCdProduto_KeyPress(object sender, KeyPressEventArgs e)
         {
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
             if (e.KeyChar == 13)
             {
                 BuscarProduto formproduto = new BuscarProduto();
@@ -463,7 +441,7 @@ namespace demo01.Views.Pedido
                 if (formproduto.ReturnValue != null)
                 {
                     txtCdProduto.Text = formproduto.ReturnValue;
-                    CarregarProduto();
+                    CarregarListaDeProduto();
                 }
             }
         }
@@ -475,96 +453,117 @@ namespace demo01.Views.Pedido
 
         private void OnClienteLeave(object sender, EventArgs e)
         {
-            CarregarCliente();
+            CarregarListaDeCliente();
         }
-        private void c1Command1_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void PrepararNovoPedido_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             MudarStatusDeControles(StatusControlEnum.New);
+            if (txtCdCliente.Enabled)
+                txtCdCliente.Focus();
         }
 
         private void OnProdutoLeave(object sender, EventArgs e)
         {
-            CarregarProduto();
+            CarregarListaDeProduto();
         }
-        private void c1Command7_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void DesfazerAlteracoes_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             MudarStatusDeControles(StatusControlEnum.Loaded);
+            if (TxtNumero.Enabled == true)
+                TxtNumero.Focus();
         }
         private void ListaProdutosDoPedido_DoubleClick(object sender, EventArgs e)
         {
             LerProduto();
         }
-        private void c1Command6_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        private void ExcluirItemDoPedido_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
-            if ((txtCdProduto.Text != "") & (txtDescricaoProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != ""))
+            DialogResult resposta = DialogResult;
+            var delete = TxtNumero;
+
+            resposta = MessageBox.Show("Deseje realmente excluir este Produto?", "excluir Produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resposta != DialogResult.No)
             {
-                try
+                if ((txtCdProduto.Text != "") & (txtDescricaoProduto.Text != "") & (txtQtd.Text != "") & (txtValor.Text != ""))
                 {
-                    var pedido = new Domain.Pedidos.Pedido();
-                    var pedidoitem = new PedidoItem();
-                    pedidoitem.CdProduto = txtCdProduto.Text.Trim();
-                    int numeroInt;
-                    if (Int32.TryParse(TxtNumero.Text.Trim(), out numeroInt))
+                    try
                     {
-                        pedidoitem.NumeroPedido = numeroInt;
+                        var pedido = new Domain.Pedidos.Pedido();
+                        var pedidoitem = new PedidoItem();
+                        pedidoitem.CdProduto = txtCdProduto.Text.Trim();
+                        int numeroInt;
+                        if (Int32.TryParse(TxtNumero.Text.Trim(), out numeroInt))
+                        {
+                            pedidoitem.NumeroPedido = numeroInt;
+                        }
+                        else
+                        {
+                            Console.WriteLine("A conversão falhou. Não foi possível converter a string para int.");
+                        }
+                        var id = GetCurrentPedidoItem();
+                        pedidoitem.Id = id.Id;
+                        var deletarPedido = new PedidoRepository().DeleteItemDoPedido(pedidoitem);
+                        if (!deletarPedido)
+                            MessageBox.Show(string.Format("Ocorreu um erro ao excluir o produto! verifique!"));
+                        else
+                        {
+                            MessageBox.Show(string.Format("produto ''{0}'' Excluido com sucesso!", id.Descricao));
+                            ListarItensDoPedido(pedidoitem.NumeroPedido);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        Console.WriteLine("A conversão falhou. Não foi possível converter a string para int.");
-                    }
-                    var id = GetCurrentPedidoItem();
-                    pedidoitem.Id = id.Id;
-                    var deletarPedido = new PedidoRepository().DeleteItemDoPedido(pedidoitem);
-                    if (!deletarPedido)
-                        MessageBox.Show(string.Format("Ocorreu um erro ao excluir o produto! verifique!"));
-                    else
-                    {
-                        MessageBox.Show(string.Format("Produto excluido com sucesso!"));
-                        ListarItensDoPedido(pedidoitem.NumeroPedido);
+                        Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");
-                }
-
-
-
             }
             else
                 Console.WriteLine("A conversão falhou. Não foi possível converter a string para decimal.");
 
 
         }
-        private void txtCdProduto_TextChanged(object sender, EventArgs e)
+        private void ExcluirPedido_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
+            DialogResult resposta = DialogResult;
+            var delete = TxtNumero;
+
+            resposta = MessageBox.Show("Deseje realmente excluir este pedido?", "excluir pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resposta != DialogResult.No)
+            {
+                if (TxtNumero.Text != "")
+                {
+                    var pedido = new PedidoRepository().ObterPedido(delete.Text);
+                    var result = new PedidoRepository().DeletePedido(pedido);
+                    if (result == true)
+                    {
+                        MessageBox.Show(string.Format("Pedido N° {0} excluido com sucesso!", TxtNumero.Text));
+                        MudarStatusDeControles(StatusControlEnum.Loaded);
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format("Não foi possivel excluir o pedido N° {0}!", TxtNumero.Text));
+                    }
+                }
+                else
+
+                    MessageBox.Show(string.Format("Selecione um produto para que possa realizar a exclusão!"));
+            }
+            else
+                MessageBox.Show(string.Format("Processo cancelado! "));
 
         }
-        private void cdCliente_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-        public void PedidoView_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void c1ToolBar2_Click(object sender, EventArgs e)
-        {
-
-        }
         #endregion
+
+        private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
+        }
+
+        private void txtQtd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
+        }
     }
 }
 

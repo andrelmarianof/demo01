@@ -27,7 +27,7 @@ namespace demo01.Views.Cliente
 
         }
         #endregion
-        
+
         #region MetodosInternos
         private void InserirCliente()
         {
@@ -50,12 +50,12 @@ namespace demo01.Views.Cliente
                             ListarGrid();
                             DesabilitarCampo();
                         }
-                           else
+                        else
                         {
                             MessageBox.Show($"Ocorreu um erro no cadastro:\n\r{string.Join("\n\r", result.Messages)}");
 
                         }
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -89,7 +89,7 @@ namespace demo01.Views.Cliente
                 _bsListaCliente = new BindingSource(lista1, "");
                 listacliente.AutoGenerateColumns = false;
                 listacliente.DataSource = _bsListaCliente;
-                
+
             }
             catch (Exception)
             {
@@ -101,23 +101,23 @@ namespace demo01.Views.Cliente
         {
             if ((txtNomeCliente.Text != "") & (mskCPF.Text != ""))
             {
-               
-             
+
+
+                {
+                    var cliente = new Domain.Clientes.Cliente();
+                    cliente.CdCliente = txtCodigoClientezz.Text.Trim().ToLower();
+                    cliente.NomeCliente = txtNomeCliente.Text.Trim();
+                    //cliente.Cpf = txtCpf.Text.Trim();
+                    cliente.Cpf = mskCPF.Text.Trim();
+                    cliente.Email = txtEmail.Text.Trim();
+                    var result = new ClienteAppService().Editar(cliente);
+                    if (result.Success)
                     {
-                        var cliente = new Domain.Clientes.Cliente();
-                        cliente.CdCliente = txtCodigoClientezz.Text.Trim().ToLower();
-                        cliente.NomeCliente = txtNomeCliente.Text.Trim();
-                        //cliente.Cpf = txtCpf.Text.Trim();
-                        cliente.Cpf = mskCPF.Text.Trim();
-                        cliente.Email = txtEmail.Text.Trim();
-                        var result = new ClienteAppService().Editar(cliente);
-                        if (result.Success)
-                        {
-                            MessageBox.Show(string.Format("O cadastro do cliente {0} foi alterado com sucesso!", txtNomeCliente.Text));
-                            ListarGrid();
-                            DesabilitarCampo();
-                        }
-                        else
+                        MessageBox.Show(string.Format("O cadastro do cliente {0} foi alterado com sucesso!", txtNomeCliente.Text));
+                        ListarGrid();
+                        DesabilitarCampo();
+                    }
+                    else
                         MessageBox.Show($"Ocorreu um erro no cadastro:\n\r{string.Join("\n\r", result.Messages)}");
                 }
             }
@@ -154,7 +154,7 @@ namespace demo01.Views.Cliente
             txtCodigoClientezz.Text = "";
             txtNomeCliente.Text = "";
             mskCPF.Text = "";
-            txtEmail.Text = ""; 
+            txtEmail.Text = "";
 
         }
 
@@ -179,7 +179,7 @@ namespace demo01.Views.Cliente
         {
             HabilitarCampo();
             txtCodigoClientezz.Enabled = false;
-            txtEmail.Enabled = true; 
+            txtEmail.Enabled = true;
         }
 
         #endregion
@@ -189,27 +189,19 @@ namespace demo01.Views.Cliente
         private void btnExcluirCliente_Click(object sender, EventArgs e)
         {
             var resposta = DialogResult;
-            var currentProduto = GetCurrentCliente();
-            if (currentProduto == null)
+            var currentCliente = GetCurrentCliente();
+            if (currentCliente == null)
                 return;
-
             resposta = MessageBox.Show("Deseje realmente excluir este Cliente?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resposta != DialogResult.No)
             {
-                if ((txtCodigoClientezz.Text != "") & (txtNomeCliente.Text != "") & (mskCPF.Text != ""))
-                {
-                    //objTabela.CdProduto = txtCdProduto.Text.Trim();
-                    var result = new ClienteRepository().DeleteCliente(currentProduto);
-                    MessageBox.Show(string.Format("Cliente {0} Excluido com sucesso!", txtNomeCliente.Text));
-                    limparCampos();
+                var result = new ClienteRepository().DeleteCliente(currentCliente);
+                MessageBox.Show(string.Format("Cliente {0} Excluido com sucesso!", currentCliente.NomeCliente));
+                limparCampos();
 
-                    ListarGrid();
-                    LerCliente();
+                ListarGrid();
+                LerCliente();
 
-                }
-                else
-
-                    MessageBox.Show(string.Format("Selecione um produto para que possa realizar a exclusão!"));
             }
             else
                 MessageBox.Show(string.Format("Processo cancelado! "));
@@ -247,7 +239,7 @@ namespace demo01.Views.Cliente
         }
         private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxEventHelpers.KeyPressNumericHandler(txtCodigoClientezz, e);
+            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
         }
         private void txtCpf_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -321,28 +313,19 @@ namespace demo01.Views.Cliente
             LerCliente();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        #endregion
+
+        private void txtCodigoClientezz_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtNomeCliente_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void codigocliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void txtNomeCliente_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void txtCpf_TextChanged(object sender, EventArgs e)
+        private void mskCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }
@@ -351,8 +334,5 @@ namespace demo01.Views.Cliente
         {
 
         }
-
-
-        #endregion
     }
 }

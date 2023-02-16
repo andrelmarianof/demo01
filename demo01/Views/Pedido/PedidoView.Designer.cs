@@ -43,6 +43,12 @@ namespace demo01.Views.Pedido
             this.txtValor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ListaProdutosDoPedido = new System.Windows.Forms.DataGridView();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TxtNumero = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.código = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +69,7 @@ namespace demo01.Views.Pedido
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
-            this.c1Command1 = new C1.Win.C1Command.C1Command();
+            this.NovoPedido = new C1.Win.C1Command.C1Command();
             this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command3 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
@@ -88,12 +94,6 @@ namespace demo01.Views.Pedido
             this.c1CommandLink14 = new C1.Win.C1Command.C1CommandLink();
             this.c1ToolBar5 = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink10 = new C1.Win.C1Command.C1CommandLink();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).BeginInit();
             this.SuspendLayout();
@@ -106,7 +106,6 @@ namespace demo01.Views.Pedido
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "&Nome do cliente";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtCdCliente
             // 
@@ -114,7 +113,6 @@ namespace demo01.Views.Pedido
             this.txtCdCliente.Name = "txtCdCliente";
             this.txtCdCliente.Size = new System.Drawing.Size(86, 20);
             this.txtCdCliente.TabIndex = 0;
-            this.txtCdCliente.TextChanged += new System.EventHandler(this.cdCliente_TextChanged);
             this.txtCdCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCdCliente_KeyPress);
             // 
             // txtNomeCliente
@@ -141,7 +139,6 @@ namespace demo01.Views.Pedido
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "&Descrição do produto";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -158,7 +155,6 @@ namespace demo01.Views.Pedido
             this.txtCdProduto.Name = "txtCdProduto";
             this.txtCdProduto.Size = new System.Drawing.Size(86, 20);
             this.txtCdProduto.TabIndex = 3;
-            this.txtCdProduto.TextChanged += new System.EventHandler(this.txtCdProduto_TextChanged);
             this.txtCdProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCdProduto_KeyPress);
             // 
             // txtDescricaoProduto
@@ -183,6 +179,7 @@ namespace demo01.Views.Pedido
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.Size = new System.Drawing.Size(76, 20);
             this.txtQtd.TabIndex = 7;
+            this.txtQtd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQtd_KeyPress);
             // 
             // txtValor
             // 
@@ -190,6 +187,7 @@ namespace demo01.Views.Pedido
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(76, 20);
             this.txtValor.TabIndex = 6;
+            this.txtValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValor_KeyPress);
             // 
             // label6
             // 
@@ -214,8 +212,43 @@ namespace demo01.Views.Pedido
             this.ListaProdutosDoPedido.Name = "ListaProdutosDoPedido";
             this.ListaProdutosDoPedido.Size = new System.Drawing.Size(544, 272);
             this.ListaProdutosDoPedido.TabIndex = 22;
-            this.ListaProdutosDoPedido.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.ListaProdutosDoPedido.DoubleClick += new System.EventHandler(this.ListaProdutosDoPedido_DoubleClick);
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "CdProduto";
+            this.Column5.HeaderText = "Código";
+            this.Column5.Name = "Column5";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Descricao";
+            this.Column1.HeaderText = "Descrição";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "VlVenda";
+            this.Column2.HeaderText = "Valor";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "QtdVenda";
+            this.Column3.HeaderText = "Quantidade";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Total";
+            this.Column4.HeaderText = "Total item";
+            this.Column4.Name = "Column4";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
             // 
             // TxtNumero
             // 
@@ -365,19 +398,18 @@ namespace demo01.Views.Pedido
             this.c1ToolBar2.Name = "c1ToolBar2";
             this.c1ToolBar2.Size = new System.Drawing.Size(544, 26);
             this.c1ToolBar2.Text = "c1ToolBar2";
-            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
             // 
             // c1CommandLink1
             // 
-            this.c1CommandLink1.Command = this.c1Command1;
+            this.c1CommandLink1.Command = this.NovoPedido;
             // 
-            // c1Command1
+            // NovoPedido
             // 
-            this.c1Command1.Image = ((System.Drawing.Image)(resources.GetObject("c1Command1.Image")));
-            this.c1Command1.Name = "c1Command1";
-            this.c1Command1.ShortcutText = "";
-            this.c1Command1.Text = "Novo Pedido";
-            this.c1Command1.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command1_Click_1);
+            this.NovoPedido.Image = ((System.Drawing.Image)(resources.GetObject("NovoPedido.Image")));
+            this.NovoPedido.Name = "NovoPedido";
+            this.NovoPedido.ShortcutText = "";
+            this.NovoPedido.Text = "Novo Pedido";
+            this.NovoPedido.Click += new C1.Win.C1Command.ClickEventHandler(this.PrepararNovoPedido_Click_1);
             // 
             // c1CommandLink3
             // 
@@ -390,7 +422,7 @@ namespace demo01.Views.Pedido
             this.c1Command3.Name = "c1Command3";
             this.c1Command3.ShortcutText = "";
             this.c1Command3.Text = "Ecluir Pedido";
-            this.c1Command3.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command3_Click);
+            this.c1Command3.Click += new C1.Win.C1Command.ClickEventHandler(this.ExcluirPedido_Click);
             // 
             // c1CommandLink4
             // 
@@ -403,7 +435,7 @@ namespace demo01.Views.Pedido
             this.c1Command5.Name = "c1Command5";
             this.c1Command5.ShortcutText = "";
             this.c1Command5.Text = "Salvar Pedido";
-            this.c1Command5.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command5_Click);
+            this.c1Command5.Click += new C1.Win.C1Command.ClickEventHandler(this.Salvar_Click);
             // 
             // c1CommandLink7
             // 
@@ -416,7 +448,7 @@ namespace demo01.Views.Pedido
             this.c1Command7.Name = "c1Command7";
             this.c1Command7.ShortcutText = "";
             this.c1Command7.Text = "Desfazer";
-            this.c1Command7.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command7_Click);
+            this.c1Command7.Click += new C1.Win.C1Command.ClickEventHandler(this.DesfazerAlteracoes_Click);
             // 
             // c1Command2
             // 
@@ -424,11 +456,10 @@ namespace demo01.Views.Pedido
             this.c1Command2.Name = "c1Command2";
             this.c1Command2.ShortcutText = "";
             this.c1Command2.Text = "Salvar Pedido";
-            this.c1Command2.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command2_Click);
             // 
             // c1CommandHolder1
             // 
-            this.c1CommandHolder1.Commands.Add(this.c1Command1);
+            this.c1CommandHolder1.Commands.Add(this.NovoPedido);
             this.c1CommandHolder1.Commands.Add(this.c1Command3);
             this.c1CommandHolder1.Commands.Add(this.c1Command2);
             this.c1CommandHolder1.Commands.Add(this.c1Command4);
@@ -447,7 +478,7 @@ namespace demo01.Views.Pedido
             this.c1Command4.Name = "c1Command4";
             this.c1Command4.ShortcutText = "";
             this.c1Command4.Text = "Inserir Produto";
-            this.c1Command4.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command4_Click);
+            this.c1Command4.Click += new C1.Win.C1Command.ClickEventHandler(this.InserirProdutoNoPedido_Click);
             // 
             // c1Command6
             // 
@@ -455,7 +486,7 @@ namespace demo01.Views.Pedido
             this.c1Command6.Name = "c1Command6";
             this.c1Command6.ShortcutText = "";
             this.c1Command6.Text = "Ecluir Produto";
-            this.c1Command6.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command6_Click);
+            this.c1Command6.Click += new C1.Win.C1Command.ClickEventHandler(this.ExcluirItemDoPedido_Click);
             // 
             // c1Command8
             // 
@@ -463,7 +494,7 @@ namespace demo01.Views.Pedido
             this.c1Command8.Name = "c1Command8";
             this.c1Command8.ShortcutText = "";
             this.c1Command8.Text = "Pesquisar Pedido";
-            this.c1Command8.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command8_Click);
+            this.c1Command8.Click += new C1.Win.C1Command.ClickEventHandler(this.CarregarListaDePedidos_Click);
             // 
             // c1Command9
             // 
@@ -477,7 +508,7 @@ namespace demo01.Views.Pedido
             this.c1Command10.Name = "c1Command10";
             this.c1Command10.ShortcutText = "";
             this.c1Command10.Text = "Pesquisar Produto";
-            this.c1Command10.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command10_Click_1);
+            this.c1Command10.Click += new C1.Win.C1Command.ClickEventHandler(this.CarregarListaDeProdutos_Click_1);
             // 
             // c1Command11
             // 
@@ -485,7 +516,7 @@ namespace demo01.Views.Pedido
             this.c1Command11.Name = "c1Command11";
             this.c1Command11.ShortcutText = "";
             this.c1Command11.Text = "Pesquisar Cliente";
-            this.c1Command11.Click += new C1.Win.C1Command.ClickEventHandler(this.c1Command11_Click);
+            this.c1Command11.Click += new C1.Win.C1Command.ClickEventHandler(this.CarregarListaDeClientes_Click);
             // 
             // c1ToolBar1
             // 
@@ -563,42 +594,6 @@ namespace demo01.Views.Pedido
             // 
             this.c1CommandLink10.Command = this.c1Command10;
             // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "CdProduto";
-            this.Column5.HeaderText = "Código";
-            this.Column5.Name = "Column5";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Descricao";
-            this.Column1.HeaderText = "Descrição";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "VlVenda";
-            this.Column2.HeaderText = "Valor";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "QtdVenda";
-            this.Column3.HeaderText = "Quantidade";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Total";
-            this.Column4.HeaderText = "Total item";
-            this.Column4.Name = "Column4";
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
             // PedidoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -626,7 +621,6 @@ namespace demo01.Views.Pedido
             this.Controls.Add(this.txtNomeCliente);
             this.Name = "PedidoView";
             this.Text = "Pedido";
-            this.Load += new System.EventHandler(this.PedidoView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ListaProdutosDoPedido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder1)).EndInit();
             this.ResumeLayout(false);
@@ -668,7 +662,7 @@ namespace demo01.Views.Pedido
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private C1.Win.C1Command.C1ToolBar c1ToolBar2;
         private C1.Win.C1Command.C1CommandLink c1CommandLink1;
-        private C1.Win.C1Command.C1Command c1Command1;
+        private C1.Win.C1Command.C1Command NovoPedido;
         private C1.Win.C1Command.C1Command c1Command2;
         private C1.Win.C1Command.C1CommandLink c1CommandLink3;
         private C1.Win.C1Command.C1Command c1Command3;

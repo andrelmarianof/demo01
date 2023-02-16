@@ -53,9 +53,9 @@ namespace demo01.Views.Cliente
             this.c1CommandLink3 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command3 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink4 = new C1.Win.C1Command.C1CommandLink();
+            this.c1Command5 = new C1.Win.C1Command.C1Command();
             this.c1Command4 = new C1.Win.C1Command.C1Command();
             this.c1CommandHolder1 = new C1.Win.C1Command.C1CommandHolder();
-            this.c1Command5 = new C1.Win.C1Command.C1Command();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listacliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1DataSet1)).BeginInit();
@@ -69,8 +69,7 @@ namespace demo01.Views.Cliente
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(211, 20);
             this.txtNomeCliente.TabIndex = 4;
-            this.txtNomeCliente.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.txtNomeCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCliente_KeyPress);
+            this.txtNomeCliente.TextChanged += new System.EventHandler(this.txtNomeCliente_TextChanged);
             // 
             // txtCodigoClientezz
             // 
@@ -78,7 +77,7 @@ namespace demo01.Views.Cliente
             this.txtCodigoClientezz.Name = "txtCodigoClientezz";
             this.txtCodigoClientezz.Size = new System.Drawing.Size(114, 20);
             this.txtCodigoClientezz.TabIndex = 3;
-            this.txtCodigoClientezz.TextChanged += new System.EventHandler(this.codigocliente_TextChanged);
+            this.txtCodigoClientezz.TextChanged += new System.EventHandler(this.txtCodigoClientezz_TextChanged);
             this.txtCodigoClientezz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
             // label1
@@ -167,6 +166,7 @@ namespace demo01.Views.Cliente
             this.mskCPF.Size = new System.Drawing.Size(100, 20);
             this.mskCPF.TabIndex = 5;
             this.mskCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mskCPF.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskCPF_MaskInputRejected);
             // 
             // label4
             // 
@@ -222,6 +222,7 @@ namespace demo01.Views.Cliente
             this.c1Command1.Name = "c1Command1";
             this.c1Command1.ShortcutText = "";
             this.c1Command1.Text = "&Novo Cliente";
+            this.c1Command1.Click += new C1.Win.C1Command.ClickEventHandler(this.btnNovoCliente_Click);
             // 
             // c1CommandLink2
             // 
@@ -234,6 +235,7 @@ namespace demo01.Views.Cliente
             this.c1Command2.Name = "c1Command2";
             this.c1Command2.ShortcutText = "";
             this.c1Command2.Text = "Salvar Cliente";
+            this.c1Command2.Click += new C1.Win.C1Command.ClickEventHandler(this.BtnSalvar_Click);
             // 
             // c1CommandLink3
             // 
@@ -246,11 +248,19 @@ namespace demo01.Views.Cliente
             this.c1Command3.Name = "c1Command3";
             this.c1Command3.ShortcutText = "";
             this.c1Command3.Text = "Deletar Cliente";
+            this.c1Command3.Click += new C1.Win.C1Command.ClickEventHandler(this.btnExcluirCliente_Click);
             // 
             // c1CommandLink4
             // 
             this.c1CommandLink4.Command = this.c1Command5;
             this.c1CommandLink4.SortOrder = 3;
+            // 
+            // c1Command5
+            // 
+            this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
+            this.c1Command5.Name = "c1Command5";
+            this.c1Command5.ShortcutText = "";
+            this.c1Command5.Text = "Cancelar";
             // 
             // c1Command4
             // 
@@ -267,13 +277,6 @@ namespace demo01.Views.Cliente
             this.c1CommandHolder1.Commands.Add(this.c1Command4);
             this.c1CommandHolder1.Commands.Add(this.c1Command5);
             this.c1CommandHolder1.Owner = this;
-            // 
-            // c1Command5
-            // 
-            this.c1Command5.Image = ((System.Drawing.Image)(resources.GetObject("c1Command5.Image")));
-            this.c1Command5.Name = "c1Command5";
-            this.c1Command5.ShortcutText = "";
-            this.c1Command5.Text = "Cancelar";
             // 
             // clienteBindingSource
             // 
