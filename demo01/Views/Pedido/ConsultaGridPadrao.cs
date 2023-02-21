@@ -46,7 +46,7 @@ namespace demo01.Views.Pedido
             GridDeConsultasGenerico.Columns["cdCliente"].DataPropertyName = "cdCliente";
             GridDeConsultasGenerico.AutoGenerateColumns = false;
         }
-
+        
         public void ConfigurarColunasClientes()
         {
             GridDeConsultasGenerico.Columns.Add("CdCliente", "Código");
@@ -54,29 +54,6 @@ namespace demo01.Views.Pedido
             GridDeConsultasGenerico.Columns.Add("NomeCliente", "Nome do Cliente");
             GridDeConsultasGenerico.Columns["NomeCliente"].DataPropertyName = "NomeCliente";
             GridDeConsultasGenerico.AutoGenerateColumns = false;
-        }
-
-        private List<Domain.Pedidos.Pedido> GetPedidos()
-        {
-            var Pedido = new List<Domain.Pedidos.Pedido>();
-            Pedido.Add(new Domain.Pedidos.Pedido() { Numero = 01, CdCliente = "01" });
-            Pedido.Add(new Domain.Pedidos.Pedido() { Numero = 02, CdCliente = "02" });
-            return Pedido;
-        }
-
-        private List<Domain.Produtos.Produto> GetProdutos()
-        {
-            var produtos = new List<Produto>();
-            produtos.Add(new Produto() { CdProduto = "01", Descricao = "DEscr 01" });
-            produtos.Add(new Produto() { CdProduto = "02", Descricao = "DEscr 02" });
-            return produtos;
-        }
-        private List<Domain.Clientes.Cliente> GetClientes()
-        {
-            var clientes = new List<Domain.Clientes.Cliente>();
-            clientes.Add(new Domain.Clientes.Cliente() { CdCliente = "01", NomeCliente = "Nome 01" });
-            clientes.Add(new Domain.Clientes.Cliente() { CdCliente = "02", NomeCliente = "Nome 02" });
-            return clientes;
         }
 
         public void PopularGridProdutos()
@@ -124,6 +101,47 @@ namespace demo01.Views.Pedido
             {
                 MessageBox.Show("Nenhum produto encontrado.");
             }
+        }
+
+        private void txtSearch_TextChanged_1(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text;
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                // Filtrar o DataGridView com base no valor de pesquisa
+                GridDeConsultasGenerico.CurrentCell = null;
+                foreach (DataGridViewRow row in GridDeConsultasGenerico.Rows)
+                {
+                    bool match = false;
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+                        if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().Contains(searchText))
+                        {
+                            match = true;
+                            break;
+                        }
+                    }
+                    row.Visible = match;
+                }
+            }
+            else
+            {
+                // Se o campo de pesquisa estiver vazio, mostre todas as linhas do DataGridView
+                foreach (DataGridViewRow row in GridDeConsultasGenerico.Rows)
+                {
+                    row.Visible = true;
+                }
+            }
+        }
+
+        private void GridDeConsultasGenerico_DoubleClick(object sender, EventArgs e)
+        {
+            //if (_bsListaPedido.Current != null && _bsListaPedido.Current is demo01.Domain.Pedidos.Pedido pedido)
+            //{
+            //    ReturnValue = pedido.Numero.ToString();
+            //    this.Close();
+            //}
         }
     }
 }
