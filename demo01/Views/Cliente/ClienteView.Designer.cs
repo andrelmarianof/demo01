@@ -45,7 +45,7 @@ namespace demo01.Views.Cliente
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.c1DataSet1 = new C1.Data.C1DataSet();
-            this.c1ToolBar2 = new C1.Win.C1Command.C1ToolBar();
+            this.tbrCliente = new C1.Win.C1Command.C1ToolBar();
             this.c1CommandLink1 = new C1.Win.C1Command.C1CommandLink();
             this.c1Command1 = new C1.Win.C1Command.C1Command();
             this.c1CommandLink2 = new C1.Win.C1Command.C1CommandLink();
@@ -196,21 +196,20 @@ namespace demo01.Views.Cliente
             this.c1DataSet1.SchemaClassName = "";
             this.c1DataSet1.SchemaDef = null;
             // 
-            // c1ToolBar2
+            // tbrCliente
             // 
-            this.c1ToolBar2.AccessibleName = "Tool Bar";
-            this.c1ToolBar2.AutoSize = false;
-            this.c1ToolBar2.CommandHolder = null;
-            this.c1ToolBar2.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
+            this.tbrCliente.AccessibleName = "Tool Bar";
+            this.tbrCliente.AutoSize = false;
+            this.tbrCliente.CommandHolder = null;
+            this.tbrCliente.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
             this.c1CommandLink1,
             this.c1CommandLink2,
             this.c1CommandLink3,
             this.c1CommandLink4});
-            this.c1ToolBar2.Location = new System.Drawing.Point(8, 63);
-            this.c1ToolBar2.Name = "c1ToolBar2";
-            this.c1ToolBar2.Size = new System.Drawing.Size(661, 26);
-            this.c1ToolBar2.Text = "c1ToolBar2";
-            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
+            this.tbrCliente.Location = new System.Drawing.Point(8, 63);
+            this.tbrCliente.Name = "tbrCliente";
+            this.tbrCliente.Size = new System.Drawing.Size(661, 26);
+            this.tbrCliente.Text = "c1ToolBar2";
             // 
             // c1CommandLink1
             // 
@@ -288,7 +287,7 @@ namespace demo01.Views.Cliente
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackImagePadding = new System.Windows.Forms.Padding(0, 0, 2, 2);
             this.ClientSize = new System.Drawing.Size(678, 425);
-            this.Controls.Add(this.c1ToolBar2);
+            this.Controls.Add(this.tbrCliente);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.mskCPF);
@@ -336,7 +335,7 @@ namespace demo01.Views.Cliente
         private C1.Win.C1Command.C1CommandHolder c1CommandHolder1;
         private C1.Win.C1Command.C1CommandLink c1CommandLink4;
         private C1.Win.C1Command.C1Command c1Command4;
-        private C1.Win.C1Command.C1ToolBar c1ToolBar2;
+        private C1.Win.C1Command.C1ToolBar tbrCliente;
         private C1.Win.C1Command.C1Command c1Command5;
     }
 }

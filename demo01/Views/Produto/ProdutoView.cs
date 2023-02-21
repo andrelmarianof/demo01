@@ -1,4 +1,5 @@
-﻿using demo01.App.Produtos;
+﻿using C1.Win.C1Command;
+using demo01.App.Produtos;
 using demo01.Data.Repositories;
 using demo01.Domain.Produtos;
 using System;
@@ -25,7 +26,11 @@ namespace demo01.Views.Produtos
         public ProdutoView()
         {
             InitializeComponent();
+
+            tbrItemAdicionar.Click += tbrItemAdicionarClickHandler;
         }
+
+       
         #endregion
 
         #region "Métodos internos"
@@ -246,6 +251,12 @@ namespace demo01.Views.Produtos
         #endregion
 
         #region "Eventos"
+
+        private void tbrItemAdicionarClickHandler(object sender, ClickEventArgs e)
+        {
+            HabilitarCampo();
+            limparCampos();
+        }
         private void listaProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LerProduto();

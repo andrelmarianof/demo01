@@ -508,7 +508,7 @@ namespace demo01.Views.Pedido
             this.c1Command10.Name = "c1Command10";
             this.c1Command10.ShortcutText = "";
             this.c1Command10.Text = "Pesquisar Produto";
-            this.c1Command10.Click += new C1.Win.C1Command.ClickEventHandler(this.CarregarListaDeProdutos_Click_1);
+            this.c1Command10.Click += new C1.Win.C1Command.ClickEventHandler(this.ConsultarProduto_Click);
             // 
             // c1Command11
             // 

@@ -112,11 +112,11 @@
     <Compile Include="Views\Pedido\BuscarPedido.Designer.cs">
       <DependentUpon>BuscarPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pedido\BuscarProduto.cs">
+    <Compile Include="Views\Pedido\ConsultaGridPadrao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Pedido\BuscarProduto.Designer.cs">
-      <DependentUpon>BuscarProduto.cs</DependentUpon>
+    <Compile Include="Views\Pedido\ConsultaGridPadrao.Designer.cs">
+      <DependentUpon>ConsultaGridPadrao.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Pedido\PedidoView.cs">
       <SubType>Form</SubType>
@@ -171,8 +171,8 @@
     <EmbeddedResource Include="Views\Pedido\BuscarPedido.resx">
       <DependentUpon>BuscarPedido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Pedido\BuscarProduto.resx">
-      <DependentUpon>BuscarProduto.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Pedido\ConsultaGridPadrao.resx">
+      <DependentUpon>ConsultaGridPadrao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Pedido\PedidoView.resx">
       <DependentUpon>PedidoView.cs</DependentUpon>

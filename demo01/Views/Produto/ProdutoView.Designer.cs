@@ -56,7 +56,7 @@ namespace demo01.Views.Produtos
             this.c1Command7 = new C1.Win.C1Command.C1Command();
             this.c1Command8 = new C1.Win.C1Command.C1Command();
             this.c1Command9 = new C1.Win.C1Command.C1Command();
-            this.c1Command10 = new C1.Win.C1Command.C1Command();
+            this.tbrItemAdicionar = new C1.Win.C1Command.C1Command();
             this.c1Command11 = new C1.Win.C1Command.C1Command();
             this.c1Command12 = new C1.Win.C1Command.C1Command();
             this.c1Command13 = new C1.Win.C1Command.C1Command();
@@ -216,7 +216,7 @@ namespace demo01.Views.Produtos
             this.c1CommandHolder1.Commands.Add(this.c1Command7);
             this.c1CommandHolder1.Commands.Add(this.c1Command8);
             this.c1CommandHolder1.Commands.Add(this.c1Command9);
-            this.c1CommandHolder1.Commands.Add(this.c1Command10);
+            this.c1CommandHolder1.Commands.Add(this.tbrItemAdicionar);
             this.c1CommandHolder1.Commands.Add(this.c1Command11);
             this.c1CommandHolder1.Commands.Add(this.c1Command12);
             this.c1CommandHolder1.Commands.Add(this.c1Command13);
@@ -278,12 +278,12 @@ namespace demo01.Views.Produtos
             this.c1Command9.ShortcutText = "";
             this.c1Command9.Text = "&Undo";
             // 
-            // c1Command10
+            // tbrItemAdicionar
             // 
-            this.c1Command10.Image = ((System.Drawing.Image)(resources.GetObject("c1Command10.Image")));
-            this.c1Command10.Name = "c1Command10";
-            this.c1Command10.ShortcutText = "";
-            this.c1Command10.Text = "&New";
+            this.tbrItemAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("tbrItemAdicionar.Image")));
+            this.tbrItemAdicionar.Name = "tbrItemAdicionar";
+            this.tbrItemAdicionar.ShortcutText = "";
+            this.tbrItemAdicionar.Text = "&New";
             // 
             // c1Command11
             // 
@@ -342,11 +342,10 @@ namespace demo01.Views.Produtos
             this.c1ToolBar2.Name = "c1ToolBar2";
             this.c1ToolBar2.Size = new System.Drawing.Size(536, 26);
             this.c1ToolBar2.Text = "c1ToolBar2";
-            this.c1ToolBar2.Click += new System.EventHandler(this.c1ToolBar2_Click);
             // 
             // c1CommandLink1
             // 
-            this.c1CommandLink1.Command = this.c1Command10;
+            this.c1CommandLink1.Command = this.tbrItemAdicionar;
             // 
             // c1CommandLink6
             // 
@@ -416,7 +415,7 @@ namespace demo01.Views.Produtos
         private C1Command c1Command7;
         private C1Command c1Command8;
         private C1Command c1Command9;
-        private C1Command c1Command10;
+        private C1Command tbrItemAdicionar;
         private C1Command c1Command11;
         private C1Command c1Command12;
         private C1Command c1Command13;

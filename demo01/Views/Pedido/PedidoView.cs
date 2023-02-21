@@ -184,18 +184,45 @@ namespace demo01.Views.Pedido
             }
         }
 
+        //private void CarregarListaDeCliente()
+        //{
+        //    if (!string.IsNullOrWhiteSpace(txtCdCliente.Text))
+        //    {
+        //        var teste = new Domain.Clientes.Cliente();
+        //        teste.CdCliente = "0";
+        //        var montargrido = new ConsultaGridPadrao().MontarGrid(cdCliente: CdcdCliente, "");
+
+        //        var cliente = new ClienteRepository().ObterPorCodigo(txtCdCliente.Text);
+
+        //        if (cliente != null)
+        //        {
+        //            txtCdCliente.Text = cliente.CdCliente.ToString();
+        //            txtNomeCliente.Text = cliente.NomeCliente;
+        //            if (txtCdProduto.Enabled)
+        //                txtCdProduto.Focus();
+        //        }
+        //    }
+        //}
         private void CarregarListaDeCliente()
         {
-            if (!string.IsNullOrWhiteSpace(txtCdCliente.Text))
+            string codigoCliente = txtCdCliente.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(codigoCliente))
             {
-                var cliente = new ClienteRepository().ObterPorCodigo(txtCdCliente.Text);
+                var clienteRepository = new ClienteRepository();
+                var cliente = clienteRepository.ObterPorCodigo(codigoCliente);
 
                 if (cliente != null)
                 {
                     txtCdCliente.Text = cliente.CdCliente.ToString();
                     txtNomeCliente.Text = cliente.NomeCliente;
+
                     if (txtCdProduto.Enabled)
+                    {
                         txtCdProduto.Focus();
+                    }
+                   
+                    var consultaGrid = new ConsultaGridPadrao();
+                    consultaGrid.PopularGridDeClientes();
                 }
             }
         }
@@ -222,6 +249,7 @@ namespace demo01.Views.Pedido
 
         private void CarregarListaDeProduto()
         {
+
             if (!string.IsNullOrWhiteSpace(txtCdProduto.Text))
             {
                 var produto = new ProdutoRepository().ObterProdutoPorCodigo(txtCdProduto.Text);
@@ -362,12 +390,13 @@ namespace demo01.Views.Pedido
         private void CarregarListaDePedidos_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             {
-                BuscarPedido formpedido = new BuscarPedido();
-                formpedido.ShowDialog();
+                var consultaGrid = new ConsultaGridPadrao();
+                consultaGrid.PopularGridDePedidos();
+                consultaGrid.Show();
 
-                if (formpedido.ReturnValue != null)
+                if (consultaGrid.ReturnValue != null)
                 {
-                    TxtNumero.Text = formpedido.ReturnValue;
+                    TxtNumero.Text = consultaGrid.ReturnValue;
                     CarregarPedido();
                     MudarStatusDeControles(StatusControlEnum.Editing);
                     if (txtCdProduto.Enabled == true)
@@ -375,27 +404,48 @@ namespace demo01.Views.Pedido
                 }
             }
         }
-        private void CarregarListaDeProdutos_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
-        {
-            BuscarProduto formproduto = new BuscarProduto();
-            formproduto.ShowDialog();
+        //private void CarregarListaDeProdutos_Click_1(object sender, C1.Win.C1Command.ClickEventArgs e)
+        //{
+        //    try
+        //    {
+        //        CdProduto = "0";
+        //        ConsultaGridPadrao formproduto = new ConsultaGridPadrao().MontarColunasProduto();
+        //        formproduto.ShowDialog();
 
-            if (formproduto.ReturnValue != null)
-            {
-                txtCdProduto.Text = formproduto.ReturnValue;
-                CarregarListaDeProduto();
-            }
-        }
+        //        if (formproduto.ReturnValue != null)
+        //        {
+        //            txtCdProduto.Text = formproduto.ReturnValue;
+        //            CarregarListaDeProduto();
+        //        }
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+
+        //    }
+        //}
         private void CarregarListaDeClientes_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
+            string codigoCliente = txtCdCliente.Text.Trim();
+            var consultaGrid = new ConsultaGridPadrao();
+            consultaGrid.PopularGridDeClientes();
+            consultaGrid.Show();
+            if (!string.IsNullOrWhiteSpace(codigoCliente))
             {
-                BuscarCliente formpedido = new BuscarCliente();
-                formpedido.ShowDialog();
+                
+                var clienteRepository = new ClienteRepository();
+                var cliente = clienteRepository.ObterPorCodigo(codigoCliente);
 
-                if (formpedido.ReturnValue != null)
+                if (cliente != null)
                 {
-                    txtCdCliente.Text = formpedido.ReturnValue;
-                    CarregarListaDeCliente();
+                    txtCdCliente.Text = cliente.CdCliente.ToString();
+                    txtNomeCliente.Text = cliente.NomeCliente;
+
+                    if (txtCdProduto.Enabled)
+                    {
+                        txtCdProduto.Focus();
+                    }
                 }
             }
         }
@@ -435,7 +485,7 @@ namespace demo01.Views.Pedido
             TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
             if (e.KeyChar == 13)
             {
-                BuscarProduto formproduto = new BuscarProduto();
+                ConsultaGridPadrao formproduto = new ConsultaGridPadrao();
                 formproduto.ShowDialog();
 
                 if (formproduto.ReturnValue != null)
@@ -563,6 +613,13 @@ namespace demo01.Views.Pedido
         private void txtQtd_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
+        }
+
+        private void ConsultarProduto_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            var consultaGrid = new ConsultaGridPadrao();
+            consultaGrid.PopularGridProdutos();
+            consultaGrid.Show();
         }
     }
 }
