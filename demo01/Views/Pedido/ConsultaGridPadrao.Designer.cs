@@ -48,6 +48,7 @@ namespace demo01.Views.Pedido
             this.GridDeConsultasGenerico.TabIndex = 0;
             this.GridDeConsultasGenerico.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDeConsultasGenerico_CellClick);
             this.GridDeConsultasGenerico.DoubleClick += new System.EventHandler(this.GridDeConsultasGenerico_DoubleClick);
+            this.GridDeConsultasGenerico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GridDeConsultasGenerico_KeyPress);
             // 
             // txtSearch
             // 
@@ -61,6 +62,8 @@ namespace demo01.Views.Pedido
             this.txtSearch.Tag = "Digite para pesquisar!";
             this.txtSearch.Text = "";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged_1);
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // ConsultaGridPadrao
             // 

@@ -141,11 +141,38 @@ namespace demo01.Views.Pedido
 
         private void GridDeConsultasGenerico_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0) 
             {
                 var linhaClicada = GridDeConsultasGenerico.Rows[e.RowIndex];
                
     }
+        }
+
+        private void GridDeConsultasGenerico_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                GridDeConsultasGenerico.Focus();
+            }
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                GridDeConsultasGenerico.Focus();
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true; // impede a tecla "Enter" de ser enviada aos controles do formulário
+            }
         }
     }
 }
