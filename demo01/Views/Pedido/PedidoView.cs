@@ -7,6 +7,7 @@ using demo01.Data.RepositoriesCliente;
 using demo01.Domain.Pedido;
 using demo01.Data.Repositories;
 using demo01.Views.Helpers;
+using System.Linq;
 
 namespace demo01.Views.Pedido
 {
@@ -221,8 +222,8 @@ namespace demo01.Views.Pedido
                         txtCdProduto.Focus();
                     }
 
-                    var consultaGrid = new ConsultaGridPadrao();
-                    consultaGrid.PopularGridDeClientes();
+                    //var consultaGrid = new ConsultaGridPadrao();
+                    //consultaGrid.PopularGridDeClientes();
                 }
             }
         }
@@ -428,8 +429,8 @@ namespace demo01.Views.Pedido
         private void CarregarListaDeClientes_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             string codigoCliente = txtCdCliente.Text.Trim();
-            var consultaGrid = new ConsultaGridPadrao();
-            consultaGrid.PopularGridDeClientes();
+            var consultaGrid = new ConsultaGridPadrao(ObterConfiguracaoConsultaCliente());
+            //consultaGrid.PopularGridDeClientes();
             consultaGrid.Show();
             if (!string.IsNullOrWhiteSpace(codigoCliente))
             {
@@ -449,6 +450,44 @@ namespace demo01.Views.Pedido
                 }
             }
         }
+
+        private ConfiguracaoConsulta ObterConfiguracaoConsultaCliente()
+        {
+
+            return new ConfiguracaoConsulta
+            {
+                Colunas = new List<ColunaConsulta>() {
+                    new ColunaConsulta("CdCliente", "Código"),
+                    new ColunaConsulta("NomeCliente", "Nome do cliente")},
+                ObterDataSource = ObterDataSourceCliente,
+                DevolverRetorno = DevolverRetornoCliente
+            };
+        }
+
+        private void DevolverRetornoCliente(object obj)
+        {
+            if(obj is Domain.Clientes.Cliente cliente)
+            {
+                txtCdCliente.Text = cliente.CdCliente;
+                txtNomeCliente.Text = cliente.NomeCliente;
+                //TODO: Carregar descricao
+            }
+        }
+
+        private DataSourceConsulta ObterDataSourceCliente()
+        {
+            var clienteRepository = new ClienteRepository();
+            var clientes = clienteRepository.ListarClientes("1");
+
+            return new DataSourceConsulta()
+            {
+                HasData = clientes.Any(),
+                MessageNoData = "Nenhum cliente encontrado.",
+                Data = clientes
+            };         
+         
+        }
+
         private void txtCdCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);

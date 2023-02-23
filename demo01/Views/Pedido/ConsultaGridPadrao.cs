@@ -13,15 +13,52 @@ using demo01.Data.RepositoriesPedido;
 using demo01.Domain.Produtos;
 
 namespace demo01.Views.Pedido
-{ 
+{
+
+    public class DataSourceConsulta
+    {
+        public bool HasData { get; set; }
+        public string MessageNoData { get; set; }
+        public object Data { get; set; }
+    }
+    public class ColunaConsulta
+    {
+        public ColunaConsulta(string nomeColuna, string descricaoColuna)
+        {
+            NomeColuna = nomeColuna;
+            DescricaoColuna = descricaoColuna;
+        }
+
+        public string NomeColuna { get; set; }
+        public string DescricaoColuna { get; set; }
+    }
+    public class ConfiguracaoConsulta
+    {
+        public List<ColunaConsulta> Colunas { get; set; }
+        public Func<DataSourceConsulta> ObterDataSource { get; set; }
+        public Action<object> DevolverRetorno { get; set; }
+    }
+
     public partial class ConsultaGridPadrao : MetroFramework.Forms.MetroForm
     {
 
         public string ReturnValue;
+        public ConfiguracaoConsulta _configuracao;
         public ConsultaGridPadrao()
         {
             InitializeComponent();
         }
+
+        public ConsultaGridPadrao(ConfiguracaoConsulta configuracao)
+        {
+            InitializeComponent();            
+            _configuracao = configuracao;
+            PopularGrid();
+            ConfigurarColunas();
+        }
+
+     
+
         private BindingSource _bsListaProduto;
 
         public void ConfigurarColunasProduto()
@@ -45,15 +82,17 @@ namespace demo01.Views.Pedido
             GridDeConsultasGenerico.Columns["cdCliente"].DataPropertyName = "cdCliente";
             GridDeConsultasGenerico.AutoGenerateColumns = false;
         }
-        
-        public void ConfigurarColunasClientes()
-        {
-            GridDeConsultasGenerico.Columns.Add("CdCliente", "Código");
-            GridDeConsultasGenerico.Columns["CdCliente"].DataPropertyName = "CdCliente";
-            GridDeConsultasGenerico.Columns.Add("NomeCliente", "Nome do Cliente");
-            GridDeConsultasGenerico.Columns["NomeCliente"].DataPropertyName = "NomeCliente";
-            GridDeConsultasGenerico.AutoGenerateColumns = false;
-        }
+
+        //public void ConfigurarColunasClientes()
+        //{
+        //    GridDeConsultasGenerico.Columns.Add("CdCliente", "Código");
+        //    GridDeConsultasGenerico.Columns["CdCliente"].DataPropertyName = "CdCliente";
+        //    GridDeConsultasGenerico.Columns.Add("NomeCliente", "Nome do Cliente");
+        //    GridDeConsultasGenerico.Columns["NomeCliente"].DataPropertyName = "NomeCliente";
+        //    GridDeConsultasGenerico.AutoGenerateColumns = false;
+        //}
+
+
 
         public void PopularGridProdutos()
         {
@@ -87,21 +126,47 @@ namespace demo01.Views.Pedido
             }
         }
 
-        public void PopularGridDeClientes()
+        //public void PopularGridDeClientes()
+        //{
+        //    ConfigurarColunasClientes();
+        //    var clienteRepository = new ClienteRepository();
+        //    var clientes = clienteRepository.ListarClientes("1");
+        //    if (clientes != null && clientes.Any())
+        //    {
+        //        GridDeConsultasGenerico.DataSource = clientes;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Nenhum produto encontrado.");
+        //    }
+
+        //}
+
+        #region Métodos de configuração de grid
+        private void ConfigurarColunas()
         {
-            ConfigurarColunasClientes();
-            var clienteRepository = new ClienteRepository();
-            var clientes = clienteRepository.ListarClientes("1");
-            if (clientes != null && clientes.Any())
+            GridDeConsultasGenerico.Columns.Clear();
+            foreach (var coluna in 
+                _configuracao.Colunas)
             {
-                GridDeConsultasGenerico.DataSource = clientes;
+                GridDeConsultasGenerico.Columns.Add(coluna.NomeColuna, coluna.DescricaoColuna);
+                GridDeConsultasGenerico.Columns[coluna.NomeColuna].DataPropertyName = coluna.NomeColuna;
+
             }
+            GridDeConsultasGenerico.AutoGenerateColumns = false;
+        }
+
+        private void PopularGrid()
+        {
+
+            var dataSource = _configuracao.ObterDataSource();
+            if (dataSource.HasData)
+                GridDeConsultasGenerico.DataSource = dataSource.Data;
             else
-            {
-                MessageBox.Show("Nenhum produto encontrado.");
-            }
+                MessageBox.Show(dataSource.MessageNoData);
 
         }
+        #endregion
 
         private void txtSearch_TextChanged_1(object sender, EventArgs e)
         {
@@ -137,25 +202,25 @@ namespace demo01.Views.Pedido
 
         private void GridDeConsultasGenerico_DoubleClick(object sender, EventArgs e)
         {
+            if(GridDeConsultasGenerico.CurrentRow != null)
+            {
+                _configuracao.DevolverRetorno(GridDeConsultasGenerico.CurrentRow.DataBoundItem);
+                this.Close();
+            }
         }
 
         private void GridDeConsultasGenerico_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex >= 0) 
+            if (e.RowIndex >= 0)
             {
                 var linhaClicada = GridDeConsultasGenerico.Rows[e.RowIndex];
-               
-    }
+
+            }
         }
 
         private void GridDeConsultasGenerico_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                e.Handled = true;
-                GridDeConsultasGenerico.Focus();
-            }
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
