@@ -46,6 +46,7 @@ namespace demo01.Views.Pedido
             this.GridDeConsultasGenerico.ReadOnly = true;
             this.GridDeConsultasGenerico.Size = new System.Drawing.Size(747, 319);
             this.GridDeConsultasGenerico.TabIndex = 0;
+            this.GridDeConsultasGenerico.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDeConsultasGenerico_CellClick);
             this.GridDeConsultasGenerico.DoubleClick += new System.EventHandler(this.GridDeConsultasGenerico_DoubleClick);
             // 
             // txtSearch

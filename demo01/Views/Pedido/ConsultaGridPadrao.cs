@@ -13,12 +13,11 @@ using demo01.Data.RepositoriesPedido;
 using demo01.Domain.Produtos;
 
 namespace demo01.Views.Pedido
-{
+{ 
     public partial class ConsultaGridPadrao : MetroFramework.Forms.MetroForm
     {
 
         public string ReturnValue;
-
         public ConsultaGridPadrao()
         {
             InitializeComponent();
@@ -101,6 +100,7 @@ namespace demo01.Views.Pedido
             {
                 MessageBox.Show("Nenhum produto encontrado.");
             }
+
         }
 
         private void txtSearch_TextChanged_1(object sender, EventArgs e)
@@ -137,11 +137,15 @@ namespace demo01.Views.Pedido
 
         private void GridDeConsultasGenerico_DoubleClick(object sender, EventArgs e)
         {
-            //if (_bsListaPedido.Current != null && _bsListaPedido.Current is demo01.Domain.Pedidos.Pedido pedido)
-            //{
-            //    ReturnValue = pedido.Numero.ToString();
-            //    this.Close();
-            //}
+        }
+
+        private void GridDeConsultasGenerico_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) 
+            {
+                var linhaClicada = GridDeConsultasGenerico.Rows[e.RowIndex];
+               
+    }
         }
     }
 }
