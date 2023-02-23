@@ -200,6 +200,7 @@ namespace demo01.Views.Pedido
             // 
             // ListaProdutosDoPedido
             // 
+            this.ListaProdutosDoPedido.AllowUserToAddRows = false;
             this.ListaProdutosDoPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListaProdutosDoPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
