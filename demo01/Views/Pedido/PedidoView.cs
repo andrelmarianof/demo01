@@ -220,7 +220,7 @@ namespace demo01.Views.Pedido
                     {
                         txtCdProduto.Focus();
                     }
-                   
+
                     var consultaGrid = new ConsultaGridPadrao();
                     consultaGrid.PopularGridDeClientes();
                 }
@@ -433,7 +433,7 @@ namespace demo01.Views.Pedido
             consultaGrid.Show();
             if (!string.IsNullOrWhiteSpace(codigoCliente))
             {
-                
+
                 var clienteRepository = new ClienteRepository();
                 var cliente = clienteRepository.ObterPorCodigo(codigoCliente);
 
@@ -466,34 +466,44 @@ namespace demo01.Views.Pedido
         }
         private void TxtNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
-            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
-            if (e.KeyChar == 13)
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                BuscarPedido formpedido = new BuscarPedido();
-                formpedido.ShowDialog();
+                var consultaGrid = new ConsultaGridPadrao();
+                consultaGrid.PopularGridDePedidos();
+                consultaGrid.Show();
 
-                if (formpedido.ReturnValue != null)
+                if (consultaGrid.ReturnValue != null)
                 {
-                    TxtNumero.Text = formpedido.ReturnValue;
+                    TxtNumero.Text = consultaGrid.ReturnValue;
                     CarregarPedido();
+                    MudarStatusDeControles(StatusControlEnum.Editing);
+                    if (txtCdProduto.Enabled == true)
+                        txtCdProduto.Focus();
                 }
             }
+
+
         }
         private void txtCdProduto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
-            if (e.KeyChar == 13)
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                ConsultaGridPadrao formproduto = new ConsultaGridPadrao();
-                formproduto.ShowDialog();
+                var consultaGrid = new ConsultaGridPadrao();
+                consultaGrid.PopularGridProdutos();
+                consultaGrid.Show();
 
-                if (formproduto.ReturnValue != null)
+                if (consultaGrid.ReturnValue != null)
                 {
-                    txtCdProduto.Text = formproduto.ReturnValue;
-                    CarregarListaDeProduto();
+                    txtCdProduto.Text = consultaGrid.ReturnValue;
+                    CarregarPedido();
+                    MudarStatusDeControles(StatusControlEnum.Editing);
+                    if (txtCdProduto.Enabled == true)
+                        txtCdProduto.Focus();
                 }
             }
+
+
+
         }
         private void OnPedidoLeave(object sender, EventArgs e)
         {
