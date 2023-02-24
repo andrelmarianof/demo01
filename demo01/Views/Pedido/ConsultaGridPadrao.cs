@@ -51,102 +51,19 @@ namespace demo01.Views.Pedido
 
         public ConsultaGridPadrao(ConfiguracaoConsulta configuracao)
         {
-            InitializeComponent();            
+            InitializeComponent();
             _configuracao = configuracao;
             PopularGrid();
             ConfigurarColunas();
         }
 
-     
-
         private BindingSource _bsListaProduto;
-
-        public void ConfigurarColunasProduto()
-        {
-            GridDeConsultasGenerico.Columns.Add("CdProduto", "Código");
-            GridDeConsultasGenerico.Columns["CdProduto"].DataPropertyName = "CdProduto";
-            GridDeConsultasGenerico.Columns.Add("Descricao", "Descrição");
-            GridDeConsultasGenerico.Columns["Descricao"].DataPropertyName = "Descricao";
-            GridDeConsultasGenerico.Columns.Add("Estoque", "Estoque Disponivel");
-            GridDeConsultasGenerico.Columns["Estoque"].DataPropertyName = "Estoque";
-            GridDeConsultasGenerico.Columns.Add("Valor", "Preço");
-            GridDeConsultasGenerico.Columns["Valor"].DataPropertyName = "Valor";
-            GridDeConsultasGenerico.AutoGenerateColumns = false;
-        }
-
-        public void ConfigurarColunasPedido()
-        {
-            GridDeConsultasGenerico.Columns.Add("Numero", "Numero do Pedido");
-            GridDeConsultasGenerico.Columns["Numero"].DataPropertyName = "Numero";
-            GridDeConsultasGenerico.Columns.Add("cdCliente", "Nome do cliente");
-            GridDeConsultasGenerico.Columns["cdCliente"].DataPropertyName = "cdCliente";
-            GridDeConsultasGenerico.AutoGenerateColumns = false;
-        }
-
-        //public void ConfigurarColunasClientes()
-        //{
-        //    GridDeConsultasGenerico.Columns.Add("CdCliente", "Código");
-        //    GridDeConsultasGenerico.Columns["CdCliente"].DataPropertyName = "CdCliente";
-        //    GridDeConsultasGenerico.Columns.Add("NomeCliente", "Nome do Cliente");
-        //    GridDeConsultasGenerico.Columns["NomeCliente"].DataPropertyName = "NomeCliente";
-        //    GridDeConsultasGenerico.AutoGenerateColumns = false;
-        //}
-
-
-
-        public void PopularGridProdutos()
-        {
-            ConfigurarColunasProduto();
-
-            var produtoRepository = new ProdutoRepository();
-            var produtos = produtoRepository.ObterTodos("1");
-            if (produtos != null && produtos.Any())
-            {
-                GridDeConsultasGenerico.DataSource = produtos;
-            }
-            else
-            {
-                MessageBox.Show("Nenhum produto encontrado.");
-            }
-
-        }
-
-        public void PopularGridDePedidos()
-        {
-            ConfigurarColunasPedido();
-            var pedidoRepository = new PedidoRepository();
-            var pedidos = pedidoRepository.ListarPedido("1");
-            if (pedidos != null && pedidos.Any())
-            {
-                GridDeConsultasGenerico.DataSource = pedidos;
-            }
-            else
-            {
-                MessageBox.Show("Nenhum produto encontrado.");
-            }
-        }
-
-        //public void PopularGridDeClientes()
-        //{
-        //    ConfigurarColunasClientes();
-        //    var clienteRepository = new ClienteRepository();
-        //    var clientes = clienteRepository.ListarClientes("1");
-        //    if (clientes != null && clientes.Any())
-        //    {
-        //        GridDeConsultasGenerico.DataSource = clientes;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Nenhum produto encontrado.");
-        //    }
-
-        //}
 
         #region Métodos de configuração de grid
         private void ConfigurarColunas()
         {
             GridDeConsultasGenerico.Columns.Clear();
-            foreach (var coluna in 
+            foreach (var coluna in
                 _configuracao.Colunas)
             {
                 GridDeConsultasGenerico.Columns.Add(coluna.NomeColuna, coluna.DescricaoColuna);
@@ -174,7 +91,6 @@ namespace demo01.Views.Pedido
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                // Filtrar o DataGridView com base no valor de pesquisa
                 GridDeConsultasGenerico.CurrentCell = null;
                 foreach (DataGridViewRow row in GridDeConsultasGenerico.Rows)
                 {
@@ -192,7 +108,6 @@ namespace demo01.Views.Pedido
             }
             else
             {
-                // Se o campo de pesquisa estiver vazio, mostre todas as linhas do DataGridView
                 foreach (DataGridViewRow row in GridDeConsultasGenerico.Rows)
                 {
                     row.Visible = true;
@@ -202,7 +117,7 @@ namespace demo01.Views.Pedido
 
         private void GridDeConsultasGenerico_DoubleClick(object sender, EventArgs e)
         {
-            if(GridDeConsultasGenerico.CurrentRow != null)
+            if (GridDeConsultasGenerico.CurrentRow != null)
             {
                 _configuracao.DevolverRetorno(GridDeConsultasGenerico.CurrentRow.DataBoundItem);
                 this.Close();
@@ -236,7 +151,7 @@ namespace demo01.Views.Pedido
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.Handled = true; // impede a tecla "Enter" de ser enviada aos controles do formulário
+                e.Handled = true;
             }
         }
     }

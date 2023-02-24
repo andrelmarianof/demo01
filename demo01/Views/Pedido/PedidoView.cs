@@ -391,8 +391,7 @@ namespace demo01.Views.Pedido
         private void CarregarListaDePedidos_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             {
-                var consultaGrid = new ConsultaGridPadrao();
-                consultaGrid.PopularGridDePedidos();
+                var consultaGrid = new ConsultaGridPadrao(ObterConfiguracaoConsultaPedido());
                 consultaGrid.Show();
 
                 if (consultaGrid.ReturnValue != null)
@@ -426,6 +425,12 @@ namespace demo01.Views.Pedido
 
         //    }
         //}
+
+        private void ConsultarProduto_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            var consultaGrid = new ConsultaGridPadrao(ObterConfiguracaoConsultaProduto());
+            consultaGrid.Show();
+        }
         private void CarregarListaDeClientes_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             string codigoCliente = txtCdCliente.Text.Trim();
@@ -463,13 +468,59 @@ namespace demo01.Views.Pedido
                 DevolverRetorno = DevolverRetornoCliente
             };
         }
+        private ConfiguracaoConsulta ObterConfiguracaoConsultaProduto()
+        {
+
+            return new ConfiguracaoConsulta
+            {
+                Colunas = new List<ColunaConsulta>() {
+                    new ColunaConsulta("CdProduto", "Código"),
+                    new ColunaConsulta("Descricao", "Produto"),
+                    new ColunaConsulta("Estoque", "Estoque Disponivel"),
+                    new ColunaConsulta("Valor", "Valor")},
+                ObterDataSource = ObterDataSourceProduto,
+                DevolverRetorno = DevolverRetornoProduto
+            };
+        }
+        private ConfiguracaoConsulta ObterConfiguracaoConsultaPedido()
+        {
+
+            return new ConfiguracaoConsulta
+            {
+                Colunas = new List<ColunaConsulta>() {
+                    new ColunaConsulta("Numero", "Numero Do Pedido"),
+                    new ColunaConsulta("CdCliente", "Código do Cliente"),
+                    new ColunaConsulta("Cpf", "Cpf do Cliente") },
+                ObterDataSource = ObterDataSourcePedido,
+                DevolverRetorno = DevolverRetornoPedido
+            };
+        }
 
         private void DevolverRetornoCliente(object obj)
         {
-            if(obj is Domain.Clientes.Cliente cliente)
+            if (obj is Domain.Clientes.Cliente cliente)
             {
                 txtCdCliente.Text = cliente.CdCliente;
                 txtNomeCliente.Text = cliente.NomeCliente;
+                //TODO: Carregar descricao
+            }
+        }
+        private void DevolverRetornoProduto(object obj)
+        {
+            if (obj is Domain.Produtos.Produto produto)
+            {
+                txtCdProduto.Text = produto.CdProduto;
+                txtDescricaoProduto.Text = produto.Descricao;
+                txtValor.Text = produto.Valor.ToString();
+                //TODO: Carregar descricao
+            }
+        }
+        private void DevolverRetornoPedido(object obj)
+        {
+            if (obj is Domain.Pedidos.Pedido pedido)
+            {
+                TxtNumero.Text = pedido.Numero.ToString();
+                txtCdCliente.Text = pedido.CdCliente;
                 //TODO: Carregar descricao
             }
         }
@@ -484,16 +535,40 @@ namespace demo01.Views.Pedido
                 HasData = clientes.Any(),
                 MessageNoData = "Nenhum cliente encontrado.",
                 Data = clientes
-            };         
-         
-        }
+            };
 
+        }
+        private DataSourceConsulta ObterDataSourceProduto()
+        {
+            var produtoRepository = new ProdutoRepository();
+            var produtos = produtoRepository.ObterTodos("1");
+
+            return new DataSourceConsulta()
+            {
+                HasData = produtos.Any(),
+                MessageNoData = "Nenhum produto encontrado.",
+                Data = produtos
+            };
+
+        }
+        private DataSourceConsulta ObterDataSourcePedido()
+        {
+            var pedidoRepository = new PedidoRepository();
+            var pedidos = pedidoRepository.ListarPedido("1");
+
+            return new DataSourceConsulta()
+            {
+                HasData = pedidos.Any(),
+                MessageNoData = "Nenhum produto encontrado.",
+                Data = pedidos
+            };
+
+        }
         private void txtCdCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
-            if (e.KeyChar == 13)
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                BuscarCliente formpedido = new BuscarCliente();
+               var formpedido = new ConsultaGridPadrao(ObterConfiguracaoConsultaCliente());
                 formpedido.ShowDialog();
 
                 if (formpedido.ReturnValue != null)
@@ -507,8 +582,7 @@ namespace demo01.Views.Pedido
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var consultaGrid = new ConsultaGridPadrao();
-                consultaGrid.PopularGridDePedidos();
+                var consultaGrid = new ConsultaGridPadrao(ObterConfiguracaoConsultaPedido());
                 consultaGrid.Show();
 
                 if (consultaGrid.ReturnValue != null)
@@ -527,8 +601,7 @@ namespace demo01.Views.Pedido
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var consultaGrid = new ConsultaGridPadrao();
-                consultaGrid.PopularGridProdutos();
+                var consultaGrid = new ConsultaGridPadrao(ObterConfiguracaoConsultaProduto());
                 consultaGrid.Show();
 
                 if (consultaGrid.ReturnValue != null)
@@ -664,12 +737,7 @@ namespace demo01.Views.Pedido
             TextBoxEventHelpers.KeyPressNumericHandler(sender as TextBox, e);
         }
 
-        private void ConsultarProduto_Click(object sender, C1.Win.C1Command.ClickEventArgs e)
-        {
-            var consultaGrid = new ConsultaGridPadrao();
-            consultaGrid.PopularGridProdutos();
-            consultaGrid.Show();
-        }
+        
     }
 }
 
